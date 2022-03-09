@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-03-08 16:11:44
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-03-08 21:41:17
+ * @LastEditTime: 2022-03-08 21:21:54
  * @Description: file content
 -->
 <template>
@@ -521,20 +521,288 @@
 </template>
 
 <script>
-// import about from '@/components/Homepage/about'
 export default {
-    mounted() {
-        let script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = 'about.js';
-        document.body.appendChild(script);
+  data() {
+    return {
+      indexs: 0,
+      indexs01: 0,
+      boxOneTimer: "",
+      box01_p: "",
 
-        // script = document.createElement('script');
-        // script.type = 'text/javascript';
-        // script.src = 'project.js';
-        // document.body.appendChild(script);
+      h: 0,
+      w: 0,
+      //第一屏文字加载
+      f_btn: "",
+      nav_ul: "",
+      wrapBox: "",
+      foot: "",
+      arrow: "",
+      boxs: "",
+      process: "",
+      box02_text: "",
+      box02_timer: "",
+      oB: true,
+      flag: {},
+      e_li: "",
+      li_times: 0,
+      left_div: "",
+      right_div: "",
+
+      iB: true,
+    };
+  },
+  methods: {
+    //文字淡入效果函数
+    boxOne() {
+      if (this.indexs != 0) {
+        console.log()
+      } else if (this.indexs01 < this.box01_p.length) {
+        this.box01_p[this.indexs01].style.opacity = "1";
+        this.indexs01++;
+      } else {
+        //每秒运行
+        clearInterval(this.boxOneTimer);
+      }
     },
-}
+    //第二屏动画
+    boxTow() {
+      //参考实例：进度条动画
+      if (this.indexs != 1) {
+        //暂无
+      } else if (this.indexs02 >= 0 && this.indexs02 < this.box02_text.length) {
+        this.box02_text[this.indexs02].style.right = "0px";
+        this.indexs02++;
+        // console.log(indexs02)r
+      } else {
+        clearInterval(this.box02_timer);
+      }
+    },
+    //加载日记
+    setTime_li() {
+      // var ii = document.getElementById('timeUl').children.length
+      for (var i2 = 0; i2 < this.e_li.length; i2++) {
+        this.e_li[i2].style.width = 100 / this.e_li.length + "%";
+      }
+      document.getElementById("timeUl").style.width =
+        this.e_li.length * 40 + "%";
+      var i = this.e_li[0].offsetWidth * this.li_times;
+      document.getElementById("timeUl").style.left = 20 - i + "px";
+    },
+    //滚动函数
+    divMove(overHeight) {
+      var wrapBox = document.getElementById("this.wrapBox");
+      if (overHeight == 4) {
+        wrapBox.style.top = -this.h * 3 - this.foot.offsetHeight + "px";
+      } else {
+        wrapBox.style.top = -this.indexs * this.h + "px";
+      }
+    },
+    //滚动函数2
+    //滚动函数
+    btnChange(index, flag) {
+      var height = window.innerHeight;
+      //返回任何一个元素的高度包括边框和填充，但不是边距
+      var fh = this.foot.offsetHeight;
+      //classList用于添加或移除样式（类）
+      //这几个按钮的初始样式置为空
+      for (var n = 0; n < this.f_btn.length; n++) {
+        this.f_btn[n].classList.remove("btn_on");
+      }
+      for (var n1 = 0; n1 < this.nav_ul.length; n1++) {
+        this.nav_ul[n1].classList.remove("nav_li_on");
+      }
+      //用于判断用户在浏览第几个页面，让对应的按钮变化样式
+      if (flag) {
+        if (index <= 0) {
+          var indexs = 0;
+          this.f_btn[0].classList.add("btn_on");
+          this.nav_ul[0].classList.add("nav_li_on");
+          this.divMove(indexs);
+        } else if (index > 0 && index <= 3) {
+          this.f_btn[index].classList.add("btn_on");
+          this.nav_ul[index].classList.add("nav_li_on");
+          this.divMove(indexs);
+        } else if (index == 4) {
+          indexs = 4;
+          this.divMove(indexs);
+          this.nav_ul[index].classList.add("nav_li_on");
+        } else {
+          indexs = 4;
+        }
+      } else {
+        //处理用户浏览最下面一页的情况
+        if (index <= 0) {
+          indexs = 0;
+          this.f_btn[0].classList.add("btn_on");
+          this.nav_ul[0].classList.add("nav_li_on");
+          this.wrapBox.style.top = "0";
+        } else if (index > 0 && index <= 3) {
+          this.f_btn[index].classList.add("btn_on");
+          this.nav_ul[index].classList.add("nav_li_on");
+          this.wrapBox.style.top = -indexs * 100 + "%";
+        } else if (index == 4) {
+          indexs = 4;
+          this.wrapBox.style.top = -height * 3 - fh + "px";
+          this.nav_ul[index].classList.add("nav_li_on");
+        } else {
+          indexs = 4;
+        }
+      }
+      //加载进度条动画
+      //判断是否是初次加载
+      if (indexs == 1 && !this.flags.box02) {
+        //第二屏动画
+        for (var i = 0; i < process.length; i++) {
+          process[i].className += " active";
+        }
+        //设置歌词弹出速度
+        this.box02_timer = setInterval(this.boxTow, 800);
+        this.flags.box02 = true;
+        this.indexs02 = 0;
+        /*		for(var i = 0; i < box02_text.length; i++) {
+                    box02_text[i].style.right = "-100%";
+                }*/
+      } else if (indexs == 2) {
+        //？？？？？？？
+        this.setTime_li();
+      }
+      if (indexs > 3) {
+        this.arrow.style.bottom = "-50px";
+      } else {
+        this.arrow.style.bottom = "50px";
+      }
+    },
+    //全局事件预载
+    addClick() {
+      // var huam = byid("huam");
+      //浮动点击事件
+      // for (var i = 0; i < f_btn.length; i++) {
+      //   this.f_btn[i].indexs = i;
+      //   this.f_btn[i].onclick = function () {
+      //     var speed = Math.abs(this.indexs - this.indexs);
+      //     this.indexs = this.indexs;
+      //     btnChange(this.indexs, true, speed);
+      //   };
+      // }
+
+      //浮动nav事件
+      // for (var i = 0; i < this.nav_ul.length; i++) {
+      //   this.nav_ul[i].indexs = i;
+      //   this.nav_ul[i].onclick = function () {
+      //     var speed = Math.abs(this.indexs - this.indexs);
+      //     this.indexs = this.indexs;
+      //     btnChange(this.indexs, true, speed);
+      //   };
+      // }
+
+      //箭头点击事件
+      // this.arrow.onclick = function () {
+      //   this.indexs++;
+      //   btnChange(this.indexs, true, 1);
+      // };
+      // var oB = true;
+
+      //鼠标滑动事件
+      var scrollFunc = function (e) {
+        // var direct = 0;
+        e = e || window.event;
+        if (e.wheelDelta) {
+          //IE/Opera/Chrome
+          if (this.oB == true) {
+            //向下滑动
+            if (e.wheelDelta >= 120) {
+              this.oB = false;
+              this.indexs--;
+              this.btnChange(this.indexs, true, 1);
+              setTimeout(function () {
+                this.oB = true;
+              }, 700);
+            } else if (e.wheelDelta <= -120) {
+              this.oB = false;
+              //向上滑动
+              this.indexs++;
+              this.btnChange(this.indexs, true, 1);
+              setTimeout(function () {
+                this.oB = true;
+              }, 700);
+            }
+          }
+        } else if (e.detail) {
+          //Firefox
+          if (this.oB) {
+            if (e.detail >= 3) {
+              this.oB = false;
+              this.indexs++;
+              this.btnChange(this.indexs, true, 1);
+              setTimeout(function () {
+                this.oB = true;
+              }, 700);
+            } else if (e.detail <= -3) {
+              this.oB = false;
+              this.indexs--;
+              this.btnChange(this.indexs, true, 1);
+              setTimeout(function () {
+                this.oB = true;
+              }, 700);
+            }
+          }
+        }
+      };
+
+      /*注册事件*/
+      if (document.addEventListener) {
+        document.addEventListener("DOMMouseScroll", scrollFunc, false); //W3C
+      }
+      window.onmousewheel = document.onmousewheel = scrollFunc; //IE/Opera/Chrome/Safari
+
+      // var iB = true;
+      //监听窗口改变
+      window.onresize = function () {
+        //document.getElementsByTagName("html")[0].style.fontSize = document.documentElement.clientWidth / 20 + 'px';
+        this.h = window.innerHeight;
+        this.w = window.innerWidth;
+        if (this.w / this.h >= 1920 / 1080) {
+          this.iB = true;
+        } else {
+          this.iB = false;
+        }
+        this.divMove(this.indexs);
+        this.setTime_li();
+      };
+    },
+  },
+  mounted() {
+    //滚动函数预载
+    // var foot = document.getElementById("foot");
+
+    // 文字逐行淡入效果
+    this.box01_p = document.getElementById("box01_text").children;
+    for (var i = 0; i < this.box01_p.length; i++) {
+      this.box01_p[i].style.opacity = "0";
+    }
+    this.boxOneTimer = setInterval(this.boxOne, 2000);
+
+    //全局事件预载
+    this.addClick(); //绑定按键
+
+    //第一屏文字加载
+    this.f_btn = document.getElementById("float_btn").children;
+    this.nav_ul = document.getElementById("nav_ul").children;
+    this.wrapBox = document.getElementById("wrapBox");
+    this.foot = document.getElementById("foot");
+    this.arrow = document.getElementById("arrow_img");
+    this.boxs = document.getElementsByClassName("box");
+    this.process = document.getElementById("bar_container").children; //进度条
+    this.box02_text = document.getElementById("box02_text").children; //第二屏文字
+
+    //时间轴翻页
+    //获取日记的所有子元素
+    this.e_li = document.getElementById("timeUl").children;
+    this.li_times = 0;
+    this.left_div = document.getElementById("left_div");
+    this.right_div = document.getElementById("right_div");
+  },
+};
 </script>
 
 <style scoped>
