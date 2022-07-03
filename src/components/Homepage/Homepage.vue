@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-03-08 16:11:44
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-02 13:55:08
+ * @LastEditTime: 2022-07-02 16:46:52
  * @Description: file content
 -->
 <template>
@@ -146,7 +146,7 @@
             </svg>
             <img
               id="head"
-              onclick="headclick()"
+              @click="headclick()"
               class="head_img"
               src="~@/assets/images/pic/head.jpg"
             />
@@ -532,7 +532,38 @@ export default {
       },
     };
   },
-  methods: {},
+  methods: {
+    headclick() {
+      var ran = this.RandomNum(-360, 360);
+      // var ran = 0;
+      this.cycle(ran, 300);
+      // setTimeout("cycle(" + ran + ",200);", 2250);
+      setTimeout(this.cycle(ran, 200), 2250);
+    },
+    cycle(a, b) {
+      var cycarr = document.getElementsByClassName("cycle_a");
+      var aa = a;
+      if (b == undefined) b = 200;
+      for (var i = 0; i < cycarr.length; i++) {
+        aa += 120;
+        cycarr[i].style.animation = "unset";
+        cycarr[i].style.transform =
+          "rotate(" +
+          (aa - aa * 2) +
+          "deg) translateX(+" +
+          b +
+          "px) rotate(" +
+          aa +
+          "deg)";
+      }
+    },
+    RandomNum(Min, Max) {
+      var Range = Max - Min;
+      var Rand = Math.random();
+      var num = Min + Math.round(Rand * Range);
+      return num;
+    },
+  },
   mounted() {
     console.log("成功导入js文件");
 
@@ -617,51 +648,6 @@ export default {
     var box02_text = document.getElementById("box02_text").children; //第二屏文字
     var box02_timer;
 
-    function headclick() {
-      console.log("这个函数不晓得干嘛的【headclick】");
-      var ran = RandomNum(-360, 360);
-      // var ran = 0;
-      cycle(ran, 300);
-      setTimeout("cycle(" + ran + ",200);", 2250);
-    }
-
-    //气泡旋转 a为角度b为轴距
-    function cycle(a, b) {
-      var cycarr = document.getElementsByClassName("cycle_a");
-      var aa = a;
-      if (b == undefined) b = 200;
-      for (var i = 0; i < cycarr.length; i++) {
-        aa += 120;
-        cycarr[i].style.animation = "unset";
-        cycarr[i].style.transform =
-          "rotate(" +
-          (aa - aa * 2) +
-          "deg) translateX(+" +
-          b +
-          "px) rotate(" +
-          aa +
-          "deg)";
-      }
-    }
-    //旧气泡选择?
-    // function cycle2(a, b) {
-    //   var cycarr = document.getElementsByClassName("cycle_a");
-    //   var aa = a;
-    //   if (b == undefined) b = 200;
-    //   for (var i = 0; i < cycarr.length; i++) {
-    //     aa += 120;
-    //     cycarr[i].style.animation = "unset";
-    //     cycarr[i].style.transform =
-    //       "rotate(" +
-    //       (aa - aa * 2) +
-    //       "deg) translateX(+" +
-    //       b +
-    //       "px) rotate(" +
-    //       aa +
-    //       "deg)";
-    //   }
-    // }
-
     //气泡变形
     var cycle_b_flag = false;
 
@@ -677,6 +663,7 @@ export default {
 
     //第二屏动画
     function boxTow() {
+      console.log("触发第二屏动画");
       if (indexs != 1) {
         //暂无
       } else if (indexs02 >= 0 && indexs02 < box02_text.length) {
@@ -827,7 +814,7 @@ export default {
       }
     }
 
-// function touchEnd(event) {
+    // function touchEnd(event) {
     function touchEnd() {
       if (touchO.flag == 1) {
         touchO.flag = 2;
@@ -966,20 +953,63 @@ export default {
     about_main();
     //下面是没有用到的函数，但是删了会报错的
     loaddone();
-    headclick();
+    // headclick();
 
     //############################################################
     //####################另一个文件卧槽！#########################
-    //随机数
-    function RandomNum(Min, Max) {
-      var Range = Max - Min;
-      var Rand = Math.random();
-      var num = Min + Math.round(Rand * Range);
-      return num;
-    }
-
     function byid(s) {
       return document.getElementById(s);
+    }
+
+    //计算间隔天数
+    function getDateDiff(st, en) {
+      var BirthDay = new Date(st);
+      var today;
+      if (en != undefined) {
+        today = new Date(en);
+      } else {
+        today = new Date();
+      }
+      var timeold = today.getTime() - BirthDay.getTime();
+      // var sectimeold = timeold / 1000;
+      // var secondsold = Math.floor(sectimeold);
+  
+      var msPerDay = 24 * 60 * 60 * 1000;
+      var e_daysold = timeold / msPerDay;
+      var daysold = Math.floor(e_daysold);
+      var e_hrsold = (e_daysold - daysold) * 24;
+      var hrsold = Math.floor(e_hrsold);
+      var e_minsold = (e_hrsold - hrsold) * 60;
+      var minsold = Math.floor((e_hrsold - hrsold) * 60);
+      var seconds = Math.floor((e_minsold - minsold) * 60);
+      return (
+        checkTime(daysold) +
+        "天" +
+        checkTime(hrsold) +
+        "小时" +
+        checkTime(minsold) +
+        "分" +
+        checkTime(seconds) +
+        "秒"
+      );
+    }
+
+    //更新存活时间
+    function show_date_time() {
+      var tm = document.getElementsByName("show_time");
+      for (var i = 0; i < tm.length; i++) {
+        tm[i].innerText =
+          "七画一只妖 の主页已存活" + getDateDiff(tm[i].title);
+      }
+      //window.setTimeout("show_date_time()", 1000);
+    }
+    setInterval(show_date_time, 1000);
+
+    function checkTime(i) {
+      if (i < 10) {
+        i = "0" + i;
+      }
+      return i;
     }
   },
 };
@@ -987,4 +1017,5 @@ export default {
 
 <style scoped>
 @import "~@\\components\\Homepage\\about.css";
+@import "~@\\components\\Homepage\\process.css";
 </style>
