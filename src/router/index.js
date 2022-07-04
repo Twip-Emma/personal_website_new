@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:42:56
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-04 11:17:14
+ * @LastEditTime: 2022-07-04 17:52:13
  * @Description: file content
  */
 import Vue from 'vue'
@@ -44,32 +44,78 @@ const routes = [
     {
         name:"HomePage",
         path: '/home',
-        component: HomePage,
+        components: {
+            header: NavBar,
+            other: HomePage,
+            footer: Footer
+        }
     },
     {
         name:"Essay",
         path: '/essay',
         components: {
             header: NavBar,
-            default: Essay,
+            other: Essay,
             footer: Footer
         }
     },
     {
         name:"Message",
         path: '/message',
-        component:Message
+        components: {
+            header: NavBar,
+            other: Message,
+            footer: Footer
+        }
     },
     {
         name:"Project",
         path: '/project',
-        component:Project
+        components: {
+            header: NavBar,
+            other: Project,
+            footer: Footer
+        }
     },
     {
         name:"About",
         path:"/about",
-        component:About
+        components: {
+            header: NavBar,
+            other: About,
+            footer: Footer
+        }
     },
+    {
+        name:"Login",
+        path:"/login",
+        components: {
+            header: NavBar,
+            other: Login,
+            footer: Footer
+        }
+    },
+    //以下是管理员面板
+    {
+        name:"Admin",
+        path:"/admin",
+        components: {
+            header: NavBar,
+            other: Admin,
+            footer: Footer
+        },
+        children:[
+            {
+                name:'AdminUserFrom',
+                path:"userForm",
+                component:UserFrom
+
+            }
+        ]
+    },
+
+    // 单个文章的路由
+    // 传递文章ID进去
     {
         name:"BlogInfo",
         path:"/bloginfo",
@@ -80,25 +126,6 @@ const routes = [
             }
         }
     },
-    {
-        name:"Login",
-        path:"/login",
-        component:Login
-    },
-    //以下是管理员面板
-    {
-        name:"Admin",
-        path:"/admin",
-        component:Admin,
-        children:[
-            {
-                name:'AdminUserFrom',
-                path:"userForm",
-                component:UserFrom
-
-            }
-        ]
-    }
 ]
 
 
@@ -109,9 +136,27 @@ VueRouter.prototype.push = function push(location) {
 }
 
 
-
 const router = new VueRouter({
     routes
 })
+
+
+// 前置路由，用于拦截路由请求
+router.beforeEach((to, from, next) => {
+    // 判断是否登录
+    if (to.path === "/"){
+        return next()
+    }
+    if (!localStorage.getItem("loginInfo")){
+        console.log("请先登录/注册")
+        if (to.path !== '/login') {
+            return next("/login")
+        }
+    }
+    console.log(to.path)
+    next()
+})
+
+
 Vue.use(VueRouter)
 export default router

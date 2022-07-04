@@ -10,12 +10,14 @@ import Vue from "vue"
 import Vuex from "vuex"
 
 import globalData from '@/store/global'
+import userData from '@/store/userdata'
 
 
 
 Vue.use(Vuex)
 export default new Vuex.Store({
     modules: {
-        globalData: globalData
+        globalData: globalData,
+        userData: userData
     }
 })

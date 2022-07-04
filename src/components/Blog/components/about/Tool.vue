@@ -2,11 +2,11 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 13:50:08
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2021-11-29 11:14:33
+ * @LastEditTime: 2022-07-04 17:50:31
  * @Description: file content
 -->
 <template>
-  <el-collapse v-model="activeName" accordion>
+  <el-collapse accordion>
     <el-collapse-item
       :title="item.title"
       v-for="(item, index) in collectList"

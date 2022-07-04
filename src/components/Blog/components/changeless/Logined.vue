@@ -2,12 +2,12 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2021-11-20 22:43:17
+ * @LastEditTime: 2022-07-04 16:06:50
  * @Description: file content
 -->
 <template>
   <el-menu-item>
-    <div v-if="logined" style="margin-right: 50px">
+    <div v-if="!logined" style="margin-right: 50px">
       <el-button size="mini" effect="light" type="primary" @click="pageSwitch('Login')"
         >登录</el-button
       >
@@ -19,8 +19,10 @@
       <el-avatar :src="userInfo.avatar"></el-avatar>
       <div class="user-option">
         <h3 class="web-font nickname">{{ userInfo.nickname }}</h3>
-        <p v-if="administrator" class="logout" @click="pageSwitch('Admin')">控制台</p>
-        <p class="logout">退出登录</p>
+        <p v-if="administrator" class="logout" @click="pageSwitch('Admin');changePageState()">控制台</p>
+        <p class="logout" @click="logout()">退出登录</p>
+        <p class="logout">个人信息</p>
+        <p v-if="adminpage" class="logout"  @click="pageSwitch('HomePage');changePageState()">返回主界面</p>
       </div>
     </div>
   </el-menu-item>
@@ -30,15 +32,15 @@
 export default {
   data() {
     return {
-      administrator: true,
-      userInfo: {
-        nickname: "七画一只妖",
-        avatar:
-          "https://cdn.jsdelivr.net/gh/yuewuzhijian/cdn/yuewuzhijian/yuewuzhijian.png",
-      },
-      // userInfo: null,
-      logined: false,
+      administrator: true, // 判断是否是管理员
+      logined: true, // 登录状态
+      adminpage: false, // 判断是否是在管理页面
     };
+  },
+  computed: {
+    userInfo(){
+      return this.$store.state.userData.userInfo
+    }
   },
   methods: {
     pageSwitch(target) {
@@ -46,6 +48,12 @@ export default {
         name: target,
         query: {},
       });
+    },
+    changePageState(){
+      this.adminpage = !this.adminpage
+    },
+    logout(){
+      this.logined = false
     }
   },
 };
