@@ -1,0 +1,17 @@
+.el-footer{
+    box-sizing: border-box;
+    flex-shrink: 0;
+    padding: 0;
+}
+
+.el-header {
+    padding: 0 50px;
+}
+
+.el-date-picker{
+    padding: 0;
+}
+
+.el-col-sm-17{
+    width: 100%;
+}
