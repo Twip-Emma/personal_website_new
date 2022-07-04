@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-18 17:10:48
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2021-11-20 22:33:31
+ * @LastEditTime: 2022-07-04 10:42:44
  * @Description: file content
 -->
 <template>
@@ -101,10 +101,10 @@
 </template>
 
 <script>
-import Skill from '@/components/about/Skill'
-import Info from '@/components/about/Info'
-import Tool from '@/components/about/Tool'
-import Study from '@/components/about/Study'
+import Skill from '@/components/Blog/components/about/Skill'
+import Info from '@/components/Blog/components/about/Info'
+import Tool from '@/components/Blog/components/about/Tool'
+import Study from '@/components/Blog/components/about/Study'
 export default {
     components:{Skill,Info,Tool,Study}
 }

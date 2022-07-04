@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:42:56
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-04 10:32:58
+ * @LastEditTime: 2022-07-04 11:17:14
  * @Description: file content
  */
 import Vue from 'vue'
@@ -10,6 +10,15 @@ import VueRouter from 'vue-router'
 
 // 路由懒加载
 // const Welcome = () => import(/* webpackChunkName: "Welcome" */ '@/views/Welcome')
+
+// 首页
+import Main from '@/components/Homepage/Homepage'
+import NavBar from '@/components/Blog/components/changeless/NavBar'
+import Footer from '@/components/Blog/components/changeless/Footer'
+
+// 博客首页
+// import BlogMain from '@/components/Blog/BlogMain'
+
 // 普通用户相关组件
 import HomePage from '@/components/Blog/views/HomePage'
 import Essay from '@/components/Blog/views/Essay'
@@ -30,7 +39,7 @@ const routes = [
     // },
     {
         path: '/',
-        component: HomePage,
+        component: Main,
     },
     {
         name:"HomePage",
@@ -40,7 +49,11 @@ const routes = [
     {
         name:"Essay",
         path: '/essay',
-        component: Essay,
+        components: {
+            header: NavBar,
+            default: Essay,
+            footer: Footer
+        }
     },
     {
         name:"Message",

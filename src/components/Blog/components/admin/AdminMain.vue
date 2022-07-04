@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 16:41:35
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2021-11-20 17:35:46
+ * @LastEditTime: 2022-07-04 10:43:43
  * @Description: file content
 -->
 <template>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import AdminMenu from "@/components/admin/AdminMenu";
+import AdminMenu from "@/components/Blog/components/admin/AdminMenu";
 export default {
   components: { AdminMenu },
 };

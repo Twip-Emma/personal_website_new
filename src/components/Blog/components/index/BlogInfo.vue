@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 09:40:09
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2021-11-29 11:38:48
+ * @LastEditTime: 2022-07-04 10:44:40
  * @Description: file content
 -->
 <template>
@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import CommentBlog from "@/components/index/CommentBlog";
+import CommentBlog from "@/components/Blog/components/index/CommentBlog";
 export default {
   components: { CommentBlog },
   props:["id"],

@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 14:15:29
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2021-11-17 23:06:15
+ * @LastEditTime: 2022-07-04 11:25:46
  * @Description: file content
 -->
 <template>
@@ -10,7 +10,7 @@
         <!-- 展示主要内容，最左边是图片 -->
         <el-row :gutter="20" class=" footer-info">
             <el-col class="ewm" :xs="24" :sm="4" >
-                <img src="..\\..\\assets\\logo.png" alt="图片加载失败"
+                <img src="..\\..\\..\\..\\assets\\logo.png" alt="图片加载失败"
                           class="" style="width: 110px"/>
             </el-col>
             <el-col class="" :xs="24" :sm="7">
@@ -43,8 +43,7 @@ export default {
     data(){
         return {
             footerList: [],
-            // D:\work\Vue\个人博客系统\personal-blog\src\assets\logo.png
-            imageUrl:"..\\..\\src\\assets\\logo.png"
+            imageUrl:"..\\..\\..\\..\\src\\assets\\logo.png"
         }
     },
     methods: {

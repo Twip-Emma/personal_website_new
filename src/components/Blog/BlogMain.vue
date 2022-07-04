@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 10:27:10
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-04 10:01:56
+ * @LastEditTime: 2022-07-04 11:13:39
  * @Description: file content
 -->
 <template>
@@ -19,8 +19,8 @@
 
 <script>
 // import HomePage from "@/views/HomePage";
-import NavBar from "@/components/changeless/NavBar";
-import Footer from "@/components/changeless/Footer";
+import NavBar from "@/components/Blog/components/changeless/NavBar";
+import Footer from "@/components/Blog/components/changeless/Footer";
 export default {
   name: "BlogMain",
   components: {

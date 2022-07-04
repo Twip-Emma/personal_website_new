@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-03-08 16:11:44
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-02 16:46:52
+ * @LastEditTime: 2022-07-04 11:21:58
  * @Description: file content
 -->
 <template>
@@ -53,7 +53,7 @@
                 <p class="item_name">B站主页</p>
               </span>
             </a>
-            <a href="help.html" class="cycle_a" id="item_2" target="_blank">
+            <a class="cycle_a" id="item_2" @click="pageSwitch('About')">
               <span class="cycle_icon_2"></span>
               <span class="cycle_text">
                 <p class="item_name">TwipApi</p>
@@ -533,6 +533,12 @@ export default {
     };
   },
   methods: {
+    pageSwitch(target){
+      this.$router.push({
+        name: target,
+        query: {},
+      });
+    },
     headclick() {
       var ran = this.RandomNum(-360, 360);
       // var ran = 0;

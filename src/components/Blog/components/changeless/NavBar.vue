@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 12:11:04
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2021-11-20 22:45:11
+ * @LastEditTime: 2022-07-04 11:14:34
  * @Description: file content
 -->
 <template>
@@ -46,7 +46,7 @@
 
 <script>
 // import {mapActions} from "vuex"
-import Logined from "@/components/changeless/Logined";
+import Logined from "@/components/Blog/components/changeless/Logined";
 export default {
   name: "NavBar",
   components: { Logined },

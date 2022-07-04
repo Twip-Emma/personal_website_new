@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:41:37
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2021-11-20 22:28:44
+ * @LastEditTime: 2022-07-04 10:43:01
  * @Description: file content
 -->
 <template>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import IndexMain from '@/components/index/IndexMain'
+import IndexMain from '@/components/Blog/components/index/IndexMain'
 
 export default {
   name: "HomePage",
