@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:42:56
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-04 17:52:13
+ * @LastEditTime: 2022-07-05 10:01:26
  * @Description: file content
  */
 import Vue from 'vue'
@@ -147,13 +147,19 @@ router.beforeEach((to, from, next) => {
     if (to.path === "/"){
         return next()
     }
-    if (!localStorage.getItem("loginInfo")){
-        console.log("请先登录/注册")
+    if (localStorage.getItem("loginStatus") !== 'ok'){
+        console.log("请先登录/注册");
         if (to.path !== '/login') {
-            return next("/login")
+            return next("/login");
         }
     }
-    console.log(to.path)
+    // 判断是否是进入了管理员界面
+    if (to.path === "/admin"){
+        if(localStorage.getItem("adminStatus") !== 'ok'){
+            console.log("宁没有管理员权限，快点爬");
+            return next("/home")
+        }
+    }
     next()
 })
 

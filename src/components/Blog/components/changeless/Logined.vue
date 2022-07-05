@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-04 16:06:50
+ * @LastEditTime: 2022-07-05 10:13:18
  * @Description: file content
 -->
 <template>
@@ -21,7 +21,7 @@
         <h3 class="web-font nickname">{{ userInfo.nickname }}</h3>
         <p v-if="administrator" class="logout" @click="pageSwitch('Admin');changePageState()">控制台</p>
         <p class="logout" @click="logout()">退出登录</p>
-        <p class="logout">个人信息</p>
+        <p class="logout">修改信息</p>
         <p v-if="adminpage" class="logout"  @click="pageSwitch('HomePage');changePageState()">返回主界面</p>
       </div>
     </div>
