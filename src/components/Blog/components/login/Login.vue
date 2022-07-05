@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2021-11-19 20:00:12
+ * @LastEditTime: 2022-07-05 19:30:40
  * @Description: file content
 -->
 <template>
@@ -12,12 +12,12 @@
       <div class="c">
         <div class="d">
           <h1>登录/注册</h1>
-          <input type="text" class="e" placeholder="user_name" />
-          <input type="text" class="e" placeholder="user_id" />
-          <input type="password" class="e" placeholder="user_password" />
+          <input type="text" class="e" placeholder="用户名（注册用）" v-model="userLoginData.userName" />
+          <input type="text" class="e" placeholder="账号" v-model="userLoginData.userMail" />
+          <input type="password" class="e" placeholder="密码" />
           <a href="#" class="f">忘记密码？</a>
           <!-- <el-button type="primary" icon="el-icon-search">搜索</el-button> -->
-          <el-button class="login"  type="primary">登录</el-button>
+          <el-button class="login"  type="primary" @click="userLogin()">登录</el-button>
         </div>
       </div>
     </div>
@@ -25,7 +25,34 @@
 </template>
 
 <script>
-export default {};
+// import {mapState,mapGetters,mapActions} from "vuex"
+// import {mapActions} from "vuex"
+import userApis from "@/apis/userInfo"
+export default {
+  data() {
+    return {
+      userLoginData:{
+        userName:"",
+        userMail:""
+      }
+    };
+  },
+  methods:{
+    userLogin(){
+      userApis.userLoginAction(this.userLoginData).then(
+        res => {
+          console.log(res)
+        })
+    },
+
+    pageSwitch(target) {
+      this.$router.push({
+        name: target,
+        query: {},
+      });
+    },
+  }
+};
 </script>
 
 <style scoped>

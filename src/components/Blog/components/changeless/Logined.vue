@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-05 10:13:18
+ * @LastEditTime: 2022-07-05 18:59:22
  * @Description: file content
 -->
 <template>
@@ -20,7 +20,7 @@
       <div class="user-option">
         <h3 class="web-font nickname">{{ userInfo.nickname }}</h3>
         <p v-if="administrator" class="logout" @click="pageSwitch('Admin');changePageState()">控制台</p>
-        <p class="logout" @click="logout()">退出登录</p>
+        <p class="logout" @click="logout();pageSwitch('Start')">退出登录</p>
         <p class="logout">修改信息</p>
         <p v-if="adminpage" class="logout"  @click="pageSwitch('HomePage');changePageState()">返回主界面</p>
       </div>
@@ -32,14 +32,27 @@
 export default {
   data() {
     return {
-      administrator: true, // 判断是否是管理员
-      logined: true, // 登录状态
-      adminpage: false, // 判断是否是在管理页面
+      // administrator: true, // 判断是否是管理员
+      // logined: true, // 登录状态
+      // adminpage: false, // 判断是否是在管理页面
     };
   },
   computed: {
+    administrator(){
+      // return this.$store.state.userData.administrator
+      return sessionStorage.getItem("administrator")
+    },
+    logined(){
+      // return this.$store.state.userData.logined
+      return sessionStorage.getItem("logined")
+    },
+    adminpage(){
+      // return this.$store.state.userData.adminpage
+      return sessionStorage.getItem("adminpage")
+    },
     userInfo(){
-      return this.$store.state.userData.userInfo
+      // return this.$store.state.userData.userInfo
+      return sessionStorage.getItem("userInfo")
     }
   },
   methods: {
@@ -53,9 +66,13 @@ export default {
       this.adminpage = !this.adminpage
     },
     logout(){
-      this.logined = false
+      // this.$store.state.userData.logined = false
+      sessionStorage.clear()
     }
   },
+  mounted(){
+    console.log("进入了登录界面")
+  }
 };
 </script>
 

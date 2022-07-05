@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-03-07 22:38:43
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-04 15:32:06
+ * @LastEditTime: 2022-07-05 18:54:57
  * @Description: file content
 -->
 <template>
@@ -34,6 +34,12 @@ export default {
   name: "App",
   components: {
   },
+  // mounted(){
+  //   window.onbeforeunload()
+  // },
+  // destroy(){
+  //   localStorage.clear()
+  // }
 };
 </script>
 
