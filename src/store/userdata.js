@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-04 15:45:56
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-05 19:29:52
+ * @LastEditTime: 2022-07-06 11:12:11
  * @Description: file content
  */
 export default {
@@ -23,6 +23,8 @@ export default {
         }
     },
     // 用户信息
-    state: {},
+    state: {
+        logined:false
+    },
     getters: {}
 }

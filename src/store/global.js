@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 23:22:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2021-11-29 10:37:08
+ * @LastEditTime: 2022-07-06 11:01:46
  * @Description: file content
  */
 
@@ -24,7 +24,7 @@ export default {
                 title: "博客名称1",
                 content: "测试测试测试测试测试测试测试测试测试测试测试测试测试v",
                 firstPicture:
-                    "https://cdn.jsdelivr.net/gh/yuewuzhijian/sdorica-figure/e0046/e0046s5_figure.png",
+                    "https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
                 flag: "原创",
                 views: 99999,
                 appreciation: 0,
@@ -35,7 +35,7 @@ export default {
                     id: 1,
                     name: "主要技术栈",
                     pic_url:
-                        "https://cdn.jsdelivr.net/gh/yuewuzhijian/sdorica-figure/e0046/e0046s5_figure.png",
+                        "https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
                     color: "#59c9fb",
                 },
                 tags: [
@@ -58,7 +58,7 @@ export default {
                 title: "博客名称1",
                 content: "测试测试测试测试测试测试测试测试测试测试测试测试测试v",
                 firstPicture:
-                    "https://cdn.jsdelivr.net/gh/yuewuzhijian/sdorica-figure/e0046/e0046s5_figure.png",
+                    "https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
                 flag: "原创",
                 views: 99999,
                 appreciation: 0,
@@ -69,7 +69,7 @@ export default {
                     id: 1,
                     name: "主要技术栈",
                     pic_url:
-                        "https://cdn.jsdelivr.net/gh/yuewuzhijian/sdorica-figure/e0046/e0046s5_figure.png",
+                        "https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
                     color: "#59c9fb",
                 },
                 tags: [
@@ -92,7 +92,7 @@ export default {
                 title: "博客名称1",
                 content: "测试测试测试测试测试测试测试测试测试测试测试测试测试v",
                 firstPicture:
-                    "https://cdn.jsdelivr.net/gh/yuewuzhijian/sdorica-figure/e0046/e0046s5_figure.png",
+                    "https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
                 flag: "原创",
                 views: 99999,
                 appreciation: 0,
@@ -103,7 +103,7 @@ export default {
                     id: 1,
                     name: "主要技术栈",
                     pic_url:
-                        "https://cdn.jsdelivr.net/gh/yuewuzhijian/sdorica-figure/e0046/e0046s5_figure.png",
+                        "https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
                     color: "#59c9fb",
                 },
                 tags: [
@@ -128,7 +128,7 @@ export default {
               createTime: "2021-11-17",
               title: "这是标题1",
               content: "文章正文1",
-              image: "https://cdn.jsdelivr.net/gh/yuewuzhijian/sdorica-figure/e0046/e0046s5_figure.png",
+              image: "https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
             },
             {
               id: "xxxxxx2",
@@ -168,7 +168,7 @@ export default {
             content:
               "这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介",
             pic_url:
-              "https://cdn.jsdelivr.net/gh/yuewuzhijian/sdorica-figure/e0046/e0046s5_figure.png",
+              "https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
             url: "xxx",
             techs: "技术栈1，技术栈2，技术栈3，技术栈4",
             type: 0,
@@ -179,7 +179,7 @@ export default {
             content:
               "这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介",
             pic_url:
-              "https://cdn.jsdelivr.net/gh/yuewuzhijian/sdorica-figure/e0046/e0046s5_figure.png",
+              "https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
             url: "xxx",
             techs: "技术栈1，技术栈2，技术栈3，技术栈4",
             type: 0,
@@ -191,7 +191,7 @@ export default {
             title: "其他项目1",
             content: "另一种排版另一种排版另一种排版另一种排版",
             pic_url:
-              "https://cdn.jsdelivr.net/gh/yuewuzhijian/sdorica-figure/e0046/e0046s5_figure.png",
+              "https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
             url: "xxx",
             techs: "技术栈1，技术栈2，技术栈3，技术栈4",
             type: 1,
@@ -201,7 +201,7 @@ export default {
             title: "其他项目1",
             content: "另一种排版另一种排版另一种排版另一种排版",
             pic_url:
-              "https://cdn.jsdelivr.net/gh/yuewuzhijian/sdorica-figure/e0046/e0046s5_figure.png",
+              "https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
             url: "xxx",
             techs: "技术栈1，技术栈2，技术栈3，技术栈4",
             type: 1,
@@ -211,7 +211,7 @@ export default {
             title: "其他项目1",
             content: "另一种排版另一种排版另一种排版另一种排版",
             pic_url:
-              "https://cdn.jsdelivr.net/gh/yuewuzhijian/sdorica-figure/e0046/e0046s5_figure.png",
+              "https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
             url: "xxx",
             techs: "技术栈1，技术栈2，技术栈3，技术栈4",
             type: 1,
@@ -221,7 +221,7 @@ export default {
             title: "其他项目1",
             content: "另一种排版另一种排版另一种排版另一种排版",
             pic_url:
-              "https://cdn.jsdelivr.net/gh/yuewuzhijian/sdorica-figure/e0046/e0046s5_figure.png",
+              "https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
             url: "xxx",
             techs: "技术栈1，技术栈2，技术栈3，技术栈4",
             type: 1,
@@ -231,7 +231,7 @@ export default {
             title: "其他项目1",
             content: "另一种排版另一种排版另一种排版另一种排版",
             pic_url:
-              "https://cdn.jsdelivr.net/gh/yuewuzhijian/sdorica-figure/e0046/e0046s5_figure.png",
+              "https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
             url: "xxx",
             techs: "技术栈1，技术栈2，技术栈3，技术栈4",
             type: 1,

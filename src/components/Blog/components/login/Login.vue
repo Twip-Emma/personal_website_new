@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-05 19:30:40
+ * @LastEditTime: 2022-07-06 11:24:05
  * @Description: file content
 -->
 <template>
@@ -38,11 +38,22 @@ export default {
     };
   },
   methods:{
-    userLogin(){
-      userApis.userLoginAction(this.userLoginData).then(
-        res => {
-          console.log(res)
-        })
+    async userLogin(){
+      // userApis.userLoginAction(this.userLoginData).then(
+      //   res => {
+      //     console.log(res)
+      //   })
+      let a = await userApis.userLoginAction(this.userLoginData)
+      if(a){
+        this.$store.state.userData.logined = true
+        this.pageSwitch("HomePage")
+        this.$notify({
+          title: '登录',
+          message: '登录成功，您当前正在博客列表页面',
+          type: 'success'
+        });
+      }
+      console.log(a)
     },
 
     pageSwitch(target) {

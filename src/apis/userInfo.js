@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-05 19:21:37
+ * @LastEditTime: 2022-07-06 11:19:49
  * @Description: file content
  */
 import axios from 'axios'
@@ -25,6 +25,7 @@ export default {
                     sessionStorage.setItem("adminStatus","ok")
                     sessionStorage.setItem("administrator",true)
                     sessionStorage.setItem("logined",true)
+                    sessionStorage.setItem("loginedFlag",true)
                     sessionStorage.setItem("userInfo",{
                         nickname: response.data.data.userMail,
                         avatar:"https://cdn.jsdelivr.net/gh/yuewuzhijian/cdn/yuewuzhijian/yuewuzhijian.png",

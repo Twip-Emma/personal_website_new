@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-05 18:59:22
+ * @LastEditTime: 2022-07-06 11:25:01
  * @Description: file content
 -->
 <template>
@@ -44,6 +44,17 @@ export default {
     },
     logined(){
       // return this.$store.state.userData.logined
+      if(!sessionStorage.getItem("logined")){
+        if (this.$store.state.userData.logined === false){
+          if(sessionStorage.getItem("logined") === true){
+            return true
+          }else{
+            return false
+          }
+        }else{
+          return true
+        }
+      }
       return sessionStorage.getItem("logined")
     },
     adminpage(){
@@ -68,6 +79,11 @@ export default {
     logout(){
       // this.$store.state.userData.logined = false
       sessionStorage.clear()
+        this.$notify({
+          title: '退出',
+          message: '您已成功退出当前账号，现已返回主界面',
+          type: 'success'
+        });
     }
   },
   mounted(){
