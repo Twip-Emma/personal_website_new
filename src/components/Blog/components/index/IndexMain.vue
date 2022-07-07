@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-18 20:59:53
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2021-11-29 11:42:04
+ * @LastEditTime: 2022-07-07 09:34:49
  * @Description: file content
 -->
 <template>
@@ -117,6 +117,9 @@ export default {
       })
       console.log(id)
     }
+  },
+  mounted(){
+    console.log(sessionStorage.getItem("userInfo"))
   }
 };
 </script>

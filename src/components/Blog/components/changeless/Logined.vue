@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-06 11:25:01
+ * @LastEditTime: 2022-07-07 09:39:37
  * @Description: file content
 -->
 <template>
@@ -63,7 +63,8 @@ export default {
     },
     userInfo(){
       // return this.$store.state.userData.userInfo
-      return sessionStorage.getItem("userInfo")
+      
+      return JSON.parse(sessionStorage.getItem("userInfo"))
     }
   },
   methods: {
