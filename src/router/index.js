@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:42:56
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-05 18:09:27
+ * @LastEditTime: 2022-07-08 14:08:30
  * @Description: file content
  */
 import Vue from 'vue'
@@ -27,6 +27,7 @@ import Project from '@/components/Blog/views/Project'
 import About from '@/components/Blog/views/About'
 import BlogInfo from '@/components/Blog/components/index/BlogInfo'
 import Login from '@/components/Blog/components/login/Login'
+import Register from '@/components/Blog/components/login/Register'
 
 // 管理员相关组件
 import Admin from '@/components/Blog/views/Admin'
@@ -96,6 +97,15 @@ const routes = [
             footer: Footer
         }
     },
+    {
+        name:"Register",
+        path:"/register",
+        components: {
+            header: NavBar,
+            other: Register,
+            footer: Footer
+        }
+    },
     //以下是管理员面板
     {
         name:"Admin",
@@ -150,7 +160,7 @@ router.beforeEach((to, from, next) => {
     }
     if (sessionStorage.getItem("loginStatus") !== 'ok'){
         console.log("请先登录/注册");
-        if (to.path !== '/login') {
+        if (to.path !== '/login' && to.path !== '/register') {
             return next("/login");
         }
     }

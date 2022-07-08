@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-07 09:39:37
+ * @LastEditTime: 2022-07-08 14:07:17
  * @Description: file content
 -->
 <template>
@@ -11,7 +11,7 @@
       <el-button size="mini" effect="light" type="primary" @click="pageSwitch('Login')"
         >登录</el-button
       >
-      <el-button size="mini" effect="light" type="warning" @click="pageSwitch('Login')"
+      <el-button size="mini" effect="light" type="warning" @click="pageSwitch('Register')"
         >注册</el-button
       >
     </div>

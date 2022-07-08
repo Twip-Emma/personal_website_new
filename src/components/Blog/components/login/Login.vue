@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-06 11:24:05
+ * @LastEditTime: 2022-07-08 14:01:01
  * @Description: file content
 -->
 <template>
@@ -11,10 +11,10 @@
       <div class="b"></div>
       <div class="c">
         <div class="d">
-          <h1>登录/注册</h1>
-          <input type="text" class="e" placeholder="用户名（注册用）" v-model="userLoginData.userName" />
-          <input type="text" class="e" placeholder="账号" v-model="userLoginData.userMail" />
-          <input type="password" class="e" placeholder="密码" />
+          <h1>登录</h1>
+          <!-- <input type="text" class="e" placeholder="用户名（注册用）" v-model="userLoginData.userName" /> -->
+          <input type="text" class="e" placeholder="账号" v-model="userLoginData.card" />
+          <input type="password" class="e" placeholder="密码" v-model="userLoginData.pass" />
           <a href="#" class="f">忘记密码？</a>
           <!-- <el-button type="primary" icon="el-icon-search">搜索</el-button> -->
           <el-button class="login"  type="primary" @click="userLogin()">登录</el-button>
@@ -32,8 +32,8 @@ export default {
   data() {
     return {
       userLoginData:{
-        userName:"",
-        userMail:""
+        card:"",
+        pass:""
       }
     };
   },
@@ -44,13 +44,19 @@ export default {
       //     console.log(res)
       //   })
       let a = await userApis.userLoginAction(this.userLoginData)
-      if(a){
+      if(a === true){
         this.$store.state.userData.logined = true
         this.pageSwitch("HomePage")
         this.$notify({
           title: '登录',
           message: '登录成功，您当前正在博客列表页面',
           type: 'success'
+        });
+      }else if(a === 1204){
+        this.$notify({
+          title: '密码或账号',
+          message: '登录失败，请检查密码或账号是否输入正确',
+          type: 'warning'
         });
       }
       console.log(a)
