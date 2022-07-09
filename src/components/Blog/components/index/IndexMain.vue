@@ -2,12 +2,12 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-18 20:59:53
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-09 11:56:52
+ * @LastEditTime: 2022-07-09 19:43:43
  * @Description: file content
 -->
 <template>
 <div>
-  <el-container>
+  <el-container v-loading.fullscreen.lock="fullscreenLoading">>
     <el-row :gutter="12">
       <!-- 博客列表容器 -->
       <el-col :xs="24" :sm="17">
@@ -34,6 +34,8 @@
           </div>
 
           <!-- 显示每一篇博客 -->
+          <!-- <div v-loading="loading"
+          style="width: 100%"> -->
           <el-row
             type="flex"
             align="middle"
@@ -65,16 +67,18 @@
                     <span>{{ blog.views }}</span>
                   </div>
                   <div class="blog-type">
-                    <el-tag effect="plain">{{ blog.type.name }}</el-tag>
+                    <el-tag effect="plain">{{ blog.typeName }}</el-tag>
                   </div>
                 </div>
               </div>
             </el-col>
           </el-row>
+          <!-- </div> -->
         </el-card>
         <!-- 分页 -->
         <el-pagination
           background
+          @current-change="handleCurrentChange"
           :page-size="queryInfo.pagesize"
           :current-page="queryInfo.pagenum"
           :total="totalcount"
@@ -96,16 +100,16 @@ export default {
       queryInfo: {
         query: "",
         pagenum: 1,
-        pagesize: 10,
+        pagesize: 3,
       },
+      blogList : [],
       //   判断用户是否进入某一个博客内
       selected: false,
+      loading: true,
+      fullscreenLoading: true
     };
   },
   computed:{
-    blogList(){
-      return blogApis.getBlogListByPage()
-    },
   },
   methods:{
     // 跳转到博客内
@@ -120,11 +124,31 @@ export default {
     },
     async setTotalCount(){
       this.totalcount = await blogApis.getBlogTotalCount()
+    },
+    async getFirstPage(){
+      this.blogList = await blogApis.getBlogListByPage()
+      this.fullscreenLoading = false
+    },
+    handleCurrentChange(val){
+      this.fullscreenLoading = true
+      this.queryInfo.pagenum = val
+      sessionStorage.setItem("blogListPage",this.queryInfo.pagenum)
+      this.getFirstPage()
+      console.log(this.queryInfo.pagenum)
+      this.loading = false
     }
   },
   mounted(){
     this.setTotalCount()
-  }
+    this.getFirstPage()
+    // 初始化页号
+    if(sessionStorage.getItem("blogListPage") !== null){
+      this.queryInfo.pagenum = Number(sessionStorage.getItem("blogListPage"))
+    }
+  },
+  // beforeUpdate(){
+  //   this.fullscreenLoading = true
+  // },
 };
 </script>
 
