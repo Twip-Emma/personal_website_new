@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-18 20:59:53
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-07 09:34:49
+ * @LastEditTime: 2022-07-09 11:56:52
  * @Description: file content
 -->
 <template>
@@ -88,6 +88,7 @@
 
 <script>
 // import Avatar from "@/components/index/Avatar";
+import blogApis from "@/apis/blogInfo"
 export default {
   data() {
     return {
@@ -95,7 +96,7 @@ export default {
       queryInfo: {
         query: "",
         pagenum: 1,
-        pagesize: 8,
+        pagesize: 10,
       },
       //   判断用户是否进入某一个博客内
       selected: false,
@@ -103,12 +104,12 @@ export default {
   },
   computed:{
     blogList(){
-      return this.$store.state.globalData.blogList
-    }
+      return blogApis.getBlogListByPage()
+    },
   },
   methods:{
+    // 跳转到博客内
     getBlogInfo(id){
-      // this.sotre
       this.$router.push({
         name:"BlogInfo",
         query:{
@@ -116,10 +117,13 @@ export default {
         }
       })
       console.log(id)
+    },
+    async setTotalCount(){
+      this.totalcount = await blogApis.getBlogTotalCount()
     }
   },
   mounted(){
-    console.log(sessionStorage.getItem("userInfo"))
+    this.setTotalCount()
   }
 };
 </script>
