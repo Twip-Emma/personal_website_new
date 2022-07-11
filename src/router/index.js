@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:42:56
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-09 09:52:07
+ * @LastEditTime: 2022-07-11 11:00:32
  * @Description: file content
  */
 import Vue from 'vue'
@@ -166,7 +166,7 @@ router.beforeEach((to, from, next) => {
     }
     // 判断是否是进入了管理员界面
     if (to.path === "/admin"){
-        if(sessionStorage.getItem("adminStatus") !== 'ok'){
+        if(Number(sessionStorage.getItem("administrator")) !== 1){
             console.log("宁没有管理员权限，快点爬");
             return next("/home")
         }

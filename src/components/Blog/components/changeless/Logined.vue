@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-08 14:07:17
+ * @LastEditTime: 2022-07-11 11:03:30
  * @Description: file content
 -->
 <template>
@@ -39,14 +39,18 @@ export default {
   },
   computed: {
     administrator(){
-      // return this.$store.state.userData.administrator
-      return sessionStorage.getItem("administrator")
+      // if (Number(sessionStorage.getItem("administrator")) === 1){
+      //   return true
+      // }else{
+      //   return false
+      // }
+      return (Number(sessionStorage.getItem("administrator")) === 1)?true:false
     },
     logined(){
       // return this.$store.state.userData.logined
       if(!sessionStorage.getItem("logined")){
         if (this.$store.state.userData.logined === false){
-          if(sessionStorage.getItem("logined") === true){
+          if(Number(sessionStorage.getItem("logined")) === 1){
             return true
           }else{
             return false
@@ -55,7 +59,7 @@ export default {
           return true
         }
       }
-      return sessionStorage.getItem("logined")
+      return (Number(sessionStorage.getItem("logined")) === 1)?true:false
     },
     adminpage(){
       // return this.$store.state.userData.adminpage
