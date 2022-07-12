@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-18 20:59:53
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-09 19:43:43
+ * @LastEditTime: 2022-07-12 10:42:49
  * @Description: file content
 -->
 <template>
@@ -114,13 +114,14 @@ export default {
   methods:{
     // 跳转到博客内
     getBlogInfo(id){
+      console.log("博客id的值是" + id)
+      sessionStorage.setItem("blogId",id)
       this.$router.push({
         name:"BlogInfo",
         query:{
           id:id
         }
       })
-      console.log(id)
     },
     async setTotalCount(){
       this.totalcount = await blogApis.getBlogTotalCount()

@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 12:14:06
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2021-11-20 22:27:06
+ * @LastEditTime: 2022-07-12 10:52:10
  * @Description: file content
 -->
 <template>
@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import blogApis from "@/apis/blogInfo"
 export default {
   data() {
     return {
@@ -78,28 +79,14 @@ export default {
       messageList: [
         {
           id: "xxxx1",
-          avatar: "???",
-          nickname: "昵称",
+          avatar: "https://cdn.jsdelivr.net/gh/yuewuzhijian/cdn/yuewuzhijian/yuewuzhijian.png",
+          nickname: "错误",
           createTime: "2021-11-17",
-          content: "这是评论1",
-        },
-        {
-          id: "xxxx2",
-          avatar: "???",
-          nickname: "昵称",
-          createTime: "2021-11-17",
-          content: "芜湖起飞",
-        },
-        {
-          id: "xxxx3",
-          avatar: "???",
-          nickname: "昵称",
-          createTime: "2021-11-17",
-          content: "博主快爬",
+          content: "【默认】如果宁看见这条消息代表数据没有正常传递",
         },
       ],
       userInfo: {
-          nickname:"七画一只妖",
+          nickname:"七画一只妖2",
         avatar:
           "https://cdn.jsdelivr.net/gh/yuewuzhijian/cdn/yuewuzhijian/yuewuzhijian.png",
       },
@@ -118,6 +105,15 @@ export default {
       },
     };
   },
+  methods:{
+    async getBlogReply(){
+      this.messageList = await blogApis.getBlogReplyById()
+    }
+  },
+  mounted(){
+    this.getBlogReply()
+    this.userInfo = JSON.parse(sessionStorage.getItem("userInfo"))
+  }
 };
 </script>
 

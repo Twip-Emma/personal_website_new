@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:42:56
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-11 11:00:32
+ * @LastEditTime: 2022-07-12 10:14:32
  * @Description: file content
  */
 import Vue from 'vue'
@@ -130,7 +130,11 @@ const routes = [
     {
         name:"BlogInfo",
         path:"/bloginfo",
-        component:BlogInfo,
+        components:{
+            header: NavBar,
+            other: BlogInfo,
+            footer: Footer
+        },
         props(route){
             return {
                 id: route.query.id

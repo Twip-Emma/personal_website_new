@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 23:22:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-11 11:05:31
+ * @LastEditTime: 2022-07-12 10:47:03
  * @Description: file content
  */
 
@@ -41,21 +41,14 @@ export default {
               image: "",
             }
         ],
-        messageList: [
-            {
-              id: "xxxx1",
-              avatar: "???",
-              nickname: "昵称",
-              createTime: "2021-11-17",
-              content: "这是评论1",
-            },
-            {
-              id: "xxxx2",
-              avatar: "???",
-              nickname: "昵称2",
-              createTime: "2021-11-19",
-              content: "这是评论2",
-            }
+        replyList: [
+          {
+            id: "xxxx1",
+            avatar: "https://cdn.jsdelivr.net/gh/yuewuzhijian/cdn/yuewuzhijian/yuewuzhijian.png",
+            nickname: "错误",
+            createTime: "2021-11-17",
+            content: "【默认】如果宁看见这条消息代表数据没有正常传递",
+          },
         ],
         projectList: [
           {
