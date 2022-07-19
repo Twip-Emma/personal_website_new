@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 12:14:06
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-12 10:52:10
+ * @LastEditTime: 2022-07-19 10:36:32
  * @Description: file content
 -->
 <template>
@@ -39,7 +39,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item style="text-align: right">
-          <el-button type="primary">点击发表</el-button>
+          <el-button type="primary" @click="publishContent()">点击发表</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -86,7 +86,7 @@ export default {
         },
       ],
       userInfo: {
-          nickname:"七画一只妖2",
+          nickname:"如果宁看到了这个信息，说明宁的登录过期了",
         avatar:
           "https://cdn.jsdelivr.net/gh/yuewuzhijian/cdn/yuewuzhijian/yuewuzhijian.png",
       },
@@ -108,6 +108,23 @@ export default {
   methods:{
     async getBlogReply(){
       this.messageList = await blogApis.getBlogReplyById()
+    },
+    async publishContent(){
+      var code = await blogApis.publishContentApi(this.messageForm.content)
+      if(code === 200){
+        this.$notify({
+          title: '评论',
+          message: '评论成功',
+          type: 'success'
+        });
+        this.messageList = await blogApis.getBlogReplyById()
+      }else{
+        this.$notify({
+          title: '评论',
+          message: '评论失败，与服务器交互出现异常',
+          type: 'warning'
+        });
+      }
     }
   },
   mounted(){

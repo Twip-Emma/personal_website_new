@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-11 10:54:34
+ * @LastEditTime: 2022-07-19 10:07:30
  * @Description: file content
  */
 import axios from 'axios'
@@ -59,6 +59,7 @@ function _setUserData(value){
     sessionStorage.setItem("administrator",value.data.isadmin)
     sessionStorage.setItem("logined",1)
     sessionStorage.setItem("loginedFlag",1)
+    sessionStorage.setItem("userId", value.data.id)
     sessionStorage.setItem("userInfo",JSON.stringify({
         nickname: value.data.nickname,
         avatar: value.data.avatar,
