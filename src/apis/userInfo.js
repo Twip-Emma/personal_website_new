@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-19 10:07:30
+ * @LastEditTime: 2022-07-19 21:13:56
  * @Description: file content
  */
 import axios from 'axios'
@@ -66,7 +66,7 @@ function _setUserData(value){
     }))
 
     // 存储token
-    sessionStorage.setItem("token","kkjb")
+    sessionStorage.setItem("token",value.data.token)
 
     // 设置初始博客页面
     sessionStorage.setItem("blogListPage",1)
