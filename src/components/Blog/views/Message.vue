@@ -32,7 +32,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item style="text-align: right">
-          <el-button type="primary">点击发表</el-button>
+          <el-button type="primary" @click="addMessage()">点击发表</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -74,10 +74,19 @@ export default {
         avatar:
           "https://cdn.jsdelivr.net/gh/yuewuzhijian/cdn/yuewuzhijian/yuewuzhijian.png",
       },
-      message: {
-        userId: -1,
-        content: "",
-      },
+      messageList:[
+          {
+            "id":"123123123123",
+            "avatar":"https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
+            "nickname":"帅气的七画",
+            "ctime":12398192389123,
+            "content":"如果宁看到了这个消息就说明服务器寄了"
+          }
+      ],
+      // message: {
+      //   userId: -1,
+      //   content: "",
+      // },
       messageForm: {
         content: "",
       },
@@ -90,18 +99,39 @@ export default {
     };
   },
   computed:{
-    messageList(){
-      return this.$store.state.globalData.messageList
-    }
+    // messageList(){
+    //   return this.$store.state.globalData.messageList
+    // }
   },
   methods: {
     formatTime(basetime){
       return globalFunction.formatTimeApi(basetime)
+    },
+    async setMessageList(){
+      this.messageList = await globalFunction.getAllMessageApi()
+    },
+    async addMessage(){
+      var code = await globalFunction.publishMessageApi(this.messageForm.content)
+      if(code === 200){
+        this.$notify({
+          title: '评论',
+          message: '评论成功',
+          type: 'success'
+        });
+        this.messageList = await globalFunction.getAllMessageApi()
+      }else{
+        this.$notify({
+          title: '评论',
+          message: '评论失败，与服务器交互出现异常',
+          type: 'warning'
+        });
+      }
     }
   },
   created() {}, 
   mounted(){
     this.userInfo = JSON.parse(sessionStorage.getItem("userInfo"))
+    this.setMessageList()
   }
 };
 </script>
