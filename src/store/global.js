@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 23:22:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-12 10:47:03
+ * @LastEditTime: 2022-07-19 11:52:20
  * @Description: file content
  */
 
@@ -17,6 +17,16 @@ export default {
     },
     mutations: {},
     state: {
+        // 博客留言
+        messageList:[
+          {
+            "id":"123123123123",
+            "avatar":"https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
+            "nickname":"我超",
+            "ctime":12398192389123,
+            "content":"你舅是个几把"
+          }
+        ],
         // 主页博客展示
         essayList: [
             {

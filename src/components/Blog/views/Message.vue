@@ -51,7 +51,7 @@
             >
               <div class="nkname">
                 <span class="name">{{ ms.nickname }} </span>
-                <span class="date">{{ ms.createTime }}</span>
+                <span class="date">{{ formatTime(ms.ctime) }}</span>
               </div>
             </div>
             <p class="reply">{{ ms.content }}</p>
@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import globalFunction from '@/apis/globalFunction'
 export default {
   data() {
     return {
@@ -93,8 +94,15 @@ export default {
       return this.$store.state.globalData.messageList
     }
   },
-  created() {},
-  methods: {},
+  methods: {
+    formatTime(basetime){
+      return globalFunction.formatTimeApi(basetime)
+    }
+  },
+  created() {}, 
+  mounted(){
+    this.userInfo = JSON.parse(sessionStorage.getItem("userInfo"))
+  }
 };
 </script>
 

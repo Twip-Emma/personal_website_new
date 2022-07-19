@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 12:14:06
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-19 10:36:32
+ * @LastEditTime: 2022-07-19 11:46:27
  * @Description: file content
 -->
 <template>
@@ -58,7 +58,7 @@
             >
               <div class="nkname">
                 <span class="name">{{ ms.nickname }} </span>
-                <span class="date">{{ ms.createTime }}</span>
+                <span class="date">{{ formatTime(ms.ctime) }}</span>
               </div>
             </div>
             <p class="reply">{{ ms.content }}</p>
@@ -71,6 +71,7 @@
 
 <script>
 import blogApis from "@/apis/blogInfo"
+import globalFunction from '@/apis/globalFunction'
 export default {
   data() {
     return {
@@ -125,6 +126,9 @@ export default {
           type: 'warning'
         });
       }
+    },
+    formatTime(basetime){
+      return globalFunction.formatTimeApi(basetime)
     }
   },
   mounted(){
