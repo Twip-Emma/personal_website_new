@@ -2,14 +2,14 @@
  * @Author: 七画一只妖
  * @Date: 2022-03-08 16:11:44
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-20 10:46:43
+ * @LastEditTime: 2022-07-20 20:47:17
  * @Description: file content
 -->
 <template>
   <div id="out">
     <header class="head">
       <div class="head_logo_div">
-        <img class="logo_img" src="~@/assets/images/twip.jpg" />
+        <img class="logo_img" src="http://cdngoapl.twip.top/%E7%A5%9E%E9%B9%BF%E7%A5%88%E7%A6%8F-%E5%A4%B4%E5%83%8F%E5%B0%BA%E5%AF%B8.jpg" />
       </div>
       <div class="head_nav_div">
         <nav class="head_nav">
@@ -148,7 +148,7 @@
               id="head"
               @click="headclick()"
               class="head_img"
-              src="~@/assets/images/pic/head.jpg"
+              src="http://cdngoapl.twip.top/%E7%A5%9E%E9%B9%BF%E7%A5%88%E7%A6%8F-%E5%A4%B4%E5%83%8F%E5%B0%BA%E5%AF%B8.jpg"
             />
           </div>
           <h1 class="title">七画一只妖</h1>
