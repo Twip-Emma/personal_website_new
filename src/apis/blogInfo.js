@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-09 10:26:35
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-19 10:10:31
+ * @LastEditTime: 2022-07-20 12:30:40
  * @Description: file content
  */
 import axios from 'axios'
@@ -105,5 +105,32 @@ export default {
             }
         )
         return _data
-    }
+    },
+    // 根据ID获取博客
+    async getBlogInfoByIdApi(){
+        console.log("请求了评论列表")
+        var _data = undefined
+        var id = sessionStorage.getItem("blogId")
+        if(!id){
+            id = "0"
+        }
+        await axios.get("/api/higanbana/blog/blog/getbloginfobyid?blogid=" + id,{
+            headers: {
+                'Currency' : sessionStorage.getItem("token")
+            }
+        }).then(
+            response => {
+                if(response.data.code === 200){
+                    _data = response.data.data
+                }else{
+                    _data = response.data.code
+                }
+            },
+            error => {
+                console.log(error.message)
+            }
+        )
+        // console.log(_data)
+        return _data
+    },
 }

@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 09:40:09
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-12 10:56:03
+ * @LastEditTime: 2022-07-20 13:06:11
  * @Description: file content
 -->
 <template>
@@ -18,7 +18,7 @@
         </div>
         <div class="blog-date">
           <i class="el-icon-date"></i>
-          <span>{{ blog.createTime }}</span>
+          <span>{{ formatTime(blog.ctime) }}</span>
         </div>
         <div>
           <i class="el-icon-view"></i>
@@ -77,7 +77,7 @@
       <div class="author">
         <ul>
           <li>作者 {{ blog.user.nickname }}</li>
-          <li>发表时间 {{ blog.createTime }}</li>
+          <li>发表时间 {{ formatTime(blog.ctime) }}     修改时间 {{formatTime(blog.mtime)}}</li>
         </ul>
       </div>
       <!-- 展示评论区 -->
@@ -91,6 +91,8 @@
 
 <script>
 import CommentBlog from "@/components/Blog/components/index/CommentBlog";
+import blogApis from "@/apis/blogInfo"
+import globalFunction from '@/apis/globalFunction'
 export default {
   components: { CommentBlog },
   props:["id"],
@@ -99,14 +101,11 @@ export default {
       administrator: false,
       userInfo: [],
       blog: {
-        id: 449,
-        title: "原生html配合canvas仿echarts图标组件合集",
-        content:
-          '<h4 id="介绍">介绍</h4>\n<p>这是一个多人项目中的一个模块，我负责了数据展示的部分，用原生的Canvas实现了进度条，饼图，雷达图，水滴图，日历图等图表的展现。采用面向对象的方式，将每个图表分为一个独立的类，将dom元素和option选项，option选项尽可能模仿echarts的选项配置。</p>\n<h4 id="开源地址">开源地址</h4>\n<p><a href="https://gitee.com/tyoubin_admin/echarts-canvas.git" target="_blank">https://gitee.com/tyoubin_admin/echarts-canvas.git</a>\n欢迎fork和star！</p>\n<h4 id="预览地址">预览地址</h4>\n<p><a href="http://hikari.top:8104/" target="_blank">http://hikari.top:8104/</a></p>\n<p><strong>饼图</strong>：用于展示笔记的分类。</p>\n<p>亮点：1.开场动画：每个扇形角度逐渐旋转变大，起始角度根据扇形所占空间实时计算；同时标签的引线从对应扇形半径长度开始逐渐前进，直到标签所在位置；标签文字从浅变深逐渐显示。</p>\n<p>​\t\t\t2.模式控制：可以按照不同的配置选项展现普通饼图和玫瑰饼图两种形式，也可以控制标签是否显示。</p>\n<p>​\t\t\t3.鼠标动画：鼠标在元素上滑动时通过角度和半径计算是否位于某个扇形区域内，鼠标所在的区域颜色变亮，半径逐渐变长，鼠标箭头变为手势。</p>\n<p><strong>雷达图</strong>：用于展示我的状态分布。</p>\n<p>亮点：1：开场动画：开始时背景多边形，标签，以及各项的顶点已就位，内部多边形从中心开始均匀向各个方向逐渐延申，知道达到所在顶点位置。</p>\n<p>​\t\t\t2：数据灵活：可以有2个以上的任意系列数，会自动根据输入的数据改变多边形的边数；输入多个大系类也会分不同颜色显示不同大系的分布。</p>\n<p>​\t\t\t3：鼠标动画：鼠标经过颜色变亮，鼠标箭头变为手指形状。</p>\n<p><strong>水球图</strong>：用于显示一周计划完成情况。</p>\n<p>亮点：1：水波动画：用正弦函数改变初相的方式生成不同初始相位的水滴图，实现平滑的动画效果，文字随水波位置的不同显示不同的底色；开始时水滴从空到最终位置也实现了过渡动画。</p>\n<p><strong>日历饼状图</strong>：用于显示一月内每天学习，运动以及其他三个模块完成质量的分布。</p>\n<p>亮点：1：日历形状：结合根据传入的不同时间，计算当月按周分行 的占位情况，之后绘制黑色边框和灰色网格。</p>\n<p>​\t\t\t2：组件复用：复用了已开发好的饼图，用在日历网格内创建dom节点的方式将饼图复用进去，使图表变美观的同时展现更加丰富的信息量。</p>\n<p><strong>仪表盘</strong>：用于展示我的综合得分。</p>\n<p>亮点：1：数据联动：开场时指针从0度开始旋转，直到到达相应的位置。同时显示的数值随之改变。</p>\n<p><strong>进度条</strong>：用于展示今日计划和长期计划的完成程度。</p>\n<p>亮点：1：开场动画：进度条从0开始逐渐增长。</p>\n<p>​\t\t\t2：响应式色彩：不同进度区间显示不同的颜色。</p>\n<p>同时，还有文字型数据统计以及根据不同事件类型显示不同颜色的时间轴，以及响应式卡片布局等。</p>\n',
-        firstPicture:
-          "http://cdngoapl.twip.top/pic_2.jpg",
-        flag: "原创",
-        views: 338,
+        id: 0,
+        title: "错误",
+        content:"如果宁看见这个就说明服务器寄了",
+        flag: "寄了",
+        views: 114514,
         createTime: "2021-08-16T14:36:31.064+00:00",
         updateTime: "2021-08-16T14:36:31.064+00:00",
         description:
@@ -145,8 +144,23 @@ export default {
     };
   },
   methods:{
+    // 日期格式化
+    formatTime(basetime){
+      return globalFunction.formatTimeApi(basetime)
+    },
+    // formatTags(){
+    //   console.log(globalFunction.formatTagsApi("甲|乙|丙"))
+    // },
+    async setBlogInfo(){
+      let blog = await blogApis.getBlogInfoByIdApi()
+      blog.tags = globalFunction.formatTagsApi(blog.tags)
+      this.blog = blog
+      // console.log(await blogApis.getBlogInfoByIdApi())
+    }
   },
   mounted(){
+    this.setBlogInfo()
+    // this.formatTags()
   }
 };
 </script>

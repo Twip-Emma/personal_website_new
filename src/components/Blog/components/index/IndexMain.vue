@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-18 20:59:53
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-12 10:42:49
+ * @LastEditTime: 2022-07-20 11:27:40
  * @Description: file content
 -->
 <template>
@@ -60,7 +60,7 @@
                   </div>
                   <div class="blog-date">
                     <i class="el-icon-date"></i>
-                    <span>{{ blog.createTime}}</span>
+                    <span>{{ formatTime(blog.ctime)}}</span>
                   </div>
                   <div>
                     <i class="el-icon-view"></i>
@@ -93,6 +93,7 @@
 <script>
 // import Avatar from "@/components/index/Avatar";
 import blogApis from "@/apis/blogInfo"
+import globalFunction from '@/apis/globalFunction'
 export default {
   data() {
     return {
@@ -112,6 +113,10 @@ export default {
   computed:{
   },
   methods:{
+    // 日期格式化
+    formatTime(basetime){
+      return globalFunction.formatTimeApi(basetime)
+    },
     // 跳转到博客内
     getBlogInfo(id){
       console.log("博客id的值是" + id)
