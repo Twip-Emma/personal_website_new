@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-03-08 16:11:44
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-04 15:34:39
+ * @LastEditTime: 2022-07-20 10:46:43
  * @Description: file content
 -->
 <template>
@@ -165,18 +165,18 @@
         <div class="box_content box02_content">
           <!-- 技能点（bushi） -->
           <div id="bar_container" class="bar_container">
-            <div class="bar red" data-percent="40" data-skill="HTML5"></div>
+            <div class="bar red" data-percent="50" data-skill="HTML5+CSS+JSES4"></div>
             <div
               class="bar mint"
-              data-percent="20"
-              data-skill="JavaScript"
+              data-percent="70"
+              data-skill="VUE2"
             ></div>
-            <div class="bar lila" data-percent="30" data-skill="CSS3"></div>
-            <div class="bar orange" data-percent="25" data-skill="Java"></div>
+            <div class="bar lila" data-percent="30" data-skill="JSES6"></div>
+            <div class="bar orange" data-percent="70" data-skill="Java"></div>
             <div class="bar gray" data-percent="65" data-skill="Python"></div>
-            <div class="bar moe" data-percent="60" data-skill="C"></div>
-            <div class="bar red" data-percent="10" data-skill="C#"></div>
-            <div class="bar lila" data-percent="30" data-skill="MySQL"></div>
+            <div class="bar moe" data-percent="75" data-skill="SSM+SpringBoot"></div>
+            <div class="bar red" data-percent="70" data-skill="MyBatis+Mybatis-plus"></div>
+            <div class="bar lila" data-percent="60" data-skill="SpringCloud+主流中间件"></div>
           </div>
           <!-- 歌词 -->
           <div id="box02_text">
