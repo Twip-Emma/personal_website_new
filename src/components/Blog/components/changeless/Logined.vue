@@ -2,16 +2,24 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-11 11:03:30
+ * @LastEditTime: 2022-07-21 23:03:23
  * @Description: file content
 -->
 <template>
   <el-menu-item>
     <div v-if="!logined" style="margin-right: 50px">
-      <el-button size="mini" effect="light" type="primary" @click="pageSwitch('Login')"
+      <el-button
+        size="mini"
+        effect="light"
+        type="primary"
+        @click="pageSwitch('Login')"
         >登录</el-button
       >
-      <el-button size="mini" effect="light" type="warning" @click="pageSwitch('Register')"
+      <el-button
+        size="mini"
+        effect="light"
+        type="warning"
+        @click="pageSwitch('Register')"
         >注册</el-button
       >
     </div>
@@ -19,57 +27,113 @@
       <el-avatar :src="userInfo.avatar"></el-avatar>
       <div class="user-option">
         <h3 class="web-font nickname">{{ userInfo.nickname }}</h3>
-        <p v-if="administrator" class="logout" @click="pageSwitch('Admin');changePageState()">控制台</p>
-        <p class="logout" @click="logout();pageSwitch('Start')">退出登录</p>
-        <p class="logout">修改信息</p>
-        <p v-if="adminpage" class="logout"  @click="pageSwitch('HomePage');changePageState()">返回主界面</p>
+        <p
+          v-if="administrator"
+          class="logout"
+          @click="
+            pageSwitch('Admin');
+            changePageState();
+          "
+        >
+          控制台
+        </p>
+        <p
+          class="logout"
+          @click="
+            logout();
+            pageSwitch('Start');
+          "
+        >
+          退出登录
+        </p>
+        <p class="logout" @click="changeInfo()">修改信息</p>
+        <p
+          v-if="adminpage"
+          class="logout"
+          @click="
+            pageSwitch('HomePage');
+            changePageState();
+          "
+        >
+          返回主界面
+        </p>
       </div>
     </div>
+
+    <el-dialog title="修改个人信息" :visible.sync="dialogVisible" width="30%">
+      <el-form ref="form" :model="form" label-width="80px">
+        <el-form-item label="新的昵称">
+          <el-input v-model="newNickname"></el-input>
+        </el-form-item>
+      </el-form>
+
+      <div>选择新的头像：{{ avatar.name }}</div>
+      <div class="a">
+        <el-image v-for="avatar in avatarList" :key="avatar.id"
+          class="box"
+          :src="avatar.url"
+          :fit="'fit'"
+          @click="choiceAvatar(avatar)">
+        </el-image>
+      </div>
+
+
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="updateUserInfo('no')">取 消</el-button>
+        <el-button type="primary" @click="updateUserInfo('yes')">确 定</el-button>
+      </span>
+    </el-dialog>
   </el-menu-item>
 </template>
 
 <script>
+import userApi from '@/apis/userInfo'
 export default {
   data() {
     return {
-      // administrator: true, // 判断是否是管理员
-      // logined: true, // 登录状态
-      // adminpage: false, // 判断是否是在管理页面
+      newNickname: "",
+      avatar: {
+        name:"",
+        url :""
+      },
+      avatarList : [],
+      dialogVisible: false,
+      form: {
+        name: "",
+        number: "",
+      },
     };
   },
   computed: {
-    administrator(){
-      // if (Number(sessionStorage.getItem("administrator")) === 1){
-      //   return true
-      // }else{
-      //   return false
-      // }
-      return (Number(sessionStorage.getItem("administrator")) === 1)?true:false
+    administrator() {
+      return Number(sessionStorage.getItem("administrator")) === 1
+        ? true
+        : false;
     },
-    logined(){
+    logined() {
       // return this.$store.state.userData.logined
-      if(!sessionStorage.getItem("logined")){
-        if (this.$store.state.userData.logined === false){
-          if(Number(sessionStorage.getItem("logined")) === 1){
-            return true
-          }else{
-            return false
+      if (!sessionStorage.getItem("logined")) {
+        if (this.$store.state.userData.logined === false) {
+          if (Number(sessionStorage.getItem("logined")) === 1) {
+            return true;
+          } else {
+            return false;
           }
-        }else{
-          return true
+        } else {
+          return true;
         }
       }
-      return (Number(sessionStorage.getItem("logined")) === 1)?true:false
+      return Number(sessionStorage.getItem("logined")) === 1 ? true : false;
     },
-    adminpage(){
+    adminpage() {
       // return this.$store.state.userData.adminpage
-      return sessionStorage.getItem("adminpage")
+      return sessionStorage.getItem("adminpage");
     },
-    userInfo(){
+    userInfo() {
       // return this.$store.state.userData.userInfo
-      
-      return JSON.parse(sessionStorage.getItem("userInfo"))
-    }
+
+      return JSON.parse(sessionStorage.getItem("userInfo"));
+    },
   },
   methods: {
     pageSwitch(target) {
@@ -78,26 +142,71 @@ export default {
         query: {},
       });
     },
-    changePageState(){
-      this.adminpage = !this.adminpage
+    changePageState() {
+      this.adminpage = !this.adminpage;
     },
-    logout(){
+    logout() {
       // this.$store.state.userData.logined = false
-      sessionStorage.clear()
-        this.$notify({
-          title: '退出',
-          message: '您已成功退出当前账号，现已返回主界面',
-          type: 'success'
-        });
-    }
+      sessionStorage.clear();
+      this.$notify({
+        title: "退出",
+        message: "您已成功退出当前账号，现已返回主界面",
+        type: "success",
+      });
+    },
+    // 呼出修改信息的弹窗
+    async changeInfo(){
+      this.avatarList = await userApi.getAllAvatarApi();
+      var user = JSON.parse(sessionStorage.getItem("userInfo"))
+      this.newNickname = user.nickname
+      this.dialogVisible = true
+    },
+    // 选择头像
+    choiceAvatar(avatar){
+      this.avatar = avatar
+    },
+    // 提交修改信息
+    async updateUserInfo(i){
+      if (i === "no"){
+        this.dialogVisible = false
+      }else{
+        var code = await userApi.changeUserInfoApi(this.newNickname,this.avatar.url);
+        if(code === 200){
+          this.$notify({
+            title: '修改',
+            message: '修改个人信息成功',
+            type: 'success'
+          });
+          this.dialogVisible = false
+        }else{
+          this.$notify({
+            title: '修改',
+            message: '修改失败，与服务器交互出现异常',
+            type: 'warning'
+          });
+        }
+      }
+    },
   },
-  mounted(){
-    console.log("进入了登录界面")
-  }
+  mounted() {
+  },
 };
 </script>
 
 <style scoped>
+.a {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box {
+  width: calc(25% - 10px);
+  height: 100px;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .loginInfo {
   flex-shrink: 0;
   /*background-color: #545c64;*/

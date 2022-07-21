@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 09:40:09
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-20 13:06:11
+ * @LastEditTime: 2022-07-21 20:17:07
  * @Description: file content
 -->
 <template>
@@ -125,7 +125,7 @@ export default {
           id: 1,
           nickname: "七画一只妖",
           avatar:
-            "https://cdn.jsdelivr.net/gh/yuewuzhijian/cdn/yuewuzhijian/yuewuzhijian.png",
+            "http://cdngoapl.twip.top/%E7%A5%9E%E9%B9%BF%E7%A5%88%E7%A6%8F-%E5%A4%B4%E5%83%8F%E5%B0%BA%E5%AF%B8.jpg",
           type: "1",
           createTime: "2021-10-13T13:55:12.179+00:00",
           updateTime: "2021-10-13T13:55:12.179+00:00",
@@ -135,9 +135,9 @@ export default {
         tagIds: null,
       },
       wechart:
-        "https://cdn.jsdelivr.net/gh/yuewuzhijian/sdorica-figure/e0046/e0046s5_figure.png",
+        "image.png",
       alipay:
-        "https://cdn.jsdelivr.net/gh/yuewuzhijian/sdorica-figure/e0046/e0046s5_figure.png",
+        "https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
       commentForm: {
         content: "",
       },

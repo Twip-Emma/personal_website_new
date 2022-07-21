@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-09 10:26:35
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-20 12:30:40
+ * @LastEditTime: 2022-07-21 23:04:39
  * @Description: file content
  */
 import axios from 'axios'
@@ -130,7 +130,6 @@ export default {
                 console.log(error.message)
             }
         )
-        // console.log(_data)
         return _data
     },
 }

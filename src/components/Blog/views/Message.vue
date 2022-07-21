@@ -69,15 +69,11 @@ export default {
     return {
       picList: [],
       editing: false,
-      userInfo: {
-          nickname:"七画一只妖",
-        avatar:
-          "https://cdn.jsdelivr.net/gh/yuewuzhijian/cdn/yuewuzhijian/yuewuzhijian.png",
-      },
+      userInfo: {},
       messageList:[
           {
             "id":"123123123123",
-            "avatar":"https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
+            "avatar":"",
             "nickname":"帅气的七画",
             "ctime":12398192389123,
             "content":"如果宁看到了这个消息就说明服务器寄了"

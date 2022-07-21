@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 12:14:06
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-19 11:46:27
+ * @LastEditTime: 2022-07-21 20:18:19
  * @Description: file content
 -->
 <template>
@@ -80,7 +80,7 @@ export default {
       messageList: [
         {
           id: "xxxx1",
-          avatar: "https://cdn.jsdelivr.net/gh/yuewuzhijian/cdn/yuewuzhijian/yuewuzhijian.png",
+          avatar: "http://cdngoapl.twip.top/%E7%A5%9E%E9%B9%BF%E7%A5%88%E7%A6%8F-%E5%A4%B4%E5%83%8F%E5%B0%BA%E5%AF%B8.jpg",
           nickname: "错误",
           createTime: "2021-11-17",
           content: "【默认】如果宁看见这条消息代表数据没有正常传递",
@@ -89,7 +89,7 @@ export default {
       userInfo: {
           nickname:"如果宁看到了这个信息，说明宁的登录过期了",
         avatar:
-          "https://cdn.jsdelivr.net/gh/yuewuzhijian/cdn/yuewuzhijian/yuewuzhijian.png",
+          "http://cdngoapl.twip.top/%E7%A5%9E%E9%B9%BF%E7%A5%88%E7%A6%8F-%E5%A4%B4%E5%83%8F%E5%B0%BA%E5%AF%B8.jpg",
       },
       message: {
         userId: -1,

@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-03-08 16:11:44
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-20 20:47:17
+ * @LastEditTime: 2022-07-21 11:37:07
  * @Description: file content
 -->
 <template>
@@ -528,7 +528,7 @@ export default {
       globalData: {
         indexs: 0,
         indexs02: 0,
-        iB: "",
+        iB: true,
       },
     };
   },
@@ -571,7 +571,11 @@ export default {
     },
   },
   mounted() {
-    console.log("成功导入js文件");
+    console.log("欢迎来到，七画一只妖的小屋");
+
+    // var indexs = 0;
+    // var indexs02 = 0,
+    // var iB = "";
 
     // 【变量】全局
     let indexs = this.globalData.indexs;
@@ -584,7 +588,6 @@ export default {
     h = window.innerHeight;
     w = window.innerWidth;
 
-    //一个没用的变量，但是删了会报错，寄！
 
     //然并卵的入口
     function about_main() {
@@ -613,7 +616,7 @@ export default {
 
     //加载完成后运行
     function loaddone() {
-      console.log("网页加载耗时" + startTime.stop() / 1000 + "秒");
+      console.log("网页加载耗时" + startTime.stop() + "毫秒");
       if (w < 750) {
         cycle_b(false);
       }
@@ -669,7 +672,7 @@ export default {
 
     //第二屏动画
     function boxTow() {
-      console.log("触发第二屏动画");
+      // console.log("触发第二屏动画");
       if (indexs != 1) {
         //暂无
       } else if (indexs02 >= 0 && indexs02 < box02_text.length) {
@@ -932,11 +935,11 @@ export default {
         //document.getElementsByTagName("html")[0].style.fontSize = document.documentElement.clientWidth / 20 + 'px';
         h = window.innerHeight;
         w = window.innerWidth;
-        if (w / h >= 1920 / 1080) {
-          this.globalData.iB = true;
-        } else {
-          this.globalData.iB = false;
-        }
+        // if (w / h >= 1920 / 1080) {
+        //   this.globalData.iB = true;
+        // } else {
+        //   this.globalData.iB = false;
+        // }
         divMove(indexs);
         setTime_li();
       };
