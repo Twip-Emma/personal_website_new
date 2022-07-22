@@ -2,11 +2,12 @@
  * @Author: 七画一只妖
  * @Date: 2021-10-13 21:15:32
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-20 21:16:36
+ * @LastEditTime: 2022-07-22 23:13:38
  * @Description: file content
  */
 
 module.exports = {
+  //开发时使用代理，打包后会失效，应使用nginx做代理
   devServer: {
     proxy: {
       '/api': {
@@ -19,6 +20,7 @@ module.exports = {
       }
     }
   },
+  // 打包开启gzip
   pluginOptions: {
     compression: {
       gzip: {
@@ -28,5 +30,7 @@ module.exports = {
         minRatio: 0.8
       }
     }
-  }
+  },
+  // 打包设置
+  productionSourceMap: false, // 去除生产环境sourceMap
 }
