@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-09 09:46:21
+ * @LastEditTime: 2022-07-22 23:00:25
  * @Description: file content
 -->
 <template>
@@ -25,8 +25,6 @@
 </template>
 
 <script>
-// import {mapState,mapGetters,mapActions} from "vuex"
-// import {mapActions} from "vuex"
 import userApis from "@/apis/userInfo"
 export default {
   data() {
@@ -39,11 +37,8 @@ export default {
     };
   },
   methods:{
+    // 登录行为
     async userLogin(){
-      // userApis.userLoginAction(this.userRegisterData).then(
-      //   res => {
-      //     console.log(res)
-      //   })
       let a = await userApis.userRegisterAction(this.userRegisterData)
       if(a === true){
         this.$store.state.userData.logined = true
@@ -59,10 +54,16 @@ export default {
           message: '注册失败，此账号已被注册了，再试试吧~',
           type: 'warning'
         });
+      }else{
+        this.$notify({
+          title: '异常',
+          message: '注册失败，与服务器通信出现了异常',
+          type: 'warning'
+        });
       }
       console.log(a)
     },
-
+    // 页面跳转
     pageSwitch(target) {
       this.$router.push({
         name: target,
@@ -82,12 +83,6 @@ export default {
 }
 
 .a {
-  /* position: relative; */
-  /* top: 50px; */
-  /* margin-trim: 60px; */
-  /* left: 20%; */
-  /* width: 100%; */
-  /* height: 80%; */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   display: flex;
 }

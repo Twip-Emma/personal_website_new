@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-18 17:10:48
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-04 10:42:44
+ * @LastEditTime: 2022-07-22 23:10:04
  * @Description: file content
 -->
 <template>
@@ -17,7 +17,7 @@
                 <div class="card-widget card-info">
                     <div class="card-content">
                         <div class="card-info-avatar is-center">
-                            <img class="avatar-img" src="https://cdn.jsdelivr.net/gh/yuewuzhijian/cdn/yuewuzhijian/yuewuzhijian.png" alt="avatar">
+                            <img class="avatar-img" src="http://cdngoapl.twip.top/%E7%A5%9E%E9%B9%BF%E7%A5%88%E7%A6%8F-%E5%A4%B4%E5%83%8F%E5%B0%BA%E5%AF%B8.jpg" alt="avatar">
                             <div class="author-info__name">七画一只妖</div>
                             <div class="author-info__description">简介简介简介简介简介简介简介简介简介简介简介简介</div>
                         </div>
@@ -25,7 +25,7 @@
                             <a class="social-icon" href="https://github.com/laoxuai" target="_blank">
                                 <i class="fa fa-github"></i>
                             </a>
-                            <a class="social-icon" href="mailto:878006658@qq.com" target="_blank">
+                            <a class="social-icon" href="mailto:1157529280@qq.com" target="_blank">
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -39,7 +39,7 @@
                             <i class="fa fa-bullhorn" aria-hidden="true"></i>
                             <span>一言</span>
                         </div>
-                        <div id="hitokoto">一言一言一言一言一言</div>
+                        <div id="hitokoto">画中之境，心中之景</div>
                     </div>
                 </div>
 
@@ -50,7 +50,7 @@
                             <i class="fa fa-calendar" aria-hidden="true"></i>
                             <span>今日诗词</span>
                         </div>
-                        <div id="jinrishici-sentence">这是诗词，这是诗词</div>
+                        <div id="jinrishici-sentence">霜风未曾适，波岸干鸟鸣。</div>
                     </div>
                 </div>
 

@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-18 20:59:53
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-20 11:27:40
+ * @LastEditTime: 2022-07-22 22:50:21
  * @Description: file content
 -->
 <template>
@@ -128,13 +128,16 @@ export default {
         }
       })
     },
+    // 初始化博客总数
     async setTotalCount(){
       this.totalcount = await blogApis.getBlogTotalCount()
     },
+    // 初始化第一页
     async getFirstPage(){
       this.blogList = await blogApis.getBlogListByPage()
       this.fullscreenLoading = false
     },
+    // 进入博客行为
     handleCurrentChange(val){
       this.fullscreenLoading = true
       this.queryInfo.pagenum = val
@@ -152,9 +155,6 @@ export default {
       this.queryInfo.pagenum = Number(sessionStorage.getItem("blogListPage"))
     }
   },
-  // beforeUpdate(){
-  //   this.fullscreenLoading = true
-  // },
 };
 </script>
 

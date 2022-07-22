@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-21 23:03:23
+ * @LastEditTime: 2022-07-22 22:55:16
  * @Description: file content
 -->
 <template>
@@ -111,7 +111,6 @@ export default {
         : false;
     },
     logined() {
-      // return this.$store.state.userData.logined
       if (!sessionStorage.getItem("logined")) {
         if (this.$store.state.userData.logined === false) {
           if (Number(sessionStorage.getItem("logined")) === 1) {
@@ -126,12 +125,9 @@ export default {
       return Number(sessionStorage.getItem("logined")) === 1 ? true : false;
     },
     adminpage() {
-      // return this.$store.state.userData.adminpage
       return sessionStorage.getItem("adminpage");
     },
     userInfo() {
-      // return this.$store.state.userData.userInfo
-
       return JSON.parse(sessionStorage.getItem("userInfo"));
     },
   },
@@ -146,7 +142,6 @@ export default {
       this.adminpage = !this.adminpage;
     },
     logout() {
-      // this.$store.state.userData.logined = false
       sessionStorage.clear();
       this.$notify({
         title: "退出",

@@ -2,18 +2,11 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 13:35:03
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2021-11-20 21:30:30
+ * @LastEditTime: 2022-07-22 22:58:31
  * @Description: file content
 -->
 <template>
   <div>
-    <!-- <el-radio-group v-model="size">
-    <el-radio label="">默认</el-radio>
-    <el-radio label="medium">中等</el-radio>
-    <el-radio label="small">小型</el-radio>
-    <el-radio label="mini">超小</el-radio>
-  </el-radio-group> -->
-
     <el-descriptions
       class="margin-top"
       title=""
@@ -21,9 +14,6 @@
       :size="size"
       border
     >
-      <!-- <template slot="extra">
-        <el-button type="primary" size="small">操作</el-button>
-      </template> -->
       <el-descriptions-item>
         <template slot="label">
           <i class="el-icon-user"></i>

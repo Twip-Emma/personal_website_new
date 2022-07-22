@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-09 09:46:27
+ * @LastEditTime: 2022-07-22 22:59:31
  * @Description: file content
 -->
 <template>
@@ -25,8 +25,6 @@
 </template>
 
 <script>
-// import {mapState,mapGetters,mapActions} from "vuex"
-// import {mapActions} from "vuex"
 import userApis from "@/apis/userInfo"
 export default {
   data() {
@@ -38,11 +36,8 @@ export default {
     };
   },
   methods:{
+    // 登录行为
     async userLogin(){
-      // userApis.userLoginAction(this.userLoginData).then(
-      //   res => {
-      //     console.log(res)
-      //   })
       let a = await userApis.userLoginAction(this.userLoginData)
       if(a === true){
         this.$store.state.userData.logined = true
@@ -58,10 +53,15 @@ export default {
           message: '登录失败，请检查密码或账号是否输入正确',
           type: 'warning'
         });
+      }else{
+        this.$notify({
+          title: '异常',
+          message: '登录失败，与服务器通信出现了异常',
+          type: 'warning'
+        });
       }
-      console.log(a)
     },
-
+    // 页面跳转
     pageSwitch(target) {
       this.$router.push({
         name: target,
@@ -81,12 +81,6 @@ export default {
 }
 
 .a {
-  /* position: relative; */
-  /* top: 50px; */
-  /* margin-trim: 60px; */
-  /* left: 20%; */
-  /* width: 100%; */
-  /* height: 80%; */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   display: flex;
 }

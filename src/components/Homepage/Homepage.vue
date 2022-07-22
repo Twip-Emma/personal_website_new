@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-03-08 16:11:44
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-21 11:37:07
+ * @LastEditTime: 2022-07-22 22:41:55
  * @Description: file content
 -->
 <template>
@@ -602,17 +602,7 @@ export default {
     }
 
     //加载动画
-    function loading() {
-      //坑未填
-      //warp.style.display = "none";
-      /*loadiv.style.display = "unset";
-    loadh.src = "images/pic/head.jpg";
-    loadiv.style.width = "100%";
-    loadiv.style.height = "100%";
-    loadiv.style.opacity = "1";
-    loadh.style.opacity = "0";
-    setTimeout("loadh.style.opacity = '1'", 2500);*/
-    }
+    function loading() {}
 
     //加载完成后运行
     function loaddone() {
@@ -621,7 +611,6 @@ export default {
         cycle_b(false);
       }
       addClick(); //绑定按键
-      //player.play(0, 0); //自动播放音乐
     }
 
     //淡入文字
@@ -643,16 +632,12 @@ export default {
       }
     }
 
-    // var gitMove = document.getElementById("github_a");
-    // var weiboMove = document.getElementById("weibo_a");
-    // var blogMove = document.getElementById("blog_a");
     //第一屏文字加载
     var f_btn = document.getElementById("float_btn").children;
     var nav_ul = document.getElementById("nav_ul").children;
     var wrapBox = document.getElementById("wrapBox");
     var foot = document.getElementById("foot");
     var arrow = document.getElementById("arrow_img");
-    // var boxs = document.getElementsByClassName("box");
     var process = document.getElementById("bar_container").children; //进度条
     var box02_text = document.getElementById("box02_text").children; //第二屏文字
     var box02_timer;

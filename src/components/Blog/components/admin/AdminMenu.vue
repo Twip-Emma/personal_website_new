@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 16:42:13
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-01-03 14:23:07
+ * @LastEditTime: 2022-07-22 22:56:47
  * @Description: file content
 -->
 <template>
@@ -106,12 +106,8 @@ export default {
     };
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    },
+    handleOpen() {},
+    handleClose() {},
     //点击选项卡进行切换页面
     adminJumpTo(target) {
       this.$router.push({

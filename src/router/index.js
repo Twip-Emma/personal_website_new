@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:42:56
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-12 10:14:32
+ * @LastEditTime: 2022-07-22 22:32:58
  * @Description: file content
  */
 import Vue from 'vue'
@@ -34,10 +34,6 @@ import Admin from '@/components/Blog/views/Admin'
 import UserFrom from '@/components/Blog/components/admin/UserFrom'
 
 const routes = [
-    // {
-    //     path: '/error',
-    //     component: Error
-    // },
     {
         name: "Start",
         path: '/',
@@ -158,10 +154,11 @@ const router = new VueRouter({
 
 // 前置路由，用于拦截路由请求
 router.beforeEach((to, from, next) => {
-    // 判断是否登录
+    // 判断是在首页直接放行
     if (to.path === "/"){
         return next()
     }
+    // 判断是否登录
     if (sessionStorage.getItem("loginStatus") !== 'ok'){
         console.log("请先登录/注册");
         if (to.path !== '/login' && to.path !== '/register') {

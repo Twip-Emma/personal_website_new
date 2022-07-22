@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 16:50:58
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2021-11-29 10:14:26
+ * @LastEditTime: 2022-07-22 22:46:05
  * @Description: file content
 -->
 <template>
@@ -37,15 +37,6 @@ export default {
       return this.$store.state.globalData.essayList
     }
   },
-  created() {
-    // this.getEssayList();
-  },
-  methods: {
-    // async getEssayList() {
-    //     this.essayList = this.essayListTest.sort();
-    // }
-  },
-  mounted() {},
 };
 </script>
 

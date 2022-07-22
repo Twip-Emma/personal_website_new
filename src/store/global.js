@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 23:22:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-20 10:36:24
+ * @LastEditTime: 2022-07-21 23:05:47
  * @Description: file content
  */
 
@@ -46,7 +46,7 @@ export default {
         replyList: [
           {
             id: "xxxx1",
-            avatar: "https://cdn.jsdelivr.net/gh/yuewuzhijian/cdn/yuewuzhijian/yuewuzhijian.png",
+            avatar: "",
             nickname: "错误",
             createTime: "2021-11-17",
             content: "【默认】如果宁看见这条消息代表数据没有正常传递",

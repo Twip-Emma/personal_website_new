@@ -94,18 +94,17 @@ export default {
       },
     };
   },
-  computed:{
-    // messageList(){
-    //   return this.$store.state.globalData.messageList
-    // }
-  },
+  computed:{},
   methods: {
+    // 时间戳转可视化时间
     formatTime(basetime){
       return globalFunction.formatTimeApi(basetime)
     },
+    // 初始化留言列表
     async setMessageList(){
       this.messageList = await globalFunction.getAllMessageApi()
     },
+    // 留言行为
     async addMessage(){
       var code = await globalFunction.publishMessageApi(this.messageForm.content)
       if(code === 200){

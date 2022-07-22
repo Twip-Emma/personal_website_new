@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 09:40:09
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-21 20:17:07
+ * @LastEditTime: 2022-07-22 22:52:48
  * @Description: file content
 -->
 <template>
@@ -103,35 +103,15 @@ export default {
       blog: {
         id: 0,
         title: "错误",
-        content:"如果宁看见这个就说明服务器寄了",
+        content:"如果宁看见这个就登录过期了",
         flag: "寄了",
-        views: 114514,
-        createTime: "2021-08-16T14:36:31.064+00:00",
-        updateTime: "2021-08-16T14:36:31.064+00:00",
-        description:
-          "\n#### 介绍\n这是一个多人项目中的一个模块，我负责了数据展示的部分，用原生的Canvas实现了进度条，饼图，雷达图，水滴图，日历图等图表的展现。采用面向对象的方式，将每个图表分为一个独立的类，将dom元素和option选项，option",
-        type: {
-          id: 1,
-          name: "web前端",
-          pic_url: "http://cdngoapl.twip.top/pic_2.jpg",
-          color: "#59c9fb",
-        },
-        tags: [
-          { id: 1, name: "JavaScript" },
-          { id: 2, name: "css" },
-          { id: 3, name: "html" },
-        ],
-        user: {
-          id: 1,
-          nickname: "七画一只妖",
-          avatar:
-            "http://cdngoapl.twip.top/%E7%A5%9E%E9%B9%BF%E7%A5%88%E7%A6%8F-%E5%A4%B4%E5%83%8F%E5%B0%BA%E5%AF%B8.jpg",
-          type: "1",
-          createTime: "2021-10-13T13:55:12.179+00:00",
-          updateTime: "2021-10-13T13:55:12.179+00:00",
-          lastLoginTime: "2021-10-13T13:55:12.000+00:00",
-        },
-
+        views: 0,
+        createTime: "",
+        updateTime: "",
+        description:"",
+        type: {},
+        tags: [],
+        user: {},
         tagIds: null,
       },
       wechart:
@@ -148,19 +128,14 @@ export default {
     formatTime(basetime){
       return globalFunction.formatTimeApi(basetime)
     },
-    // formatTags(){
-    //   console.log(globalFunction.formatTagsApi("甲|乙|丙"))
-    // },
     async setBlogInfo(){
       let blog = await blogApis.getBlogInfoByIdApi()
       blog.tags = globalFunction.formatTagsApi(blog.tags)
       this.blog = blog
-      // console.log(await blogApis.getBlogInfoByIdApi())
     }
   },
   mounted(){
     this.setBlogInfo()
-    // this.formatTags()
   }
 };
 </script>

@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-21 23:00:53
+ * @LastEditTime: 2022-07-21 23:18:07
  * @Description: file content
  */
 import axios from 'axios'
@@ -54,7 +54,7 @@ export default {
     async getAllAvatarApi() {
         console.log("获取头像列表")
         var _data = undefined
-        await axios.get("http://localhost:10010/higanbana/blog/user/getallavatar", {
+        await axios.get("/api/higanbana/blog/user/getallavatar", {
             headers: {
                 'Currency': sessionStorage.getItem("token")
             }
@@ -77,7 +77,7 @@ export default {
         console.log("修改用户信息")
         var _data = undefined
         var id = sessionStorage.getItem("userId")
-        await axios.post("http://localhost:10010/higanbana/blog/user/updateuser", {
+        await axios.post("/api/higanbana/blog/user/updateuser", {
             "id": id,
             "nickname": name,
             "avatar": url
