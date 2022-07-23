@@ -2,12 +2,12 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-18 20:59:53
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-22 22:50:21
+ * @LastEditTime: 2022-07-23 19:59:04
  * @Description: file content
 -->
 <template>
 <div>
-  <el-container v-loading.fullscreen.lock="fullscreenLoading">>
+  <el-container v-loading.fullscreen.lock="fullscreenLoading">
     <el-row :gutter="12">
       <!-- 博客列表容器 -->
       <el-col :xs="24" :sm="17">

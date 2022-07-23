@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-22 22:55:16
+ * @LastEditTime: 2022-07-23 23:08:41
  * @Description: file content
 -->
 <template>
@@ -154,6 +154,7 @@ export default {
       this.avatarList = await userApi.getAllAvatarApi();
       var user = JSON.parse(sessionStorage.getItem("userInfo"))
       this.newNickname = user.nickname
+      this.avatar.url = user.avatar
       this.dialogVisible = true
     },
     // 选择头像
@@ -226,11 +227,11 @@ export default {
   font-size: 14px;
   text-align: center;
   line-height: 30px;
-  background-color: gray;
+  background-color: #cccccc;
   visibility: hidden;
   opacity: 0;
-  color: #333;
-  border: 1px solid #eee;
+  color: #000000;
+  /* border: 1px solid #eee; */
   border-radius: 5px;
 }
 .loginInfo .logout {

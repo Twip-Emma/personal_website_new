@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 12:11:04
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-22 22:55:39
+ * @LastEditTime: 2022-07-23 20:17:55
  * @Description: file content
 -->
 <template>
@@ -12,9 +12,9 @@
       class="el-menu-demo-p"
       mode="horizontal"
       @select="handleSelect"
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b"
+      background-color="#ffffff"
+      text-color="#333333"
+      active-text-color="#669900"
     >
       <el-menu-item class="el-menu-item_p" index="1" @click="pageSwitch('HomePage')"
         >首页</el-menu-item

@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-03-08 16:11:44
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-22 22:41:55
+ * @LastEditTime: 2022-07-23 19:35:30
  * @Description: file content
 -->
 <template>
@@ -498,11 +498,11 @@
           <h3>
             ©2021-2022 | 湘ICP备2021004586号
             <p title="Thanks" target="_blank">
-              Twip | Emma |
+             Cynthia·PicScene |
               <a
                 title="你想干什么？"
                 href="https://space.bilibili.com/178547325"
-                >七画不是八画</a
+                >七画一只妖</a
               >
             </p>
             <!-- 计算时间 -->
@@ -1010,6 +1010,6 @@ export default {
 </script>
 
 <style scoped>
-@import "~@\\components\\Homepage\\about.css";
-@import "~@\\components\\Homepage\\process.css";
+@import "~@\\assets\\css\\about.css";
+@import "~@\\assets\\css\\process.css";
 </style>
