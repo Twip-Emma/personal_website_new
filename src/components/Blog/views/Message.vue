@@ -113,6 +113,7 @@ export default {
           message: '评论成功',
           type: 'success'
         });
+        this.messageForm.content = ""
         this.messageList = await globalFunction.getAllMessageApi()
       }else{
         this.$notify({

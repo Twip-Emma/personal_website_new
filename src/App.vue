@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-03-07 22:38:43
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-23 23:12:47
+ * @LastEditTime: 2022-07-26 20:07:07
  * @Description: file content
 -->
 <template>
@@ -60,6 +60,7 @@ export default {
 .app2{
   width: 80%;
   margin: auto;
+  
 }
 
 .el-header {

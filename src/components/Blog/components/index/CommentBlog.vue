@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 12:14:06
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-21 20:18:19
+ * @LastEditTime: 2022-07-26 19:14:22
  * @Description: file content
 -->
 <template>
@@ -31,7 +31,7 @@
         ref="messageFormRef"
       >
         <el-form-item prop="content">
-          <el-input
+          <el-input  
             :rows="5"
             v-model="messageForm.content"
             type="textarea"
@@ -118,6 +118,7 @@ export default {
           message: '评论成功',
           type: 'success'
         });
+        this.messageForm.content = ""
         this.messageList = await blogApis.getBlogReplyById()
       }else{
         this.$notify({

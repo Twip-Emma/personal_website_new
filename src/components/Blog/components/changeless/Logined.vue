@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-23 23:08:41
+ * @LastEditTime: 2022-07-26 20:18:42
  * @Description: file content
 -->
 <template>
@@ -47,7 +47,7 @@
           退出登录
         </p>
         <p class="logout" @click="changeInfo()">修改信息</p>
-        <p
+        <!-- <p
           v-if="adminpage"
           class="logout"
           @click="
@@ -56,7 +56,7 @@
           "
         >
           返回主界面
-        </p>
+        </p> -->
       </div>
     </div>
 
@@ -124,9 +124,9 @@ export default {
       }
       return Number(sessionStorage.getItem("logined")) === 1 ? true : false;
     },
-    adminpage() {
-      return sessionStorage.getItem("adminpage");
-    },
+    // adminpage() {
+    //   return sessionStorage.getItem("adminpage");
+    // },
     userInfo() {
       return JSON.parse(sessionStorage.getItem("userInfo"));
     },

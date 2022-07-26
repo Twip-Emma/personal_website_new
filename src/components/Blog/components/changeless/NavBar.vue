@@ -2,11 +2,11 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 12:11:04
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-23 20:17:55
+ * @LastEditTime: 2022-07-26 20:22:07
  * @Description: file content
 -->
 <template>
-  <div>
+  <div class="out">
     <!-- 顶部导航栏 -->
     <el-menu
       class="el-menu-demo-p"
@@ -81,9 +81,25 @@ export default {
 }
 .el-menu-item_p {
   text-align: center;
-  width: 200px;
+  width: 150px;
 }
 .el-menu-item_p-input {
   width: 400px;
+}
+
+.out{
+  /* position:fixed;
+  width: 100%;
+  opacity: 0.9;
+  z-index: 999;
+  background: #fff; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    width: 100%;
+    background-color: rgba(235, 235, 235, 1);
+    filter: alpha(opacity=90);
+    opacity: 0.9;
 }
 </style>

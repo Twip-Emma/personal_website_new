@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 16:41:35
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-04 10:43:43
+ * @LastEditTime: 2022-07-26 20:58:54
  * @Description: file content
 -->
 <template>
@@ -16,6 +16,12 @@
 import AdminMenu from "@/components/Blog/components/admin/AdminMenu";
 export default {
   components: { AdminMenu },
+  mounted(){
+    this.$router.push({
+      name: "AdminUserFrom",
+      query: {},
+    });
+  }
 };
 </script>
 
@@ -27,6 +33,7 @@ export default {
 }
 
 .a{
+  height: 800;
     width: 20%;
 }
 
