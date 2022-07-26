@@ -2,14 +2,14 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 16:42:13
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-22 22:56:47
+ * @LastEditTime: 2022-07-26 10:27:01
  * @Description: file content
 -->
 <template>
   <div>
     <el-row class="tac">
       <el-col :span="24"
-        ><div class="welcome"><h3>欢迎您，管理员</h3></div>
+        >
 
         <el-menu
           default-active="2"
