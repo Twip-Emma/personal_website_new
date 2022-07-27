@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-22 22:59:31
+ * @LastEditTime: 2022-07-27 11:24:27
  * @Description: file content
 -->
 <template>
@@ -38,6 +38,16 @@ export default {
   methods:{
     // 登录行为
     async userLogin(){
+      if(this.userLoginData.card === "" || this.userLoginData.pass === ""){
+        this.$notify({
+          title: '失败',
+          message: '账号名和密码不能为空',
+          type: 'warning'
+        });
+        return
+      }
+
+      // 发送请求并处理结果
       let a = await userApis.userLoginAction(this.userLoginData)
       if(a === true){
         this.$store.state.userData.logined = true

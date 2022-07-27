@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-22 23:00:25
+ * @LastEditTime: 2022-07-27 18:14:12
  * @Description: file content
 -->
 <template>
@@ -39,6 +39,15 @@ export default {
   methods:{
     // 登录行为
     async userLogin(){
+      if(this.userLoginData.card === "" || this.userLoginData.pass === "" || this.userLoginData.nickname){
+        this.$notify({
+          title: '失败',
+          message: '账号名或密码或昵称不能为空',
+          type: 'warning'
+        });
+        return
+      }
+
       let a = await userApis.userRegisterAction(this.userRegisterData)
       if(a === true){
         this.$store.state.userData.logined = true

@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-26 18:03:15
+ * @LastEditTime: 2022-07-27 18:06:15
  * @Description: file content
  */
 import axios from 'axios'
@@ -72,7 +72,7 @@ export default {
         )
         return _data
     },
-    // 修改用户信息
+    // 修改用户信息(名字与头像)
     async changeUserInfoApi(name, url) {
         console.log("修改用户信息")
         var _data = undefined
@@ -89,7 +89,7 @@ export default {
             }).then(
                 response => {
                     _data = response.data.code
-                    if(_data === 200){
+                    if (_data === 200) {
                         response.data.data.token = sessionStorage.getItem("token")
                         _setUserData(response.data)
                     }
@@ -116,6 +116,45 @@ export default {
                 console.log(error.message)
             }
         )
+        return _data
+    },
+    // 删除指定用户
+    async deleteUser(id) {
+        console.log("修改用户信息")
+        var _data = undefined
+        await axios.post("/api/higanbana/blog/user/deleteuser", {
+            "id": id
+        },
+            {
+                headers: {
+                    'Currency': sessionStorage.getItem("token")
+                }
+            }).then(
+                response => {
+                    _data = response.data
+                },
+                error => {
+                    console.log(error.message)
+                }
+            )
+        return _data
+    },
+    // 修改用户信息（管理员操作的、用户全部信息）
+    async changeAllUserInfoApi(userData) {
+        var _data = undefined
+        await axios.post("/api/higanbana/blog/user/updateuser", userData,
+            {
+                headers: {
+                    'Currency': sessionStorage.getItem("token")
+                }
+            }).then(
+                response => {
+                    _data = response.data
+                },
+                error => {
+                    console.log(error.message)
+                }
+            )
         return _data
     },
 }
