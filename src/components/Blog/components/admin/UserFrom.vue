@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 17:04:10
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-27 20:14:56
+ * @LastEditTime: 2022-07-28 21:55:30
  * @Description: file content
 -->
 <template>
@@ -71,6 +71,12 @@ export default {
           this.tableData.push(item)
         })
         // this.tableData = resp.data
+      }else{
+        this.$notify({
+          title: '权限不足',
+          message: '哼，小样，打这些小主意，找七画要管理员权限捏~',
+          type: 'warning'
+        });
       }
     },
     // 按下修改信息的按钮了

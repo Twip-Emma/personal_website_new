@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 16:42:13
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-26 20:24:13
+ * @LastEditTime: 2022-07-28 22:05:53
  * @Description: file content
 -->
 <template>
@@ -59,6 +59,19 @@
               <template slot="title">留言面板</template>
               <el-menu-item index="3-1" @click="adminJumpTo('AdminUserFrom')"
                 >全部留言</el-menu-item
+              >
+            </el-menu-item-group>
+          </el-submenu>
+          <!-- KEY管理、缓存管理 -->
+          <el-submenu index="4">
+            <template slot="title">
+              <i class="el-icon-edit"></i>
+              <span>API管理</span>
+            </template>
+            <el-menu-item-group>
+              <template slot="title">添加、验证</template>
+              <el-menu-item index="3-1" @click="adminJumpTo('AdminApiManagement')"
+                >操作API</el-menu-item
               >
             </el-menu-item-group>
           </el-submenu>

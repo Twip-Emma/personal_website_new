@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:42:56
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-26 20:15:51
+ * @LastEditTime: 2022-07-28 22:04:45
  * @Description: file content
  */
 import Vue from 'vue'
@@ -32,6 +32,7 @@ import Register from '@/components/Blog/components/login/Register'
 // 管理员相关组件
 import Admin from '@/components/Blog/views/Admin'
 import UserFrom from '@/components/Blog/components/admin/UserFrom'
+import ApiManagement from '@/components/Blog/components/admin/ApiManagement'
 
 const routes = [
     {
@@ -116,8 +117,12 @@ const routes = [
                 name:'AdminUserFrom',
                 path:"userForm",
                 component:UserFrom
-
-            }
+            },
+            {
+                name:'AdminApiManagement',
+                path:"apiManagement",
+                component:ApiManagement
+            },
         ]
     },
 

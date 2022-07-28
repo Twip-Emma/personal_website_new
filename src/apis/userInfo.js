@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-27 18:06:15
+ * @LastEditTime: 2022-07-28 21:56:24
  * @Description: file content
  */
 import axios from 'axios'
@@ -114,6 +114,7 @@ export default {
             },
             error => {
                 console.log(error.message)
+                _data = ""
             }
         )
         return _data
