@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-27 11:24:27
+ * @LastEditTime: 2022-07-30 16:43:30
  * @Description: file content
 -->
 <template>
@@ -98,7 +98,8 @@ export default {
 .b {
   width: 800px;
   height: 550px;
-  background-image: url("https://n.sinaimg.cn/sinakd10120/350/w1200h750/20200731/db91-ixeeiry9462431.jpg");
+  /* background-image: url("http://cdngoapl.twip.top/%E4%BA%9A%E6%9E%9C12-1080-1920.png"); */
+  background: url("https://sdorica.yuewuzhijian.top/sdorica-figure-light/b0202/b0202s5_figure.webp");
   /* 图片自适应 */
   background-size: cover;
 }

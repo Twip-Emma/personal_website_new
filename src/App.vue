@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-03-07 22:38:43
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-26 20:07:07
+ * @LastEditTime: 2022-07-30 16:39:02
  * @Description: file content
 -->
 <template>
@@ -52,7 +52,7 @@ export default {
   position: absolute;
   margin: auto;
   /* 背景 */
-  background-image: url("http://cdngoapl.twip.top/%E7%A5%9E%E9%B9%BF%E7%A5%88%E7%A6%8F%E5%AE%BD%E5%B1%8F.png");
+  background-image: url("http://cdngoapl.twip.top/%E7%A5%9E%E9%B9%BF%E7%A5%88%E7%A6%8F%E5%8E%9F%E7%89%88%20-%20%E9%80%8F%E6%98%8E.png");
   /* background-color: rgba(255, 255, 0, 0.5); */
   background-attachment: fixed;
 }
