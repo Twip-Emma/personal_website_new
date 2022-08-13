@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 12:11:04
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-26 20:22:07
+ * @LastEditTime: 2022-08-13 15:09:44
  * @Description: file content
 -->
 <template>
@@ -11,8 +11,8 @@
     <el-menu
       class="el-menu-demo-p"
       mode="horizontal"
-      @select="handleSelect"
       background-color="#ffffff"
+      @select="handleSelect"
       text-color="#333333"
       active-text-color="#669900"
     >
@@ -33,7 +33,7 @@
       >
       <el-menu-item class="el-menu-item_p-input">
         <el-input
-          placeholder="请输入内容"
+          :placeholder="lastInput"
           prefix-icon="el-icon-search"
           v-model="userInput"
         >
@@ -46,6 +46,7 @@
 
 <script>
 import Logined from "@/components/Blog/components/changeless/Logined";
+import blogApis from "@/apis/blogInfo"
 export default {
   name: "NavBar",
   components: { Logined },
@@ -57,6 +58,11 @@ export default {
       userInput: "",
     };
   },
+  computed:{
+    lastInput(){
+      return sessionStorage.getItem("searchName") ? sessionStorage.getItem("searchName") : "请输入内容"
+    }
+  },
   methods: {
     pageSwitch(target) {
       this.$router.push({
@@ -64,10 +70,18 @@ export default {
         query: {},
       });
     },
-    handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+    async handleSelect() {
+      if (sessionStorage.getItem("searchName") === this.userInput){
+        return 
+      }
+      sessionStorage.setItem("searchName", this.userInput)
+      // this.$store.state.globalData.blogList = []
+      this.$store.state.globalData.blogList = await blogApis.getBlogListByName()
     },
   },
+  mounted(){
+    this.userInput = sessionStorage.getItem("searchName")
+  }
 };
 </script>
 

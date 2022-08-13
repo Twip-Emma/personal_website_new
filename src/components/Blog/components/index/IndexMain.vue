@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-18 20:59:53
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-23 19:59:04
+ * @LastEditTime: 2022-08-13 15:06:12
  * @Description: file content
 -->
 <template>
@@ -103,7 +103,7 @@ export default {
         pagenum: 1,
         pagesize: 3,
       },
-      blogList : [],
+      // blogList : [],
       //   判断用户是否进入某一个博客内
       selected: false,
       loading: true,
@@ -111,6 +111,9 @@ export default {
     };
   },
   computed:{
+    blogList(){
+      return this.$store.state.globalData.blogList
+    }
   },
   methods:{
     // 日期格式化
@@ -130,20 +133,33 @@ export default {
     },
     // 初始化博客总数
     async setTotalCount(){
-      this.totalcount = await blogApis.getBlogTotalCount()
+
+      if (sessionStorage.getItem("searchName")){
+        this.totalcount = await blogApis.getBlogTotalCountByName()
+      }else{
+        this.totalcount = await blogApis.getBlogTotalCount()
+      }
+
+      
     },
     // 初始化第一页
     async getFirstPage(){
-      this.blogList = await blogApis.getBlogListByPage()
-      this.fullscreenLoading = false
+      if (sessionStorage.getItem("searchName")){
+        this.$store.state.globalData.blogList = await blogApis.getBlogListByName()
+        // this.blogList = this.$store.state.globalData.blogList
+        this.fullscreenLoading = false
+      }else{
+        this.$store.state.globalData.blogList = await blogApis.getBlogListByPage()
+        // this.blogList = this.$store.state.globalData.blogList
+        this.fullscreenLoading = false
+      }
     },
-    // 进入博客行为
+    // 翻页行为
     handleCurrentChange(val){
       this.fullscreenLoading = true
       this.queryInfo.pagenum = val
       sessionStorage.setItem("blogListPage",this.queryInfo.pagenum)
       this.getFirstPage()
-      console.log(this.queryInfo.pagenum)
       this.loading = false
     }
   },

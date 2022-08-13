@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 23:22:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-21 23:05:47
+ * @LastEditTime: 2022-08-13 13:27:53
  * @Description: file content
  */
 
@@ -17,6 +17,8 @@ export default {
     },
     mutations: {},
     state: {
+        // 博客列表
+        blogList:[],
         // 博客留言
         messageList:[],
         // 主页博客展示
