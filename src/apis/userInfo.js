@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-28 21:56:24
+ * @LastEditTime: 2022-08-23 11:20:59
  * @Description: file content
  */
 import axios from 'axios'
@@ -26,6 +26,9 @@ export default {
                 }
             },
             error => {
+                if(error.code === "ERR_BAD_RESPONSE"){
+                    localStorage.clear()
+                }
                 console.log(error.message)
             }
         )
@@ -45,6 +48,9 @@ export default {
                 }
             },
             error => {
+                if(error.code === "ERR_BAD_RESPONSE"){
+                    localStorage.clear()
+                }
                 console.log(error.message)
             }
         )
@@ -56,7 +62,7 @@ export default {
         var _data = undefined
         await axios.get("/api/higanbana/blog/user/getallavatar", {
             headers: {
-                'Currency': sessionStorage.getItem("token")
+                'Currency': localStorage.getItem("token")
             }
         }).then(
             response => {
@@ -67,6 +73,9 @@ export default {
                 }
             },
             error => {
+                if(error.code === "ERR_BAD_RESPONSE"){
+                    localStorage.clear()
+                }
                 console.log(error.message)
             }
         )
@@ -76,7 +85,7 @@ export default {
     async changeUserInfoApi(name, url) {
         console.log("修改用户信息")
         var _data = undefined
-        var id = sessionStorage.getItem("userId")
+        var id = localStorage.getItem("userId")
         await axios.post("/api/higanbana/blog/user/updateuser", {
             "id": id,
             "nickname": name,
@@ -84,17 +93,20 @@ export default {
         },
             {
                 headers: {
-                    'Currency': sessionStorage.getItem("token")
+                    'Currency': localStorage.getItem("token")
                 }
             }).then(
                 response => {
                     _data = response.data.code
                     if (_data === 200) {
-                        response.data.data.token = sessionStorage.getItem("token")
+                        response.data.data.token = localStorage.getItem("token")
                         _setUserData(response.data)
                     }
                 },
                 error => {
+                    if(error.code === "ERR_BAD_RESPONSE"){
+                    localStorage.clear()
+                }
                     console.log(error.message)
                 }
             )
@@ -106,13 +118,16 @@ export default {
         var _data = undefined
         await axios.get("/api/higanbana/blog/user/getalluser", {
             headers: {
-                'Currency': sessionStorage.getItem("token")
+                'Currency': localStorage.getItem("token")
             }
         }).then(
             response => {
                 _data = response.data
             },
             error => {
+                if(error.code === "ERR_BAD_RESPONSE"){
+                    localStorage.clear()
+                }
                 console.log(error.message)
                 _data = ""
             }
@@ -128,13 +143,16 @@ export default {
         },
             {
                 headers: {
-                    'Currency': sessionStorage.getItem("token")
+                    'Currency': localStorage.getItem("token")
                 }
             }).then(
                 response => {
                     _data = response.data
                 },
                 error => {
+                    if(error.code === "ERR_BAD_RESPONSE"){
+                    localStorage.clear()
+                }
                     console.log(error.message)
                 }
             )
@@ -146,36 +164,65 @@ export default {
         await axios.post("/api/higanbana/blog/user/updateuser", userData,
             {
                 headers: {
-                    'Currency': sessionStorage.getItem("token")
+                    'Currency': localStorage.getItem("token")
                 }
             }).then(
                 response => {
                     _data = response.data
                 },
                 error => {
+                    if(error.code === "ERR_BAD_RESPONSE"){
+                    localStorage.clear()
+                }
                     console.log(error.message)
                 }
             )
+        return _data
+    },
+    // 获取所有用户信息
+    async checkTokenBeforeEach() {
+        console.log("获取头像列表")
+        var _data = undefined
+        var token = undefined
+        if(localStorage.getItem("token")){
+            token = localStorage.getItem("token")
+        } 
+        await axios.get("/api/higanbana/blog/user/checktoken?token=" + token).then(
+            response => {
+                if (response.data.code === 200){
+                    _data = true
+                }else{
+                    _data = false
+                }
+            },
+            error => {
+                if(error.code === "ERR_BAD_RESPONSE"){
+                    localStorage.clear()
+                }
+                console.log(error.message)
+                _data = false
+            }
+        )
         return _data
     },
 }
 
 // 存入登录信息
 function _setUserData(value) {
-    sessionStorage.setItem("loginStatus", "ok")
-    sessionStorage.setItem("adminStatus", "ok")
-    sessionStorage.setItem("administrator", value.data.isadmin)
-    sessionStorage.setItem("logined", 1)
-    sessionStorage.setItem("loginedFlag", 1)
-    sessionStorage.setItem("userId", value.data.id)
-    sessionStorage.setItem("userInfo", JSON.stringify({
+    localStorage.setItem("loginStatus", "ok")
+    localStorage.setItem("adminStatus", "ok")
+    localStorage.setItem("administrator", value.data.isadmin)
+    localStorage.setItem("logined", 1)
+    localStorage.setItem("loginedFlag", 1)
+    localStorage.setItem("userId", value.data.id)
+    localStorage.setItem("userInfo", JSON.stringify({
         nickname: value.data.nickname,
         avatar: value.data.avatar,
     }))
 
     // 存储token
-    sessionStorage.setItem("token", value.data.token)
+    localStorage.setItem("token", value.data.token)
 
     // 设置初始博客页面
-    sessionStorage.setItem("blogListPage", 1)
+    localStorage.setItem("blogListPage", 1)
 }

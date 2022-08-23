@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-18 20:59:53
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-08-13 15:06:12
+ * @LastEditTime: 2022-08-23 11:11:36
  * @Description: file content
 -->
 <template>
@@ -123,7 +123,7 @@ export default {
     // 跳转到博客内
     getBlogInfo(id){
       console.log("博客id的值是" + id)
-      sessionStorage.setItem("blogId",id)
+      localStorage.setItem("blogId",id)
       this.$router.push({
         name:"BlogInfo",
         query:{
@@ -133,8 +133,7 @@ export default {
     },
     // 初始化博客总数
     async setTotalCount(){
-
-      if (sessionStorage.getItem("searchName")){
+      if (localStorage.getItem("searchName")){
         this.totalcount = await blogApis.getBlogTotalCountByName()
       }else{
         this.totalcount = await blogApis.getBlogTotalCount()
@@ -144,7 +143,7 @@ export default {
     },
     // 初始化第一页
     async getFirstPage(){
-      if (sessionStorage.getItem("searchName")){
+      if (localStorage.getItem("searchName")){
         this.$store.state.globalData.blogList = await blogApis.getBlogListByName()
         // this.blogList = this.$store.state.globalData.blogList
         this.fullscreenLoading = false
@@ -158,7 +157,7 @@ export default {
     handleCurrentChange(val){
       this.fullscreenLoading = true
       this.queryInfo.pagenum = val
-      sessionStorage.setItem("blogListPage",this.queryInfo.pagenum)
+      localStorage.setItem("blogListPage",this.queryInfo.pagenum)
       this.getFirstPage()
       this.loading = false
     }
@@ -167,8 +166,8 @@ export default {
     this.setTotalCount()
     this.getFirstPage()
     // 初始化页号
-    if(sessionStorage.getItem("blogListPage") !== null){
-      this.queryInfo.pagenum = Number(sessionStorage.getItem("blogListPage"))
+    if(localStorage.getItem("blogListPage") !== null){
+      this.queryInfo.pagenum = Number(localStorage.getItem("blogListPage"))
     }
   },
 };

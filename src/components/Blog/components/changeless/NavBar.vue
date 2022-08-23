@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 12:11:04
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-08-13 15:09:44
+ * @LastEditTime: 2022-08-23 11:11:19
  * @Description: file content
 -->
 <template>
@@ -60,7 +60,7 @@ export default {
   },
   computed:{
     lastInput(){
-      return sessionStorage.getItem("searchName") ? sessionStorage.getItem("searchName") : "请输入内容"
+      return localStorage.getItem("searchName") ? localStorage.getItem("searchName") : "请输入内容"
     }
   },
   methods: {
@@ -71,16 +71,16 @@ export default {
       });
     },
     async handleSelect() {
-      if (sessionStorage.getItem("searchName") === this.userInput){
+      if (localStorage.getItem("searchName") === this.userInput){
         return 
       }
-      sessionStorage.setItem("searchName", this.userInput)
+      localStorage.setItem("searchName", this.userInput)
       // this.$store.state.globalData.blogList = []
       this.$store.state.globalData.blogList = await blogApis.getBlogListByName()
     },
   },
   mounted(){
-    this.userInput = sessionStorage.getItem("searchName")
+    this.userInput = localStorage.getItem("searchName")
   }
 };
 </script>

@@ -126,7 +126,7 @@ export default {
   },
   created() {}, 
   mounted(){
-    this.userInfo = JSON.parse(sessionStorage.getItem("userInfo"))
+    this.userInfo = JSON.parse(localStorage.getItem("userInfo"))
     this.setMessageList()
   }
 };

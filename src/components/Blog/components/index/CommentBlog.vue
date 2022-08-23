@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 12:14:06
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-26 19:14:22
+ * @LastEditTime: 2022-08-23 11:11:29
  * @Description: file content
 -->
 <template>
@@ -134,7 +134,7 @@ export default {
   },
   mounted(){
     this.getBlogReply()
-    this.userInfo = JSON.parse(sessionStorage.getItem("userInfo"))
+    this.userInfo = JSON.parse(localStorage.getItem("userInfo"))
   }
 };
 </script>

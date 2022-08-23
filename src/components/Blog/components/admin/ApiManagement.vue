@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-28 22:03:26
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-28 22:42:00
+ * @LastEditTime: 2022-08-23 11:29:20
  * @Description: file content
 -->
 <template>
@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       form: {
-        time: "使用次数暂时有BUG，你输入多少次结果都只能用5次",
+        time: "这里输入使用次数，不输入的话默认5次",
         resp: "",
         total: "",
       },

@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-19 11:27:15
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-20 13:07:23
+ * @LastEditTime: 2022-08-23 11:20:40
  * @Description: file content
  */
 import axios from 'axios'
@@ -50,7 +50,7 @@ export default {
         var _data = undefined
         await axios.get("/api/higanbana/blog/global/getallmessage",{
             headers: {
-                'Currency' : sessionStorage.getItem("token")
+                'Currency' : localStorage.getItem("token")
             }
         }).then(
             response => {
@@ -61,6 +61,9 @@ export default {
                 }
             },
             error => {
+                if(error.code === "ERR_BAD_RESPONSE"){
+                    localStorage.clear()
+                }
                 console.log(error.message)
             }
         )
@@ -71,18 +74,21 @@ export default {
         console.log("发表了评论")
         var _data = undefined
         await axios.post("/api/higanbana/blog/global/addmessage", {
-            "userId":sessionStorage.getItem("userId"),
+            "userId":localStorage.getItem("userId"),
             "content":content
         },
         {
             headers: {
-                'Currency' : sessionStorage.getItem("token")
+                'Currency' : localStorage.getItem("token")
             }
         }).then(
             response => {
                 _data = response.data.code
             },
             error => {
+                if(error.code === "ERR_BAD_RESPONSE"){
+                    localStorage.clear()
+                }
                 console.log(error.message)
             }
         )

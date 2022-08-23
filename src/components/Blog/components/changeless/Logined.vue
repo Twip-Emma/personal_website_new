@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-26 20:18:42
+ * @LastEditTime: 2022-08-23 11:11:16
  * @Description: file content
 -->
 <template>
@@ -106,14 +106,14 @@ export default {
   },
   computed: {
     administrator() {
-      return Number(sessionStorage.getItem("administrator")) === 1
+      return Number(localStorage.getItem("administrator")) === 1
         ? true
         : false;
     },
     logined() {
-      if (!sessionStorage.getItem("logined")) {
+      if (!localStorage.getItem("logined")) {
         if (this.$store.state.userData.logined === false) {
-          if (Number(sessionStorage.getItem("logined")) === 1) {
+          if (Number(localStorage.getItem("logined")) === 1) {
             return true;
           } else {
             return false;
@@ -122,13 +122,13 @@ export default {
           return true;
         }
       }
-      return Number(sessionStorage.getItem("logined")) === 1 ? true : false;
+      return Number(localStorage.getItem("logined")) === 1 ? true : false;
     },
     // adminpage() {
-    //   return sessionStorage.getItem("adminpage");
+    //   return localStorage.getItem("adminpage");
     // },
     userInfo() {
-      return JSON.parse(sessionStorage.getItem("userInfo"));
+      return JSON.parse(localStorage.getItem("userInfo"));
     },
   },
   methods: {
@@ -142,7 +142,7 @@ export default {
       this.adminpage = !this.adminpage;
     },
     logout() {
-      sessionStorage.clear();
+      localStorage.clear();
       this.$notify({
         title: "退出",
         message: "您已成功退出当前账号，现已返回主界面",
@@ -152,7 +152,7 @@ export default {
     // 呼出修改信息的弹窗
     async changeInfo(){
       this.avatarList = await userApi.getAllAvatarApi();
-      var user = JSON.parse(sessionStorage.getItem("userInfo"))
+      var user = JSON.parse(localStorage.getItem("userInfo"))
       this.newNickname = user.nickname
       this.avatar.url = user.avatar
       this.dialogVisible = true

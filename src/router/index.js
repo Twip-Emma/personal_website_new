@@ -2,11 +2,12 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:42:56
  * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-28 22:04:45
+ * @LastEditTime: 2022-08-23 11:12:02
  * @Description: file content
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import userApis from '../apis/userInfo'
 
 // 路由懒加载
 // const Welcome = () => import(/* webpackChunkName: "Welcome" */ '@/views/Welcome')
@@ -164,7 +165,7 @@ router.beforeEach((to, from, next) => {
         return next()
     }
     // 判断是否登录
-    if (sessionStorage.getItem("loginStatus") !== 'ok'){
+    if (localStorage.getItem("loginStatus") !== 'ok'){
         console.log("请先登录/注册");
         if (to.path !== '/login' && to.path !== '/register') {
             return next("/login");
@@ -172,9 +173,16 @@ router.beforeEach((to, from, next) => {
     }
     // 判断是否是进入了管理员界面
     if (to.path === "/admin"){
-        if(Number(sessionStorage.getItem("administrator")) !== 1){
+        if(Number(localStorage.getItem("administrator")) !== 1){
             console.log("宁没有管理员权限，快点爬");
             return next("/home")
+        }
+    }
+    // 判断token是否过期
+    if (!userApis.checkTokenBeforeEach(localStorage.getItem("token"))){
+        console.log("请先登录/注册");
+        if (to.path !== '/login' && to.path !== '/register') {
+            return next("/login");
         }
     }
     next()
