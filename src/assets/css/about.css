@@ -153,19 +153,19 @@ body {
 }
 
 .bg01 {
-  background: url("http://cdngoapl.twip.top/pic_1.jpg");
+  background: url("http://cdngoapl.twip.top/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90/%E4%B8%83%E7%94%BB%E4%B8%80%E5%8F%AA%E5%A6%96-1920X1080.png");
 }
 
 .bg02 {
-  background: url("http://cdngoapl.twip.top/pic_2.jpg");
+  background: url("http://cdngoapl.twip.top/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90/Emma%E7%AB%8B%E7%BB%98-1920X1080.png");
 }
 
 .bg03 {
-  background: url("http://cdngoapl.twip.top/pic_3.jpg");
+  background: url("http://cdngoapl.twip.top/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90/%E6%B3%89-%E8%BF%AD%E4%BB%A370.png");
 }
 
 .bg04 {
-  background: url("http://cdngoapl.twip.top/pic_4.jpg");
+  background: url("http://cdngoapl.twip.top/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90/Twip%E7%AB%8B%E7%BB%98-1920X1080.png");
 }
 
 .warpBox_tochMoveing {
@@ -326,7 +326,7 @@ body {
 }
 
 #item_1 .cycle_icon_1 {
-    background: url('~@/assets/images/icon/xiaoyang.png') no-repeat;
+    background: url('~@/assets/images/icon/C.jpg') no-repeat;
     border-radius: 25px;
     display: block;
     width: 50px;
@@ -361,7 +361,7 @@ body {
 }
 
 #item_2 .cycle_icon_2 {
-    background: url('~@/assets/images/icon/quan.jpg');
+    background: url('~@/assets/images/icon/A.jpg');
     border-radius: 25px;
     display: block;
     width: 50px;
@@ -379,7 +379,7 @@ body {
 }
 
 #item_3 .cycle_icon_3 {
-    background: url('~@/assets/images/icon/misha.jpg');
+    background: url('~@/assets/images/icon/B.jpg');
     display: block;
     width: 50px;
     height: 50px;

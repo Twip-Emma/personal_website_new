@@ -1,8 +1,8 @@
 <!--
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
- * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-30 16:43:30
+ * @LastEditors: 七画一只妖 1157529280@qq.com
+ * @LastEditTime: 2022-10-15 10:55:03
  * @Description: file content
 -->
 <template>
@@ -99,7 +99,7 @@ export default {
   width: 800px;
   height: 550px;
   /* background-image: url("http://cdngoapl.twip.top/%E4%BA%9A%E6%9E%9C12-1080-1920.png"); */
-  background: url("https://sdorica.yuewuzhijian.top/sdorica-figure-light/b0202/b0202s5_figure.webp");
+  background: url("http://cdngoapl.twip.top/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90/%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2.png");
   /* 图片自适应 */
   background-size: cover;
 }
