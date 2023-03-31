@@ -1,12 +1,14 @@
 /*
  * @Author: 七画一只妖
  * @Date: 2022-03-07 22:38:43
- * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-04 10:51:44
+ * @LastEditors: 七画一只妖 1157529280@qq.com
+ * @LastEditTime: 2023-03-31 10:57:52
  * @Description: file content
  */
 import Vue from 'vue'
 import App from './App.vue'
+
+import "./utils/axios-config"
 
 // 引入路由
 import VueRouter from "vue-router"

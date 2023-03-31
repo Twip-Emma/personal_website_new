@@ -1,8 +1,8 @@
 /*
  * @Author: 七画一只妖
  * @Date: 2022-07-09 10:26:35
- * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-08-23 11:19:19
+ * @LastEditors: 七画一只妖 1157529280@qq.com
+ * @LastEditTime: 2023-03-31 15:03:53
  * @Description: file content
  */
 import axios from 'axios'
@@ -16,17 +16,9 @@ export default {
         if (!page) {
             page = 1
         }
-        await axios.get("/api/higanbana/blog/blog/selectbloglistbypage?page=" + page, {
-            headers: {
-                'Currency': localStorage.getItem("token")
-            }
-        }).then(
+        await axios.get("/higanbana/blog/blog/selectbloglistbypage?page=" + page).then(
             response => {
-                if (response.data.code === 200) {
-                    _data = response.data.data
-                } else {
-                    _data = response.data.code
-                }
+                _data = response.data
             },
             error => {
                 if(error.code === "ERR_BAD_RESPONSE"){
@@ -46,23 +38,9 @@ export default {
         if (!page) {
             page = 1
         }
-        await axios.get("/api/higanbana/blog/blog/selectbloglistbyname?page=" + page + "&name=" + name, {
-            headers: {
-                'Currency': localStorage.getItem("token")
-            }
-        }).then(
+        await axios.get("/higanbana/blog/blog/selectbloglistbyname?page=" + page + "&name=" + name).then(
             response => {
-                if (response.data.code === 200) {
-                    _data = response.data.data
-                } else {
-                    _data = response.data.code
-                }
-            },
-            error => {
-                if(error.code === "ERR_BAD_RESPONSE"){
-                    localStorage.clear()
-                }
-                console.log(error.message)
+                _data = response.data
             }
         )
         return _data
@@ -71,23 +49,9 @@ export default {
     async getBlogTotalCount() {
         console.log("请求了博客总数")
         var _data = undefined
-        await axios.get("/api/higanbana/blog/blog/selectbloglisttotalcount", {
-            headers: {
-                'Currency': localStorage.getItem("token")
-            }
-        }).then(
+        await axios.get("/higanbana/blog/blog/selectbloglisttotalcount").then(
             response => {
-                if (response.data.code === 200) {
-                    _data = response.data.data
-                } else {
-                    _data = response.data.code
-                }
-            },
-            error => {
-                if(error.code === "ERR_BAD_RESPONSE"){
-                    localStorage.clear()
-                }
-                console.log(error.message)
+                _data = response.data
             }
         )
         return _data
@@ -100,23 +64,9 @@ export default {
             name = ""
         }
         var _data = undefined
-        await axios.get("/api/higanbana/blog/blog/selectbloglisttotalcountbyname?name=" + name, {
-            headers: {
-                'Currency': localStorage.getItem("token")
-            }
-        }).then(
+        await axios.get("/higanbana/blog/blog/selectbloglisttotalcountbyname?name=" + name).then(
             response => {
-                if (response.data.code === 200) {
-                    _data = response.data.data
-                } else {
-                    _data = response.data.code
-                }
-            },
-            error => {
-                if(error.code === "ERR_BAD_RESPONSE"){
-                    localStorage.clear()
-                }
-                console.log(error.message)
+                _data = response.data
             }
         )
         return _data
@@ -129,52 +79,22 @@ export default {
         if (!id) {
             id = "0"
         }
-        await axios.get("/api/higanbana/blog/blog/selectblogreplybyid?blogid=" + id, {
-            headers: {
-                'Currency': localStorage.getItem("token")
-            }
-        }).then(
+        await axios.get("/higanbana/blog/blog/selectblogreplybyid?blogid=" + id).then(
             response => {
-                if (response.data.code === 200) {
-                    _data = response.data.data
-                } else {
-                    _data = response.data.code
-                }
-            },
-            error => {
-                if(error.code === "ERR_BAD_RESPONSE"){
-                    localStorage.clear()
-                }
-                console.log(error.message)
+                _data = response.data
             }
         )
-        // console.log(_data)
         return _data
     },
     // 发表博客评论
     async publishContentApi(content) {
         console.log("发表了评论")
-        var _data = undefined
-        await axios.post("/api/higanbana/blog/blog/addblogreply", {
+        var _data = 200
+        await axios.post("/higanbana/blog/blog/addblogreply", {
             "userId": localStorage.getItem("userId"),
             "articleId": localStorage.getItem("blogId"),
             "content": content
-        },
-            {
-                headers: {
-                    'Currency': localStorage.getItem("token")
-                }
-            }).then(
-                response => {
-                    _data = response.data.code
-                },
-                error => {
-                    if(error.code === "ERR_BAD_RESPONSE"){
-                    localStorage.clear()
-                }
-                    console.log(error.message)
-                }
-            )
+        })
         return _data
     },
     // 根据ID获取博客
@@ -185,23 +105,9 @@ export default {
         if (!id) {
             id = "0"
         }
-        await axios.get("/api/higanbana/blog/blog/getbloginfobyid?blogid=" + id, {
-            headers: {
-                'Currency': localStorage.getItem("token")
-            }
-        }).then(
+        await axios.get("/higanbana/blog/blog/getbloginfobyid?blogid=" + id).then(
             response => {
-                if (response.data.code === 200) {
-                    _data = response.data.data
-                } else {
-                    _data = response.data.code
-                }
-            },
-            error => {
-                if(error.code === "ERR_BAD_RESPONSE"){
-                    localStorage.clear()
-                }
-                console.log(error.message)
+                _data = response.data
             }
         )
         return _data

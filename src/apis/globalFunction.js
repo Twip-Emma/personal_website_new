@@ -48,23 +48,9 @@ export default {
     async getAllMessageApi(){
         console.log("请求了留言")
         var _data = undefined
-        await axios.get("/api/higanbana/blog/global/getallmessage",{
-            headers: {
-                'Currency' : localStorage.getItem("token")
-            }
-        }).then(
+        await axios.get("/higanbana/blog/global/getallmessage").then(
             response => {
-                if(response.data.code === 200){
-                    _data = response.data.data
-                }else{
-                    _data = response.data.code
-                }
-            },
-            error => {
-                if(error.code === "ERR_BAD_RESPONSE"){
-                    localStorage.clear()
-                }
-                console.log(error.message)
+                _data = response.data.data
             }
         )
         return _data
@@ -72,26 +58,11 @@ export default {
     // 用户发表留言
     async publishMessageApi(content){
         console.log("发表了评论")
-        var _data = undefined
-        await axios.post("/api/higanbana/blog/global/addmessage", {
+        var _data = 200
+        await axios.post("/higanbana/blog/global/addmessage", {
             "userId":localStorage.getItem("userId"),
             "content":content
-        },
-        {
-            headers: {
-                'Currency' : localStorage.getItem("token")
-            }
-        }).then(
-            response => {
-                _data = response.data.code
-            },
-            error => {
-                if(error.code === "ERR_BAD_RESPONSE"){
-                    localStorage.clear()
-                }
-                console.log(error.message)
-            }
-        )
+        })
         return _data
     },
     _zeroTimeFormat(number){

@@ -1,8 +1,8 @@
 <!--
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
- * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-08-23 11:11:16
+ * @LastEditors: 七画一只妖 1157529280@qq.com
+ * @LastEditTime: 2023-03-31 11:30:09
  * @Description: file content
 -->
 <template>
@@ -174,12 +174,6 @@ export default {
             type: 'success'
           });
           this.dialogVisible = false
-        }else{
-          this.$notify({
-            title: '修改',
-            message: '修改失败，与服务器交互出现异常',
-            type: 'warning'
-          });
         }
       }
     },

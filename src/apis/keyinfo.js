@@ -12,19 +12,13 @@ export default {
     async getNewKeyApi(time){
         console.log(time)
         var _data = undefined
-        await axios.get("/api/higanbana/api/addsetukey?time=" + time, {
+        await axios.get("/higanbana/api/addsetukey?time=" + time, {
             headers: {
                 'Currency': localStorage.getItem("token")
             }
         }).then(
             response => {
                 _data = response.data
-            },
-            error => {
-                if(error.code === "ERR_BAD_RESPONSE"){
-                    localStorage.clear()
-                }
-                console.log(error.message)
             }
         )
         return _data

@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2022-10-15 10:55:09
+ * @LastEditTime: 2023-03-31 10:48:40
  * @Description: file content
 -->
 <template>
@@ -12,12 +12,11 @@
       <div class="c">
         <div class="d">
           <h1>注册</h1>
-          <input type="text" class="e" placeholder="用户名" v-model="userRegisterData.nickname" />
-          <input type="text" class="e" placeholder="账号" v-model="userRegisterData.card" />
-          <input type="password" class="e" placeholder="密码" v-model="userRegisterData.pass" />
+          <input type="text" class="e" placeholder="用户名" v-model.lazy="userRegisterData.nickname" />
+          <input type="text" class="e" placeholder="账号" v-model.lazy="userRegisterData.card" />
+          <input type="password" class="e" placeholder="密码" v-model.lazy="userRegisterData.pass" />
           <a href="#" class="f">忘记密码？</a>
-          <!-- <el-button type="primary" icon="el-icon-search">搜索</el-button> -->
-          <el-button class="login"  type="primary" @click="userLogin()">注册</el-button>
+          <el-button class="login" type="primary" :disabled="!(userRegisterData.nickname && userRegisterData.card && userRegisterData.pass)" @click="userLogin()" :loading="loading">注册</el-button>
         </div>
       </div>
     </div>
@@ -33,13 +32,14 @@ export default {
         nickname:"",
         card:"",
         pass:""
-      }
+      },
+      loading: false
     };
   },
   methods:{
     // 登录行为
     async userLogin(){
-      if(this.userLoginData.card === "" || this.userLoginData.pass === "" || this.userLoginData.nickname){
+      if(this.userRegisterData.card === "" || this.userRegisterData.pass === "" || this.userRegisterData.nickname === ""){
         this.$notify({
           title: '失败',
           message: '账号名或密码或昵称不能为空',
@@ -47,8 +47,9 @@ export default {
         });
         return
       }
-
+      this.loading = true;
       let a = await userApis.userRegisterAction(this.userRegisterData)
+      this.loading = false;
       if(a === true){
         this.$store.state.userData.logined = true
         this.pageSwitch("HomePage")
