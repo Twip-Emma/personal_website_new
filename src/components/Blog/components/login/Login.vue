@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2022-10-15 10:55:03
+ * @LastEditTime: 2023-03-31 15:51:06
  * @Description: file content
 -->
 <template>
@@ -12,12 +12,10 @@
       <div class="c">
         <div class="d">
           <h1>登录</h1>
-          <!-- <input type="text" class="e" placeholder="用户名（注册用）" v-model="userLoginData.userName" /> -->
-          <input type="text" class="e" placeholder="账号" v-model="userLoginData.card" />
-          <input type="password" class="e" placeholder="密码" v-model="userLoginData.pass" />
+          <input type="text" class="e" placeholder="账号" v-model.lazy="userLoginData.card" />
+          <input type="password" class="e" placeholder="密码" v-model.lazy="userLoginData.pass" />
           <a href="#" class="f">忘记密码？</a>
-          <!-- <el-button type="primary" icon="el-icon-search">搜索</el-button> -->
-          <el-button class="login"  type="primary" @click="userLogin()">登录</el-button>
+          <el-button class="login" type="primary" :disabled="!(userLoginData.card && userLoginData.pass)" @click="userLogin()" :loading="loading">注册</el-button>
         </div>
       </div>
     </div>
@@ -25,49 +23,41 @@
 </template>
 
 <script>
-import userApis from "@/apis/userInfo"
+import userApis from "@/apis/userInfo";
 export default {
   data() {
     return {
-      userLoginData:{
-        card:"",
-        pass:""
-      }
+      userLoginData: {
+        card: "",
+        pass: "",
+      },
+      loading: false,
     };
   },
-  methods:{
+  computed: {
+  },
+  methods: {
     // 登录行为
-    async userLogin(){
-      if(this.userLoginData.card === "" || this.userLoginData.pass === ""){
-        this.$notify({
-          title: '失败',
-          message: '账号名和密码不能为空',
-          type: 'warning'
-        });
-        return
+    async userLogin() {
+      // 验证账号和密码不能为空且只允许存在数字和字母大小写
+      const reg = /^[a-zA-Z0-9]+$/;
+      if (!reg.test(this.userLoginData.card)) {
+        this.$message.error("账号只允许存在数字和字母大小写");
+        return;
       }
-
+      if (!reg.test(this.userLoginData.pass)) {
+        this.$message.error("密码只允许存在数字和字母大小写");
+        return;
+      }
       // 发送请求并处理结果
-      let a = await userApis.userLoginAction(this.userLoginData)
-      if(a === true){
-        this.$store.state.userData.logined = true
-        this.pageSwitch("HomePage")
+      let a = await userApis.userLoginAction(this.userLoginData);
+      if (a === true) {
+        this.$store.state.userData.logined = true;
+        this.pageSwitch("HomePage");
         this.$notify({
-          title: '登录',
-          message: '登录成功，您当前正在博客列表页面',
-          type: 'success'
-        });
-      }else if(a === 1204){
-        this.$notify({
-          title: '密码或账号',
-          message: '登录失败，请检查密码或账号是否输入正确',
-          type: 'warning'
-        });
-      }else{
-        this.$notify({
-          title: '异常',
-          message: '登录失败，与服务器通信出现了异常',
-          type: 'warning'
+          title: "登录",
+          message: "登录成功，您当前正在博客列表页面",
+          type: "success",
         });
       }
     },
@@ -78,7 +68,7 @@ export default {
         query: {},
       });
     },
-  }
+  },
 };
 </script>
 
@@ -99,7 +89,7 @@ export default {
   width: 800px;
   height: 550px;
   /* background-image: url("http://cdngoapl.twip.top/%E4%BA%9A%E6%9E%9C12-1080-1920.png"); */
-  background: url("http://cdngoapl.twip.top/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90/%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2.png");
+  background: url("http://cdngoapl.twip.top/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90/blogpicA.png");
   /* 图片自适应 */
   background-size: cover;
 }
@@ -152,7 +142,7 @@ export default {
   text-align: center;
 }
 
-.login{
-    width: 100%;
+.login {
+  width: 100%;
 }
 </style>
