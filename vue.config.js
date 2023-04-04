@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-10-13 21:15:32
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-03-31 11:08:32
+ * @LastEditTime: 2023-04-03 10:19:56
  * @Description: file content
  */
 
@@ -13,7 +13,9 @@ module.exports = {
       '/api': {
         target: 'http://localhost:10010',
         changeOrigin: true,
-        ws: true,
+        pathRewrite: {
+          '^/api': ''
+        }
       }
     }
   },
