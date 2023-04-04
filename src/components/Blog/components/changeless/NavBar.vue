@@ -1,8 +1,8 @@
 <!--
  * @Author: 七画一只妖
  * @Date: 2021-11-17 12:11:04
- * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-08-23 11:11:19
+ * @LastEditors: 七画一只妖 1157529280@qq.com
+ * @LastEditTime: 2023-04-04 18:37:43
  * @Description: file content
 -->
 <template>
@@ -16,19 +16,34 @@
       text-color="#333333"
       active-text-color="#669900"
     >
-      <el-menu-item class="el-menu-item_p" index="1" @click="pageSwitch('HomePage')"
+      <el-menu-item
+        class="el-menu-item_p"
+        index="1"
+        @click="pageSwitch('HomePage')"
         >首页</el-menu-item
       >
-      <el-menu-item class="el-menu-item_p" index="2" @click="pageSwitch('Essay')"
+      <el-menu-item
+        class="el-menu-item_p"
+        index="2"
+        @click="pageSwitch('Essay')"
         >随笔</el-menu-item
       >
-      <el-menu-item class="el-menu-item_p" index="3" @click="pageSwitch('Message')"
+      <el-menu-item
+        class="el-menu-item_p"
+        index="3"
+        @click="pageSwitch('Message')"
         >留言</el-menu-item
       >
-      <el-menu-item class="el-menu-item_p" index="4" @click="pageSwitch('Project')"
+      <el-menu-item
+        class="el-menu-item_p"
+        index="4"
+        @click="pageSwitch('Project')"
         >项目</el-menu-item
       >
-      <el-menu-item class="el-menu-item_p" index="5" @click="pageSwitch('About')"
+      <el-menu-item
+        class="el-menu-item_p"
+        index="5"
+        @click="pageSwitch('About')"
         >关于</el-menu-item
       >
       <el-menu-item class="el-menu-item_p-input">
@@ -46,7 +61,7 @@
 
 <script>
 import Logined from "@/components/Blog/components/changeless/Logined";
-import blogApis from "@/apis/blogInfo"
+import blogApis from "@/apis/blogInfo";
 export default {
   name: "NavBar",
   components: { Logined },
@@ -58,30 +73,41 @@ export default {
       userInput: "",
     };
   },
-  computed:{
-    lastInput(){
-      return localStorage.getItem("searchName") ? localStorage.getItem("searchName") : "请输入内容"
-    }
+  computed: {
+    lastInput() {
+      return localStorage.getItem("searchName")
+        ? localStorage.getItem("searchName")
+        : "请输入内容";
+    },
   },
   methods: {
+    // 跳转页面
     pageSwitch(target) {
       this.$router.push({
         name: target,
         query: {},
       });
     },
+    // 回车进行搜索操作
     async handleSelect() {
-      if (localStorage.getItem("searchName") === this.userInput){
-        return 
-      }
-      localStorage.setItem("searchName", this.userInput)
-      // this.$store.state.globalData.blogList = []
-      this.$store.state.globalData.blogList = await blogApis.getBlogListByName()
+      this.$store.state.globalData.searchName = this.userInput;
+      this.$store.state.globalData.blogList = await blogApis.getBlogList(
+        this.$store.state.globalData.blogListPage,
+        this.$store.state.globalData.searchName
+      );
+      this.setTotalCount();
+    },
+    // 设置当前博客总数
+    async setTotalCount() {
+      this.$store.state.globalData.blogTotalCount =
+        await blogApis.getBlogTotalCount(
+          this.$store.state.globalData.searchName
+        );
     },
   },
-  mounted(){
-    this.userInput = localStorage.getItem("searchName")
-  }
+  mounted() {
+    this.userInput = localStorage.getItem("searchName");
+  },
 };
 </script>
 
@@ -101,19 +127,19 @@ export default {
   width: 400px;
 }
 
-.out{
+.out {
   /* position:fixed;
   width: 100%;
   opacity: 0.9;
   z-index: 999;
   background: #fff; */
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9;
-    width: 100%;
-    background-color: rgba(235, 235, 235, 1);
-    filter: alpha(opacity=90);
-    opacity: 0.9;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  width: 100%;
+  background-color: rgba(235, 235, 235, 1);
+  filter: alpha(opacity=90);
+  opacity: 0.9;
 }
 </style>

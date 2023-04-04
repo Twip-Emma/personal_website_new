@@ -2,26 +2,21 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-09 10:26:35
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-03-31 15:03:53
+ * @LastEditTime: 2023-04-04 18:38:29
  * @Description: file content
  */
 import axios from 'axios'
 
 export default {
-    // 获取博客列表（全局分页查询）
-    async getBlogListByPage() {
-        console.log("请求了博客列表")
-        var page = localStorage.getItem("blogListPage")
+    // 获取博客列表（只加一个参数时则不模糊）
+    async getBlogList(page = 1, name = "") {
         var _data = undefined
-        if (!page) {
-            page = 1
-        }
-        await axios.get("/higanbana/blog/blog/selectbloglistbypage?page=" + page).then(
+        await axios.get("/higanbana/blog/blog/selectbloglist" + (name ? "byname" : "bypage") + "?page=" + page + (name ? "&name=" + name : "")).then(
             response => {
                 _data = response.data
             },
             error => {
-                if(error.code === "ERR_BAD_RESPONSE"){
+                if (error.code === "ERR_BAD_RESPONSE") {
                     localStorage.clear()
                 }
                 console.log(error.message)
@@ -29,42 +24,11 @@ export default {
         )
         return _data
     },
-    // 模糊搜索博客（分页+模糊搜索）
-    async getBlogListByName() {
-        console.log("请求了博客列表（分页+模糊）")
-        var page = localStorage.getItem("blogListPage")
-        var name = localStorage.getItem("searchName")
-        var _data = undefined
-        if (!page) {
-            page = 1
-        }
-        await axios.get("/higanbana/blog/blog/selectbloglistbyname?page=" + page + "&name=" + name).then(
-            response => {
-                _data = response.data
-            }
-        )
-        return _data
-    },
     // 获取博客总数
-    async getBlogTotalCount() {
-        console.log("请求了博客总数")
+    async getBlogTotalCount(name = '') {
+        var url = name ? `/higanbana/blog/blog/selectbloglisttotalcountbyname?name=${name}` : '/higanbana/blog/blog/selectbloglisttotalcount'
         var _data = undefined
-        await axios.get("/higanbana/blog/blog/selectbloglisttotalcount").then(
-            response => {
-                _data = response.data
-            }
-        )
-        return _data
-    },
-    // 获取博客总数（分页+模糊搜索）
-    async getBlogTotalCountByName() {
-        console.log("请求了博客总数")
-        var name = localStorage.getItem("searchName")
-        if (!name) {
-            name = ""
-        }
-        var _data = undefined
-        await axios.get("/higanbana/blog/blog/selectbloglisttotalcountbyname?name=" + name).then(
+        await axios.get(url).then(
             response => {
                 _data = response.data
             }
