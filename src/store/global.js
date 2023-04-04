@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 23:22:54
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-04 18:24:09
+ * @LastEditTime: 2023-04-04 18:43:48
  * @Description: file content
  */
 
@@ -27,6 +27,8 @@ export default {
     searchName: undefined,
     // 当前页码
     blogListPage: 1,
+    // 用户点击的博客ID
+    blogId: undefined,
     // 主页博客展示
     essayList: [
       {

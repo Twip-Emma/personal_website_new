@@ -1,8 +1,8 @@
 <!--
  * @Author: 七画一只妖
  * @Date: 2021-11-19 09:40:09
- * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-22 22:52:48
+ * @LastEditors: 七画一只妖 1157529280@qq.com
+ * @LastEditTime: 2023-04-04 18:47:55
  * @Description: file content
 -->
 <template>
@@ -129,7 +129,7 @@ export default {
       return globalFunction.formatTimeApi(basetime)
     },
     async setBlogInfo(){
-      let blog = await blogApis.getBlogInfoByIdApi()
+      let blog = await blogApis.getBlogInfoByIdApi(this.$store.state.globalData.blogId)
       blog.tags = globalFunction.formatTagsApi(blog.tags)
       this.blog = blog
     }

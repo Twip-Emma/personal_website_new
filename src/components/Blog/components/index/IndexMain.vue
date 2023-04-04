@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-18 20:59:53
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-04 18:35:48
+ * @LastEditTime: 2023-04-04 18:44:16
  * @Description: file content
 -->
 <template>
@@ -121,10 +121,10 @@ export default {
     formatTime(basetime) {
       return globalFunction.formatTimeApi(basetime);
     },
-    // 跳转到博客内
+    // 跳转到某个博客内
     getBlogInfo(id) {
       console.log("博客id的值是" + id);
-      localStorage.setItem("blogId", id);
+      this.$store.state.globalData.blogId = id
       this.$router.push({
         name: "BlogInfo",
         query: {
