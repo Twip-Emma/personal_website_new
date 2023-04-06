@@ -1,8 +1,8 @@
 <!--
  * @Author: 七画一只妖
  * @Date: 2021-11-19 12:14:06
- * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-08-23 11:11:29
+ * @LastEditors: 七画一只妖 1157529280@qq.com
+ * @LastEditTime: 2023-04-06 10:56:47
  * @Description: file content
 -->
 <template>
@@ -108,10 +108,10 @@ export default {
   },
   methods:{
     async getBlogReply(){
-      this.messageList = await blogApis.getBlogReplyById()
+      this.messageList = await blogApis.getBlogReplyById(this.$store.state.globalData.blogId)
     },
     async publishContent(){
-      var code = await blogApis.publishContentApi(this.messageForm.content)
+      var code = await blogApis.publishContentApi(this.messageForm.content, this.$store.state.globalData.blogId)
       if(code === 200){
         this.$notify({
           title: '评论',
@@ -119,7 +119,7 @@ export default {
           type: 'success'
         });
         this.messageForm.content = ""
-        this.messageList = await blogApis.getBlogReplyById()
+        this.messageList = await blogApis.getBlogReplyById(this.$store.state.globalData.blogId)
       }else{
         this.$notify({
           title: '评论',

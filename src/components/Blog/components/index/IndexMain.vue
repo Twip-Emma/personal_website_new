@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-18 20:59:53
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-04 18:44:16
+ * @LastEditTime: 2023-04-06 11:01:03
  * @Description: file content
 -->
 <template>
@@ -125,6 +125,7 @@ export default {
     getBlogInfo(id) {
       console.log("博客id的值是" + id);
       this.$store.state.globalData.blogId = id
+      sessionStorage.setItem("blogId", id)
       this.$router.push({
         name: "BlogInfo",
         query: {

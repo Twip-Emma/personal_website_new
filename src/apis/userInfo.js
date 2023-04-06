@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-03-31 11:28:32
+ * @LastEditTime: 2023-04-06 10:11:12
  * @Description: file content
  */
 import axios from 'axios'
@@ -114,6 +114,7 @@ export default {
 
 // 存入登录信息
 function _setUserData(value) {
+    console.log(value.token, "token")
     localStorage.setItem("loginStatus", "ok")
     localStorage.setItem("adminStatus", "ok")
     localStorage.setItem("administrator", value.isadmin)

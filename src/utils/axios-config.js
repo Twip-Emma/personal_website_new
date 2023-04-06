@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2023-03-31 10:55:45
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-03-31 11:14:27
+ * @LastEditTime: 2023-04-06 10:49:22
  * @FilePath: \personal_website\src\utils\axios-config.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -15,6 +15,7 @@ axios.defaults.baseURL = "/api"
 axios.interceptors.request.use((config) => {
   // 在请求发送之前做些什么
   const token = localStorage.getItem('token');
+  console.log(token, "token,req")
   if (token && !config.url.includes('/login') && !config.url.includes('/register')) {
     config.headers.Currency = token;
   }
@@ -36,10 +37,14 @@ axios.interceptors.response.use((response) => {
 }, (error) => {
   // 对响应错误做些什么
   if (error.response.status === 502) {
-    localStorage.removeItem('token');
-    window.location.href = '/login';
+    localStorage.clear();
+    window.location.href = '/#/login';
+    Message.error(`请求失败，登陆已过期`);
+  } else if (error.response.status === 403) {
+    Message.error(`请求失败，权限不足`);
   } else {
     Message.error(`请求失败，错误码：${error.response.status}`);
+    window.location.href = '/#/login';
   }
   return Promise.reject(error);
 });
