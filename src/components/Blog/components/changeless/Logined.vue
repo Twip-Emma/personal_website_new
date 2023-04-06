@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-06 13:30:05
+ * @LastEditTime: 2023-04-06 15:51:11
  * @Description: file content
 -->
 <template>
@@ -23,7 +23,7 @@
         >注册</el-button
       >
     </div>
-    <div v-else class="loginInfo">
+    <div v-if="logined" class="loginInfo">
       <el-avatar :src="userInfo.avatar"></el-avatar>
       <div class="user-option">
         <h3 class="web-font nickname">{{ userInfo.nickname }}</h3>

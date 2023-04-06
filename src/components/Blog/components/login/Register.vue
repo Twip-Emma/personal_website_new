@@ -41,16 +41,16 @@ export default {
     async userLogin(){
       // 验证是否合法
       const reg = /^[a-zA-Z0-9]+$/;
-      if (!reg.test(this.userLoginData.card)) {
+      if (!reg.test(this.userRegisterData.card)) {
         this.$message.error("账号只允许存在数字和字母大小写");
         return;
       }
-      if (!reg.test(this.userLoginData.pass)) {
+      if (!reg.test(this.userRegisterData.pass)) {
         this.$message.error("密码只允许存在数字和字母大小写");
         return;
       }
       const regExp = /^[a-zA-Z0-9_]{1,}$/;
-      if (!regExp.test(this.userLoginData.nickname)) {
+      if (!regExp.test(this.userRegisterData.nickname)) {
         this.$message.error("密码只允许存在数字和字母大小写");
         return;
       }
