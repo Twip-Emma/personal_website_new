@@ -15,7 +15,6 @@ axios.defaults.baseURL = "/api"
 axios.interceptors.request.use((config) => {
   // 在请求发送之前做些什么
   const token = localStorage.getItem('token');
-  console.log(token, "token,req")
   if (token && !config.url.includes('/login') && !config.url.includes('/register')) {
     config.headers.Currency = token;
   }

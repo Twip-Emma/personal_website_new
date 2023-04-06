@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-06 10:11:12
+ * @LastEditTime: 2023-04-06 13:20:28
  * @Description: file content
  */
 import axios from 'axios'
@@ -51,15 +51,14 @@ export default {
     async changeUserInfoApi(name, url) {
         console.log("修改用户信息(名字与头像)")
         var _data = undefined
-        var id = localStorage.getItem("userId")
         await axios.post("/higanbana/blog/user/updateuser", {
-            "id": id,
             "nickname": name,
             "avatar": url
         }).then(
                 response => {
-                    _data = response.data.code
-                    response.data.token = localStorage.getItem("token")
+                    _data = response.data
+                    console.log(_data)
+                    // response.data.token = localStorage.getItem("token")
                     _setUserData(response.data)
                 }
             )
@@ -114,7 +113,7 @@ export default {
 
 // 存入登录信息
 function _setUserData(value) {
-    console.log(value.token, "token")
+    // console.log(value.token, "token")
     localStorage.setItem("loginStatus", "ok")
     localStorage.setItem("adminStatus", "ok")
     localStorage.setItem("administrator", value.isadmin)
