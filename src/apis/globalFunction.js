@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-19 11:27:15
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-04 18:00:39
+ * @LastEditTime: 2023-04-06 14:56:05
  * @Description: file content
  */
 import axios from 'axios'
@@ -42,7 +42,6 @@ export default {
         console.log("发表了评论")
         var _data = 200
         await axios.post("/higanbana/blog/global/addmessage", {
-            "userId": localStorage.getItem("userId"),
             "content": content
         })
         return _data
