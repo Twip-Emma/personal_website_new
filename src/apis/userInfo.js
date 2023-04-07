@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-06 14:56:20
+ * @LastEditTime: 2023-04-07 13:59:52
  * @Description: file content
  */
 import axios from 'axios'
@@ -97,18 +97,7 @@ export default {
                 }
             )
         return _data
-    },
-    // 获取所有用户信息
-    async checkTokenBeforeEach() {
-        console.log("获取头像列表")
-        var _data = true
-        var token = undefined
-        if(localStorage.getItem("token")){
-            token = localStorage.getItem("token")
-        } 
-        await axios.get("/higanbana/blog/user/checktoken?token=" + token)
-        return _data
-    },
+    }
 }
 
 // 存入登录信息
