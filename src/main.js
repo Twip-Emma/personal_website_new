@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-03-07 22:38:43
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-03-31 10:57:52
+ * @LastEditTime: 2023-04-10 10:53:44
  * @Description: file content
  */
 import Vue from 'vue'
@@ -18,6 +18,12 @@ import "./assets/css/global.css"
 
 import router from "./router"
 import store from "./store"
+
+// MD渲染
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+// import "./assets/css/markdown.css"
+Vue.use(mavonEditor)
 
 // 使用路由
 Vue.use(VueRouter)

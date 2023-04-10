@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-03-08 16:11:44
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2022-10-15 10:57:15
+ * @LastEditTime: 2023-04-10 09:14:52
  * @Description: file content
 -->
 <template>
@@ -53,7 +53,7 @@
                 <p class="item_name">B站主页</p>
               </span>
             </a>
-            <a class="cycle_a" id="item_2" @click="pageSwitch('About')">
+            <a class="cycle_a" id="item_2" @click="pageSwitch('Login')">
               <span class="cycle_icon_2"></span>
               <span class="cycle_text">
                 <p class="item_name">前往博客</p>

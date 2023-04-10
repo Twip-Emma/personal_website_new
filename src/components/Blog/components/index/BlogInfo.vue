@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 09:40:09
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-04 18:47:55
+ * @LastEditTime: 2023-04-10 11:07:02
  * @Description: file content
 -->
 <template>
@@ -37,10 +37,12 @@
           {{ blog.flag }}
         </el-tag>
       </h2>
-      <div
+      <!-- <div
         class="typo m-padded-lr-responsive m-padded-tb-large"
         v-html="blog.content"
-      ></div>
+      ></div> -->
+      <mavon-editor v-html="blog.content" boxShadowStyle="" class="content"></mavon-editor>
+      <br>
       <div class="tags">
         <div class="tag-item" v-for="tag in blog.tags" :key="tag.id">
           <div class="sjx-outer">
@@ -96,8 +98,10 @@ import globalFunction from '@/apis/globalFunction'
 export default {
   components: { CommentBlog },
   props:["id"],
+  computed:{},
   data() {
     return {
+      codeData:"",
       administrator: false,
       userInfo: [],
       blog: {
@@ -141,6 +145,9 @@ export default {
 </script>
 
 <style scoped>
+.content{
+  z-index: 2;
+}
 .el-card {
   width: 100%;
 }
