@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 12:11:04
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-04 18:37:43
+ * @LastEditTime: 2023-04-11 16:05:27
  * @Description: file content
 -->
 <template>
@@ -25,8 +25,8 @@
       <el-menu-item
         class="el-menu-item_p"
         index="2"
-        @click="pageSwitch('Essay')"
-        >随笔</el-menu-item
+        @click="pageSwitch('BlogEdit')"
+        >写博客</el-menu-item
       >
       <el-menu-item
         class="el-menu-item_p"

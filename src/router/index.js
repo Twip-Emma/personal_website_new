@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:42:56
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-06 10:19:54
+ * @LastEditTime: 2023-04-11 15:34:54
  * @Description: file content
  */
 import Vue from 'vue'
@@ -28,6 +28,7 @@ import About from '@/components/Blog/views/About'
 import BlogInfo from '@/components/Blog/components/index/BlogInfo'
 import Login from '@/components/Blog/components/login/Login'
 import Register from '@/components/Blog/components/login/Register'
+import BlogEdit from '@/components/Blog/components/blogedit/BlogEdit'
 
 // 管理员相关组件
 import Admin from '@/components/Blog/views/Admin'
@@ -100,6 +101,15 @@ const routes = [
         components: {
             header: NavBar,
             other: Register,
+            footer: Footer
+        }
+    },
+    {
+        name:"BlogEdit",
+        path:"/blogEdit",
+        components: {
+            header: NavBar,
+            other: BlogEdit,
             footer: Footer
         }
     },

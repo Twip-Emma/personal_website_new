@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 12:14:06
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-06 10:56:47
+ * @LastEditTime: 2023-04-11 11:27:36
  * @Description: file content
 -->
 <template>
@@ -101,7 +101,7 @@ export default {
       messageFormRules: {
         content: [
           { required: true, message: "留言内容不能为空！" },
-          { min: 0, max: 100, message: "留言内容不超过100字！" },
+          { min: 1, max: 100, message: "留言内容不超过100字！" },
         ],
       },
     };
@@ -111,22 +111,24 @@ export default {
       this.messageList = await blogApis.getBlogReplyById(this.$store.state.globalData.blogId)
     },
     async publishContent(){
-      var code = await blogApis.publishContentApi(this.messageForm.content, this.$store.state.globalData.blogId)
-      if(code === 200){
-        this.$notify({
-          title: '评论',
-          message: '评论成功',
-          type: 'success'
-        });
-        this.messageForm.content = ""
-        this.messageList = await blogApis.getBlogReplyById(this.$store.state.globalData.blogId)
-      }else{
-        this.$notify({
-          title: '评论',
-          message: '评论失败，与服务器交互出现异常',
-          type: 'warning'
-        });
-      }
+      this.$refs.messageFormRef.validate(valid => {
+        if (valid) {
+            blogApis.publishContentApi(this.messageForm.content, this.$store.state.globalData.blogId)
+            this.$notify({
+              title: '评论',
+              message: '评论成功',
+              type: 'success'
+            });
+            this.messageForm.content = ""
+            this.getBlogReply()
+        } else {
+            // 表单验证未通过，给出提示
+          this.$message({
+            message: '请填写完整表单',
+            type: 'warning'
+          });
+        }
+      })
     },
     formatTime(basetime){
       return globalFunction.formatTimeApi(basetime)
