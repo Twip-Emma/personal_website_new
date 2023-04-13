@@ -55,7 +55,6 @@
       },
 
       handleInputConfirm() {
-        console.log("按下了回车")
         let inputValue = this.inputValue;
         if (inputValue) {
           this.dynamicTags.push(inputValue);

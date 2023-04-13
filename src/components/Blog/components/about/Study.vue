@@ -1,8 +1,8 @@
 <!--
  * @Author: 七画一只妖
  * @Date: 2021-11-20 14:06:59
- * @LastEditors: 七画一只妖
- * @LastEditTime: 2021-11-29 10:37:48
+ * @LastEditors: 七画一只妖 1157529280@qq.com
+ * @LastEditTime: 2023-04-13 11:04:15
  * @Description: file content
 -->
 
@@ -29,7 +29,6 @@
     },
     methods: {
       handleNodeClick(data) {
-        console.log(data);
         if(data.url){
             window.open(data.url)
         }

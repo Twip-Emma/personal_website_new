@@ -740,13 +740,11 @@ export default {
 
     //第二屏动画
     function boxTow() {
-      // console.log("触发第二屏动画");
       if (indexs != 1) {
         //暂无
       } else if (indexs02 >= 0 && indexs02 < box02_text.length) {
         box02_text[indexs02].style.right = "0px";
         indexs02++;
-        // console.log(indexs02)r
       } else {
         clearInterval(box02_timer);
       }

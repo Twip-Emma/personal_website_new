@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2023-04-11 14:27:30
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-11 17:26:12
+ * @LastEditTime: 2023-04-13 11:04:24
  * @FilePath: \personal_website\src\components\Blog\views\BlogEdit.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -123,12 +123,6 @@ export default {
     };
   },
   methods: {
-    outputENter() {
-      // console.log(JSON.stringify(this.content))
-      // console.log(this.$refs.md.d_render)
-      // console.log(this.$refs.md.d_value)
-      console.log(JSON.stringify(this.test_html)); //就用这个存数据库  然后进行回显即可
-    },
     change(value, render) {
       // render 为 markdown 解析后的结果
       this.test_html = render;

@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-03-31 15:54:21
+ * @LastEditTime: 2023-04-13 10:50:14
  * @Description: file content
 -->
 <template>
@@ -49,9 +49,9 @@ export default {
         this.$message.error("密码只允许存在数字和字母大小写");
         return;
       }
-      const regExp = /^[a-zA-Z0-9_]{1,}$/;
+      const regExp = /^[\u4e00-\u9fa5_a-zA-Z0-9_]{3,10}$/;
       if (!regExp.test(this.userRegisterData.nickname)) {
-        this.$message.error("密码只允许存在数字和字母大小写");
+        this.$message.error("用户名仅支持3-10位");
         return;
       }
       this.loading = true;
@@ -65,7 +65,12 @@ export default {
           message: '注册成功，欢迎您',
           type: 'success'
         });
+        this.setAdmin()
       }
+    },
+    async setAdmin(){
+      var userData = await userApis.getUserByToken()
+      this.$store.state.globalData.administrator = userData.isadmin
     },
     // 页面跳转
     pageSwitch(target) {

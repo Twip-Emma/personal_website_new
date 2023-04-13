@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-11 16:04:38
+ * @LastEditTime: 2023-04-13 11:02:02
  * @Description: file content
 -->
 <template>
@@ -106,20 +106,20 @@ export default {
         name: "",
         number: "",
       },
+      userInfoEmt: {
+        nickname: "nickname",
+        avatar: "value.avatar",
+      }
     };
   },
   computed: {
     administrator() {
-      return Number(localStorage.getItem("administrator")) === 1 ? true : false;
+      return this.$store.state.globalData.administrator === 1 ? true : false;
     },
     logined() {
       if (!localStorage.getItem("logined")) {
         if (this.$store.state.userData.logined === false) {
-          if (Number(localStorage.getItem("logined")) === 1) {
-            return true;
-          } else {
-            return false;
-          }
+          return false;
         } else {
           return true;
         }
@@ -130,7 +130,12 @@ export default {
     //   return localStorage.getItem("adminpage");
     // },
     userInfo() {
-      return JSON.parse(localStorage.getItem("userInfo"));
+      if (localStorage.getItem("userInfo")) {
+        return JSON.parse(localStorage.getItem("userInfo"))
+      } else {
+        this.$store.state.userData.logined === false
+        return this.userInfoEmt;
+      }
     },
   },
   methods: {
@@ -146,6 +151,7 @@ export default {
     // 用户登出
     logout() {
       localStorage.clear();
+      this.$store.state.userData.logined = false
       this.$notify({
         title: "退出",
         message: "您已成功退出当前账号，现已返回主界面",
@@ -181,8 +187,16 @@ export default {
         this.dialogVisible = false;
       }
     },
+    async setAdmin(){
+      var userData = await userApi.getUserByToken()
+      this.$store.state.globalData.administrator = userData.isadmin
+    }
   },
-  mounted() {},
+  mounted() {
+    if (localStorage.getItem("token")){
+      this.setAdmin()
+    }
+  }
 };
 </script>
 

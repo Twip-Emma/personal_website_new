@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-09 10:26:35
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-11 16:08:39
+ * @LastEditTime: 2023-04-13 11:05:14
  * @Description: file content
  */
 import axios from 'axios'
@@ -10,7 +10,6 @@ import axios from 'axios'
 export default {
     // 获取博客列表（只加一个参数时则不模糊）
     async getBlogList(page = 1, name = "") {
-        console.log(page + "|" + name, "获取博客列表")
         if (!localStorage.getItem("userInfo")) {
             return undefined
         }

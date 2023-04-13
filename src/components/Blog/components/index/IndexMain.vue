@@ -123,7 +123,6 @@ export default {
     },
     // 跳转到某个博客内
     getBlogInfo(id) {
-      console.log("博客id的值是" + id);
       this.$store.state.globalData.blogId = id
       sessionStorage.setItem("blogId", id)
       this.$router.push({

@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-06 13:27:07
+ * @LastEditTime: 2023-04-13 10:17:54
  * @Description: file content
 -->
 <template>
@@ -59,7 +59,12 @@ export default {
           message: "登录成功，您当前正在博客列表页面",
           type: "success",
         });
+        this.setAdmin()
       }
+    },
+    async setAdmin(){
+      var userData = await userApis.getUserByToken()
+      this.$store.state.globalData.administrator = userData.isadmin
     },
     // 页面跳转
     pageSwitch(target) {

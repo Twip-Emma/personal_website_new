@@ -42,7 +42,6 @@ export default {
   methods: {
     async onSubmit(x) {
         if(x === "yes"){
-            // console.log(this.form.time)
             var data = await KeyApis.getNewKeyApi(this.form.time)
             if(data.code === 200){
                 this.$notify({
