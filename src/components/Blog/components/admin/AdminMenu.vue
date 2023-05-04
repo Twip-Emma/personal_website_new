@@ -1,15 +1,15 @@
 <!--
  * @Author: 七画一只妖
  * @Date: 2021-11-20 16:42:13
- * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-28 22:05:53
+ * @LastEditors: 七画一只妖 1157529280@qq.com
+ * @LastEditTime: 2023-05-04 11:25:35
  * @Description: file content
 -->
 <template>
-  <div class="out">
-    <el-row class="tac">
+  <div class="out1">
+    <!-- <el-row class="tac">
       <el-col
-        >
+        > -->
 
         <el-menu
           class="user_el_menu"
@@ -76,8 +76,8 @@
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
-      </el-col>
-    </el-row>
+      <!-- </el-col>
+    </el-row> -->
   </div>
 </template>
 
@@ -104,7 +104,7 @@ export default {
 
 <style scoped>
 .user_el_menu:not(.el-menu--collapse) {
-  min-height: 800px;
+  min-height: 100%;
 }
 
 .out{

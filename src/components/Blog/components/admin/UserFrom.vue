@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 17:04:10
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-13 10:35:34
+ * @LastEditTime: 2023-05-04 10:33:35
  * @Description: file content
 -->
 <template>
@@ -26,19 +26,25 @@
       <el-table-column align="center" label="操作">
         <template slot-scope="scope">
           <el-button
-            type="primary"
+            type="text"
             icon="el-icon-edit"
             @click="updateButton(scope.row.id)"
-          ></el-button>
-          <el-button type="primary" icon="el-icon-warning"></el-button>
-          <el-button
-            type="primary"
-            icon="el-icon-delete"
-            @click="deleteButton(scope.row.id)"
-          ></el-button>
+            >编辑</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
+    <div class="block">
+      <!-- 分页 -->
+      <el-pagination
+        background
+        @current-change="handleCurrentChange"
+        :page-size="10"
+        :current-page="1"
+        :total="totalCount"
+      >
+      </el-pagination>
+    </div>
     <!-- 弹窗修改信息 -->
     <el-dialog title="修改个人信息" :visible.sync="dialogVisible" width="30%">
       <el-form label-width="80px">
@@ -76,16 +82,31 @@ export default {
         card: "",
         avatar: "",
       },
+      // 页数量
+      currentPage3: 1,
+      // 当前页面
+      page: 1,
+      // 总条数
+      totalCount: 0
     };
   },
   methods: {
-    deleteRow(index, rows) {
-      rows.splice(index, 1);
+    // 设置总页数
+    async setTotalCount() {
+      this.totalCount = await userApis.getUserCount()
+    },
+    // 翻页时修改变量page
+    handleCurrentChange(val) {
+      this.page = val
+      this.setUserData()
     },
     // 初始化用户列表
     async setUserData() {
+      // 先更新总条数
+      this.setTotalCount()
+      
       this.tableData = [];
-      var data = await userApis.getAllUserApi();
+      var data = await userApis.getAllUserApi(this.page);
       data.forEach((item) => {
         item.ctime = globalFunction.formatTimeApi(item.ctime);
         this.tableData.push(item);
@@ -166,4 +187,7 @@ export default {
 </script>
 
 <style scoped>
+.block {
+  float: right;
+}
 </style>

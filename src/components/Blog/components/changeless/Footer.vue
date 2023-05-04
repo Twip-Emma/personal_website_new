@@ -1,8 +1,8 @@
 <!--
  * @Author: 七画一只妖
  * @Date: 2021-11-17 14:15:29
- * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-07-23 20:20:51
+ * @LastEditors: 七画一只妖 1157529280@qq.com
+ * @LastEditTime: 2023-05-04 11:08:08
  * @Description: file content
 -->
 <template>
@@ -23,7 +23,7 @@
             >
           </li>
           <li class="pan_items">
-            <a href="null" target="_blank">推特</a>
+            <a href="https://space.bilibili.com/178547325" target="_blank">B站</a>
           </li>
           <li class="email_items">
             <a href="https://mail.qq.com/" target="_blank">邮箱</a>
@@ -34,7 +34,8 @@
         <!-- 网站基本备注 -->
         
         <h3>
-        <div style="text-align:center;">©2021-2022 | 湘ICP备2021004586号</div>
+        <p>_</p>
+        <p>©2021-2022 | 湘ICP备2021004586号</p>
           <p title="Thanks" target="_blank">
             Cynthia·PicScene |
             <a title="你想干什么？" href="https://space.bilibili.com/178547325"
@@ -110,4 +111,7 @@ export default {
 </script>
 
 <style scoped>
+.foot_power {
+  line-height: 30px;
+}
 </style>

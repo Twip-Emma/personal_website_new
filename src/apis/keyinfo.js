@@ -11,11 +11,7 @@ export default {
     // 获取一个新密钥
     async getNewKeyApi(time){
         var _data = undefined
-        await axios.get("/higanbana/api/addsetukey?time=" + time, {
-            headers: {
-                'Currency': localStorage.getItem("token")
-            }
-        }).then(
+        await axios.get("/higanbana/api/addsetukey?time=" + time).then(
             response => {
                 _data = response.data
             }

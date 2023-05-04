@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-13 11:03:41
+ * @LastEditTime: 2023-05-04 10:27:54
  * @Description: file content
  */
 import axios from 'axios'
@@ -59,9 +59,9 @@ export default {
         return _data
     },
     // 获取所有用户信息
-    async getAllUserApi() {
+    async getAllUserApi(page) {
         var _data = undefined
-        await axios.get("/higanbana/blog/user/getalluser").then(
+        await axios.get("/higanbana/blog/user/getalluser?page=" + page).then(
             response => {
                 _data = response.data
             }
@@ -84,6 +84,16 @@ export default {
     async changeAllUserInfoApi(userData) {
         var _data = undefined
         await axios.post("/higanbana/blog/user/updateuser", userData).then(
+                response => {
+                    _data = response.data
+                }
+            )
+        return _data
+    },
+    // 获取所有用户数量（管理员界面的用户界面）
+    async getUserCount() {
+        var _data = undefined
+        await axios.get("/higanbana/blog/user/getUserCount").then(
                 response => {
                     _data = response.data
                 }
