@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-04 10:27:54
+ * @LastEditTime: 2023-05-05 17:45:02
  * @Description: file content
  */
 import axios from 'axios'
@@ -83,7 +83,7 @@ export default {
     // 修改用户信息（管理员操作的、用户全部信息）
     async changeAllUserInfoApi(userData) {
         var _data = undefined
-        await axios.post("/higanbana/blog/user/updateuser", userData).then(
+        await axios.post("/higanbana/blog/user/updatealluser", userData).then(
                 response => {
                     _data = response.data
                 }
