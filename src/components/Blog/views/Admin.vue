@@ -2,11 +2,11 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 16:37:28
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-04 13:17:20
+ * @LastEditTime: 2023-05-04 14:49:36
  * @Description: file content
 -->
 <template>
-  <div class="qwe">
+  <div>
       <AdminMain/>
   </div>
 </template>
@@ -19,8 +19,4 @@ export default {
 </script>
 
 <style scoped>
-.qwe {
-  border: 1px solid red;
-  height: 100%;
-}
 </style>

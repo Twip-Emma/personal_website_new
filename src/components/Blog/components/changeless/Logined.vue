@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-13 11:02:02
+ * @LastEditTime: 2023-05-04 15:54:16
  * @Description: file content
 -->
 <template>
@@ -108,7 +108,7 @@ export default {
       },
       userInfoEmt: {
         nickname: "nickname",
-        avatar: "value.avatar",
+        avatar: "avatar",
       }
     };
   },

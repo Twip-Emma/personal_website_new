@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 17:04:10
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-04 10:33:35
+ * @LastEditTime: 2023-05-05 16:20:09
  * @Description: file content
 -->
 <template>
@@ -87,24 +87,24 @@ export default {
       // 当前页面
       page: 1,
       // 总条数
-      totalCount: 0
+      totalCount: 0,
     };
   },
   methods: {
     // 设置总页数
     async setTotalCount() {
-      this.totalCount = await userApis.getUserCount()
+      this.totalCount = await userApis.getUserCount();
     },
     // 翻页时修改变量page
     handleCurrentChange(val) {
-      this.page = val
-      this.setUserData()
+      this.page = val;
+      this.setUserData();
     },
     // 初始化用户列表
     async setUserData() {
       // 先更新总条数
-      this.setTotalCount()
-      
+      this.setTotalCount();
+
       this.tableData = [];
       var data = await userApis.getAllUserApi(this.page);
       data.forEach((item) => {
@@ -123,33 +123,20 @@ export default {
           this.dialogVisible = true;
         }
       });
+      console.log(this.userInfo, "点击的用户信息");
     },
     // 修改用户信息
     async updateUserInfo(x) {
       if (x === "yes") {
-        var data = await userApis.changeAllUserInfoApi(this.userInfo);
-        if (data.code === 200) {
-          this.$notify({
-            title: "管理员",
-            message: "修改成功，已刷新本页面",
-            type: "success",
-          });
-          // 刷新本页面
-          this.setUserData();
-          this.dialogVisible = false;
-        } else if (data.code === 1204) {
-          this.$notify({
-            title: "管理员",
-            message: "修改失败，可能该数据已经被删除了",
-            type: "warning",
-          });
-        } else {
-          this.$notify({
-            title: "异常",
-            message: "修改失败，与服务器通信出现了异常",
-            type: "warning",
-          });
-        }
+        userApis.changeAllUserInfoApi(this.userInfo);
+        this.$notify({
+          title: "管理员",
+          message: "修改成功，已刷新本页面",
+          type: "success",
+        });
+        // 刷新本页面
+        this.setUserData();
+        this.dialogVisible = false;
       } else {
         this.dialogVisible = false;
       }

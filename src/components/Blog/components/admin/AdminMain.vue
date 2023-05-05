@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 16:41:35
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-04 11:31:46
+ * @LastEditTime: 2023-05-04 14:48:12
  * @Description: file content
 -->
 <template>
@@ -28,7 +28,7 @@ export default {
 
 <style scoped>
 .out {
-  border-color: red;
+  background-color: white;
   display: flex;
   justify-content: center;
   height: 100%;
