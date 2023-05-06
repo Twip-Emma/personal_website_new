@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-13 10:50:14
+ * @LastEditTime: 2023-05-06 16:40:31
  * @Description: file content
 -->
 <template>
@@ -12,9 +12,9 @@
       <div class="c">
         <div class="d">
           <h1>注册</h1>
-          <input type="text" class="e" placeholder="用户名" v-model.lazy="userRegisterData.nickname" />
-          <input type="text" class="e" placeholder="账号" v-model.lazy="userRegisterData.card" />
-          <input type="password" class="e" placeholder="密码" v-model.lazy="userRegisterData.pass" />
+          <input type="text" class="e" placeholder="用户名" v-model.trim="userRegisterData.nickname" />
+          <input type="text" class="e" placeholder="账号" v-model.trim="userRegisterData.card" />
+          <input type="password" class="e" placeholder="密码" v-model.trim="userRegisterData.pass" />
           <a href="#" class="f">忘记密码？</a>
           <el-button class="login" type="primary" :disabled="!(userRegisterData.nickname && userRegisterData.card && userRegisterData.pass)" @click="userLogin()" :loading="loading">注册</el-button>
         </div>
@@ -60,7 +60,7 @@ export default {
       if(a === true){
         this.$store.state.userData.logined = true
         this.pageSwitch("HomePage")
-        this.$notify({
+        this.$message({
           title: '注册',
           message: '注册成功，欢迎您',
           type: 'success'

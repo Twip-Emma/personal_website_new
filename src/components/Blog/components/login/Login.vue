@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-13 10:17:54
+ * @LastEditTime: 2023-05-06 16:37:20
  * @Description: file content
 -->
 <template>
@@ -12,10 +12,10 @@
       <div class="c">
         <div class="d">
           <h1>登录</h1>
-          <input type="text" class="e" placeholder="账号" v-model.lazy="userLoginData.card" />
-          <input type="password" class="e" placeholder="密码" v-model.lazy="userLoginData.pass" />
+          <input type="text" class="e" placeholder="账号" v-model.trim="userLoginData.card" />
+          <input type="password" class="e" placeholder="密码" v-model.trim="userLoginData.pass" />
           <a href="#" class="f">忘记密码？</a>
-          <el-button class="login" type="primary" :disabled="!(userLoginData.card && userLoginData.pass)" @click="userLogin()" :loading="loading">登录</el-button>
+          <el-button class="login" type="primary" :disabled="!disabled" @click="userLogin()" :loading="loading">登录</el-button>
         </div>
       </div>
     </div>
@@ -35,6 +35,9 @@ export default {
     };
   },
   computed: {
+    disabled(){
+      return this.userLoginData.card && this.userLoginData.pass
+    },
   },
   methods: {
     // 登录行为
@@ -54,7 +57,7 @@ export default {
       if (a === true) {
         this.$store.state.userData.logined = true;
         this.pageSwitch("HomePage");
-        this.$notify({
+        this.$message({
           title: "登录",
           message: "登录成功，您当前正在博客列表页面",
           type: "success",
