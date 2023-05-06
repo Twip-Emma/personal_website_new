@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-04 15:54:16
+ * @LastEditTime: 2023-05-06 16:23:21
  * @Description: file content
 -->
 <template>
@@ -40,8 +40,8 @@
         <p
           class="logout"
           @click="
+            pageSwitch('Login');
             logout();
-            pageSwitch('Start');
           "
         >
           退出登录
@@ -109,26 +109,28 @@ export default {
       userInfoEmt: {
         nickname: "nickname",
         avatar: "avatar",
-      }
+      },
     };
   },
+  watch: {
+    '$store.state.userData.logined'() {
+      this.$forceUpdate();
+    }
+  },
   computed: {
+    // 加载是否是管理员
     administrator() {
       return this.$store.state.globalData.administrator === 1 ? true : false;
     },
+    // 加载登录状态
     logined() {
-      if (!localStorage.getItem("logined")) {
-        if (this.$store.state.userData.logined === false) {
-          return false;
-        } else {
-          return true;
-        }
+      if (this.$store.state.userData.logined){
+        return true;
+      }else {
+        return Number(localStorage.getItem("logined")) === 1 ? true : false;
       }
-      return Number(localStorage.getItem("logined")) === 1 ? true : false;
     },
-    // adminpage() {
-    //   return localStorage.getItem("adminpage");
-    // },
+    // 加载用户信息
     userInfo() {
       if (localStorage.getItem("userInfo")) {
         return JSON.parse(localStorage.getItem("userInfo"))
@@ -150,9 +152,12 @@ export default {
     },
     // 用户登出
     logout() {
-      localStorage.clear();
+      this.logined2 = false
+      this.componentKey = Math.random();
+      localStorage.clear(); 
       this.$store.state.userData.logined = false
-      this.$notify({
+      this.$forceUpdate();
+      this.$message({
         title: "退出",
         message: "您已成功退出当前账号，现已返回主界面",
         type: "success",
@@ -179,7 +184,7 @@ export default {
           this.newNickname,
           this.avatar.url
         );
-        this.$notify({
+        this.$message({
           title: "修改",
           message: "修改个人信息成功",
           type: "success",
