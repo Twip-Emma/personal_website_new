@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 12:14:06
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-11 11:27:36
+ * @LastEditTime: 2023-05-06 15:18:33
  * @Description: file content
 -->
 <template>
@@ -28,7 +28,7 @@
       <el-form
         :model="messageForm"
         :rules="messageFormRules"
-        ref="messageFormRef"
+        ref="messageForm"
       >
         <el-form-item prop="content">
           <el-input  
@@ -110,17 +110,19 @@ export default {
     async getBlogReply(){
       this.messageList = await blogApis.getBlogReplyById(this.$store.state.globalData.blogId)
     },
+    // 发表博客
     async publishContent(){
-      this.$refs.messageFormRef.validate(valid => {
+      this.$refs.messageForm.validate(valid => {
         if (valid) {
             blogApis.publishContentApi(this.messageForm.content, this.$store.state.globalData.blogId)
-            this.$notify({
+            this.$message({
               title: '评论',
               message: '评论成功',
               type: 'success'
             });
             this.messageForm.content = ""
             this.getBlogReply()
+            this.$refs.messageForm.resetFields();
         } else {
             // 表单验证未通过，给出提示
           this.$message({
