@@ -108,7 +108,7 @@ export default {
     async addMessage(){
       var code = await globalFunction.publishMessageApi(this.messageForm.content)
       if(code === 200){
-        this.$notify({
+        this.$message({
           title: '评论',
           message: '评论成功',
           type: 'success'
@@ -116,7 +116,7 @@ export default {
         this.messageForm.content = ""
         this.messageList = await globalFunction.getAllMessageApi()
       }else{
-        this.$notify({
+        this.$message({
           title: '评论',
           message: '评论失败，与服务器交互出现异常',
           type: 'warning'

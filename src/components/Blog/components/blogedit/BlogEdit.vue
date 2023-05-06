@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2023-04-11 14:27:30
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-13 11:04:24
+ * @LastEditTime: 2023-05-06 15:02:29
  * @FilePath: \personal_website\src\components\Blog\views\BlogEdit.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -130,7 +130,6 @@ export default {
     // 点击确定然后弹窗
     clickOk(){
       this.dialogFormVisible = true
-      this.$refs.blogForm.resetFields();
     },
     // 确定发表
      submit() {
@@ -139,8 +138,9 @@ export default {
             this.blogForm.content = this.test_html
             let arrTags = this.$store.state.globalData.blogTags
             this.blogForm.tags = arrTags.join("|")
+            this.blogForm.typeName = this.blogForm.flag
             await BlogApis.publishBlog(this.blogForm)
-            this.$notify({
+            this.$message({
               title: "博客",
               message: "发表博客成功",
               type: "success",

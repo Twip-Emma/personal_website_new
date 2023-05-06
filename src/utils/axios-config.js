@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2023-03-31 10:55:45
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-13 11:03:27
+ * @LastEditTime: 2023-05-06 14:53:34
  * @FilePath: \personal_website\src\utils\axios-config.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -49,7 +49,7 @@ axios.interceptors.response.use((response) => {
   } else if (error.response.status === 403) {
     Message.error(`请求失败，权限不足`);
   } else {
-    Message.error(`请求失败，错误码：${error.response.status}`);
+    Message.error(`请求失败，错误信息：${error.response.data}`);
     window.location.href = '/#/login';
   }
   return Promise.reject(error);

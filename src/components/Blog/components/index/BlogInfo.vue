@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 09:40:09
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-10 11:07:02
+ * @LastEditTime: 2023-05-06 15:06:19
  * @Description: file content
 -->
 <template>
@@ -37,10 +37,6 @@
           {{ blog.flag }}
         </el-tag>
       </h2>
-      <!-- <div
-        class="typo m-padded-lr-responsive m-padded-tb-large"
-        v-html="blog.content"
-      ></div> -->
       <mavon-editor v-html="blog.content" boxShadowStyle="" class="content"></mavon-editor>
       <br>
       <div class="tags">
@@ -61,19 +57,6 @@
           trigger="hover"
           content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
         >
-          <div class="give-money">
-            <div class="give-money-item">
-              <el-image :src="wechart" title="微信支付"></el-image>
-              <p>微信</p>
-            </div>
-            <div class="give-money-item">
-              <el-image :src="alipay" title="支付宝支付"></el-image>
-              <p>支付宝</p>
-            </div>
-          </div>
-          <el-button class="zanshang" slot="reference" type="danger" round plain
-            >赞赏</el-button
-          >
         </el-popover>
       </div>
       <div class="author">
@@ -120,8 +103,6 @@ export default {
       },
       wechart:
         "image.png",
-      alipay:
-        "https://sdorica.yuewuzhijian.top/sdorica-figure-light/e0046/e0046s5_figure.webp",
       commentForm: {
         content: "",
       },

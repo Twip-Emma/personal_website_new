@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2022-03-07 22:38:49
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-06 15:18:54
+ * @LastEditTime: 2023-05-06 16:40:56
  * @FilePath: \personal_website\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -24,4 +24,8 @@
 - #BOKE-12# 主页面-个人信息-修改信息后登录失效
 - #BOKE-13# 管理界面-身份控制-新增身份控制功能，只有超级管理员可以进去并修改
 - 【已解决】#BOKE-14# 主界面-进入博客-博客评论需要按照时间倒序排序
-- 【已解决】#BOKE-14# 主界面-进入博客-博客评论评论后，规则提示需要清空
+- 【已解决】#BOKE-15# 主界面-进入博客-博客评论评论后，规则提示需要清空
+- 【已解决】#BOKE-16# 主界面-个人信息-更换头像后并不会立即刷新
+- 【已解决】#BOKE-17# 主界面-登录注册-vuex重构
+- 【已解决】#BOKE-18# 主界面-登录注册-输入完之后按钮不能立即可操作
+

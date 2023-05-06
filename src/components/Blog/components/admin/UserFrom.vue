@@ -129,7 +129,7 @@ export default {
     async updateUserInfo(x) {
       if (x === "yes") {
         userApis.changeAllUserInfoApi(this.userInfo);
-        this.$notify({
+        this.$message({
           title: "管理员",
           message: "修改成功，已刷新本页面",
           type: "success",
@@ -145,7 +145,7 @@ export default {
     async deleteButton(id) {
       var data = await userApis.deleteUser(id);
       if (data.code === 200) {
-        this.$notify({
+        this.$message({
           title: "管理员",
           message: "删除成功，已刷新本页面",
           type: "success",
@@ -153,13 +153,13 @@ export default {
         // 刷新本页面
         this.setUserData();
       } else if (data.code === 1204) {
-        this.$notify({
+        this.$message({
           title: "管理员",
           message: "删除失败，可能该数据已经被删除了",
           type: "warning",
         });
       } else {
-        this.$notify({
+        this.$message({
           title: "异常",
           message: "删除失败，与服务器通信出现了异常",
           type: "warning",
