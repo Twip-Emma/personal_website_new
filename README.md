@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2022-03-07 22:38:49
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-06 16:40:56
+ * @LastEditTime: 2023-05-09 09:33:10
  * @FilePath: \personal_website\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -28,4 +28,6 @@
 - 【已解决】#BOKE-16# 主界面-个人信息-更换头像后并不会立即刷新
 - 【已解决】#BOKE-17# 主界面-登录注册-vuex重构
 - 【已解决】#BOKE-18# 主界面-登录注册-输入完之后按钮不能立即可操作
+===========================================================打包节点
+- 【已解决】#BOKE-19# 主界面-进入博客-发表评论后并不能马上刷新
 

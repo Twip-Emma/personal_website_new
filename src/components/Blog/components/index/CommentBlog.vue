@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 12:14:06
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-06 15:18:33
+ * @LastEditTime: 2023-05-06 17:20:15
  * @Description: file content
 -->
 <template>
@@ -121,7 +121,9 @@ export default {
               type: 'success'
             });
             this.messageForm.content = ""
-            this.getBlogReply()
+            this.$nextTick(() => {
+              this.getBlogReply()
+            }) 
             this.$refs.messageForm.resetFields();
         } else {
             // 表单验证未通过，给出提示
