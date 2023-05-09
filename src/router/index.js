@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:42:56
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-11 15:34:54
+ * @LastEditTime: 2023-05-09 14:45:30
  * @Description: file content
  */
 import Vue from 'vue'
@@ -29,6 +29,7 @@ import BlogInfo from '@/components/Blog/components/index/BlogInfo'
 import Login from '@/components/Blog/components/login/Login'
 import Register from '@/components/Blog/components/login/Register'
 import BlogEdit from '@/components/Blog/components/blogedit/BlogEdit'
+import Meme from '@/components/Blog/components/meme/index.vue'
 
 // 管理员相关组件
 import Admin from '@/components/Blog/views/Admin'
@@ -110,6 +111,15 @@ const routes = [
         components: {
             header: NavBar,
             other: BlogEdit,
+            footer: Footer
+        }
+    },
+    {
+        name:"Meme",
+        path: '/meme',
+        components: {
+            header: NavBar,
+            other: Meme,
             footer: Footer
         }
     },

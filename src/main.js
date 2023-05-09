@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-03-07 22:38:43
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-10 10:53:44
+ * @LastEditTime: 2023-05-09 14:18:14
  * @Description: file content
  */
 import Vue from 'vue'
@@ -28,6 +28,10 @@ Vue.use(mavonEditor)
 // 使用路由
 Vue.use(VueRouter)
 Vue.use(ElementUI)
+
+// 使用瀑布流
+import waterfall from "vue-waterfall2";
+Vue.use(waterfall);
 
 Vue.config.productionTip = false
 

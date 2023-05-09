@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2022-03-07 22:38:49
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-09 09:33:10
+ * @LastEditTime: 2023-05-09 17:13:40
  * @FilePath: \personal_website\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -30,4 +30,8 @@
 - 【已解决】#BOKE-18# 主界面-登录注册-输入完之后按钮不能立即可操作
 ===========================================================打包节点
 - 【已解决】#BOKE-19# 主界面-进入博客-发表评论后并不能马上刷新
-
+- 【已解决】#BOKE-20# 主界面-素材浏览-新增瀑布流素材语录浏览界面
+- #BOKE-21# 主界面-素材浏览-新增总数展示
+- #BOKE-22# 主界面-素材浏览-点赞功能
+- #BOKE-23# 主界面-素材浏览-评论功能
+- #BOKE-24# 主界面-素材浏览-随机获取素材
