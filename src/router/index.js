@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:42:56
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-09 14:45:30
+ * @LastEditTime: 2023-05-10 17:20:45
  * @Description: file content
  */
 import Vue from 'vue'
@@ -180,7 +180,7 @@ const router = new VueRouter({
 // 前置路由，用于拦截路由请求
 router.beforeEach((to, from, next) => {
     // 判断是在首页直接放行
-    if (to.path === "/"){
+    if (to.path === "/" || to.path === "/meme"){
         return next()
     }
     // 判断是否登录

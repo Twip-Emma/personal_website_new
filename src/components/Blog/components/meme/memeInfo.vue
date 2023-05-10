@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2023-05-09 16:59:45
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-10 17:15:05
+ * @LastEditTime: 2023-05-10 17:27:20
  * @FilePath: \personal_website\src\components\Blog\components\meme\memeInfo.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -16,8 +16,8 @@
       <Reply />
     </el-dialog>
     <div slot="footer" class="dialog-footer">
-      <el-button @click="outerVisible = false">点赞</el-button>
-      <el-button type="primary" @click="outerVisible = true">评论</el-button>
+      <el-button @click="outerVisible = false" :disabled="true">点赞</el-button>
+      <el-button type="primary" @click="outerVisible = true" :disabled="true">评论</el-button>
     </div>
   </div>
 </template>
