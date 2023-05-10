@@ -1,45 +1,47 @@
+<!--
+ * @Author: 七画一只妖 1157529280@qq.com
+ * @Date: 2023-05-09 16:59:45
+ * @LastEditors: 七画一只妖 1157529280@qq.com
+ * @LastEditTime: 2023-05-10 10:04:22
+ * @FilePath: \personal_website\src\components\Blog\components\meme\memeInfo.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
-  <div class="image-viewer">
-    <h3 class="image-title">{{ title }}</h3>
+  <div class="image-viewer" v-if="data.id">
+    <h3 class="image-title">{{ data.title }}</h3>
     <div class="image-container">
-      <img :src="img" alt="图片" />
+      <img :src="data.imgSrc" alt="图片" />
     </div>
-    <div class="comment-section">
-      <h4>评论</h4>
-      <ul class="comment-list">
-        <li v-for="comment in comments" :key="comment.id">
-          {{ comment.text }}
-        </li>
-      </ul>
+    <el-dialog title="评论" :visible.sync="outerVisible">
+      <Reply />
+    </el-dialog>
+    <div slot="footer" class="dialog-footer">
+      <el-button @click="outerVisible = false">点赞</el-button>
+      <el-button type="primary" @click="outerVisible = true">评论</el-button>
     </div>
   </div>
 </template>
 
 <script>
+import Reply from "./reply.vue";
 export default {
+  props: {
+    data: {
+      type: Object,
+      default: () => {},
+    },
+  },
   data() {
     return {
-      img: "http://cdngoapl.twip.top/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90/%E6%B3%89-%E8%BF%AD%E4%BB%A370.png",
+      // 弹窗
+      outerVisible: false,
+      innerVisible: false,
     };
   },
-  props: {
-    imageUrl: {
-      type: String,
-      required: true,
-    },
-    title: {
-      type: String,
-      default: "",
-    },
-    comments: {
-      type: Array,
-      default: () => [
-        {
-            "id":123,
-            "text":666
-        }
-      ],
-    },
+  components: {
+    Reply,
+  },
+  methods: {
   },
 };
 </script>
@@ -49,8 +51,14 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
-  border: 1px solid red;
+  background: #ffffff;
+  border: 2px solid #f0f0f0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 10px 5px 10px;
+  padding: 10px;
+  box-shadow: 0 0 5px 1px #999;
 }
 
 .image-title {
@@ -63,10 +71,18 @@ export default {
   width: 75%;
   max-width: 1000px;
   margin-top: 20px;
+  margin-bottom: 20px;
+  max-height: 500px; /* 假设容器最大高度为 500px */
+  overflow-y: auto; /* 添加垂直滚动条 */
+  box-shadow: 0 0 5px 1px #d7d7d7;
 }
 
 .image-container img {
   max-width: 100%;
+  margin-bottom: 20px;
+  max-height: 100%;
+  display: block; /* 清除默认的 inline-block 样式 */
+  margin: auto; /* 水平和垂直居中 */
 }
 
 .comment-section {

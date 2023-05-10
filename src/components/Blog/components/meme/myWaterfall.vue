@@ -2,7 +2,12 @@
   <div class="out">
     <waterfall :col="col" :data="data" :gutterWidth="0">
       <template>
-        <div class="cell-item" v-for="(item, index) in data" :key="index">
+        <div
+          class="cell-item"
+          v-for="item in data"
+          :key="item.id"
+          @click="handleItemClick(item)"
+        >
           <img :src="item.imgSrc" alt="加载错误" />
           <div class="item-body">
             <div class="item-desc">{{ item.title }}</div>
@@ -19,6 +24,7 @@
   </div>
 </template>
 <script>
+// import MemeInfo from "./MemeInfo.vue"
 export default {
   props: {
     data: {
@@ -26,16 +32,22 @@ export default {
       default: () => [],
     },
   },
+//   components:{MemeInfo},
   data() {
     return {
       col: 3,
     };
   },
-  methods: {},
+  methods: {
+    handleItemClick(item) {
+        this.$emit('handleClick',item)
+        scrollTo(0,0)
+        console.log(item)
+    },
+  },
 };
 </script>
 <style scoped>
-
 .item-body .item-desc {
   /* text-align: left; */
   font-family: Roboto;
