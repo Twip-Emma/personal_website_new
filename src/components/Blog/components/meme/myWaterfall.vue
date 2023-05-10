@@ -8,13 +8,13 @@
           :key="item.id"
           @click="handleItemClick(item)"
         >
-          <img :src="item.imgSrc" alt="加载错误" />
+          <img :src="item.imgUrl" alt="加载错误" />
           <div class="item-body">
             <div class="item-desc">{{ item.title }}</div>
             <div class="item-footer">
               <div class="like">
                 <i class="el-icon-share"></i>
-                <div class="like-total">{{ item.vote_num }}</div>
+                <div class="like-total">{{ item.likeNum }}</div>
               </div>
             </div>
           </div>

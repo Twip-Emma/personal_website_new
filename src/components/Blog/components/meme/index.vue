@@ -1,3 +1,11 @@
+<!--
+ * @Author: 七画一只妖 1157529280@qq.com
+ * @Date: 2023-05-09 09:34:42
+ * @LastEditors: 七画一只妖 1157529280@qq.com
+ * @LastEditTime: 2023-05-10 17:16:10
+ * @FilePath: \personal_website\src\components\Blog\components\meme\index.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
   <div class="container">
       <div>
@@ -11,42 +19,13 @@
 <script>
 import MyWaterfall from "./myWaterfall.vue";
 import MemeInfo from "./memeInfo.vue"
+import MemeApis from "@/apis/meme"
 export default {
   components: { MyWaterfall, MemeInfo },
   data() {
     return {
-      cardList: [
-        {
-          id: "1",
-          imgSrc: "http://cdngoapl.twip.top/meme/meme1.png",
-          vote_num: 999,
-          title: "全新罚站队理解",
-        },
-        {
-          id: "2",
-          imgSrc: "http://cdngoapl.twip.top/meme/meme2.png",
-          vote_num: 999,
-          title: "1000石头能出吗",
-        },
-        {
-          id: "3",
-          imgSrc: "http://cdngoapl.twip.top/meme/meme3.png",
-          vote_num: 999,
-          title: "长按可以秒杀吗",
-        },
-        {
-          id: "4",
-          imgSrc: "http://cdngoapl.twip.top/meme/meme4.png",
-          vote_num: 999,
-          title: "长按可以秒杀吗",
-        },
-        {
-          id: "5",
-          imgSrc: "http://cdngoapl.twip.top/meme/meme5.png",
-          vote_num: 999,
-          title: "我全图",
-        }
-      ],
+      // meme列表
+      cardList: [],
       tmpMemeData: {} 
     };
   },
@@ -54,7 +33,14 @@ export default {
     handleClick(val){
       console.log(val);
       this.tmpMemeData = val;
+    },
+    async setData(){
+      this.cardList = await MemeApis.query()
+      console.log(this.cardList, "cardList")
     }
+  },
+  mounted() {
+    this.setData()
   }
 };
 </script>
