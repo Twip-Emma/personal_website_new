@@ -49,7 +49,6 @@ export default {
   methods: {
     handleItemClick(item) {
       this.$emit("handleClick", item);
-      scrollTo(0, 0);
     },
     // 滚动到底部到距离底部5px之间的距离就触发
     handleScroll() {

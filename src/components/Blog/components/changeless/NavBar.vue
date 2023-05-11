@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 12:11:04
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-11 16:05:27
+ * @LastEditTime: 2023-05-11 11:05:24
  * @Description: file content
 -->
 <template>
@@ -43,8 +43,8 @@
       <el-menu-item
         class="el-menu-item_p"
         index="5"
-        @click="pageSwitch('About')"
-        >关于</el-menu-item
+        @click="pageSwitch('Meme')"
+        >Meme</el-menu-item
       >
       <el-menu-item class="el-menu-item_p-input">
         <el-input
