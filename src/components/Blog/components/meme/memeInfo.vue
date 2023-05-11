@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2023-05-09 16:59:45
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-11 15:15:18
+ * @LastEditTime: 2023-05-11 16:49:34
  * @FilePath: \personal_website\src\components\Blog\components\meme\memeInfo.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -13,14 +13,14 @@
       <img :src="data.imgUrl" alt="图片" />
     </div>
     <el-dialog title="评论" :visible.sync="outerVisible">
-      <Reply />
+      <Reply :memeId="data.id"/>
     </el-dialog>
     <div slot="footer" class="dialog-footer">
       <el-button @click="userSetLike()" :disabled="!canSeeLike">{{
         like
       }}</el-button>
-      <el-button type="primary" @click="outerVisible = true" :disabled="true"
-        >评论（暂未开放）</el-button
+      <el-button type="primary" @click="outerVisible = true" :disabled="!canSeeLike"
+        >{{ replyButtom }}</el-button
       >
     </div>
   </div>
@@ -49,6 +49,9 @@ export default {
       }
       return this.isLike ? "取消赞" : "点赞";
     },
+    replyButtom() {
+      return this.canSeeLike ? "评论" : "评论（请先登录）";
+    }
   },
   data() {
     return {
@@ -85,10 +88,7 @@ export default {
   },
   mounted() {
     this.setLike();
-  },
-  beforeUpdate() {
-    this.setData();
-  },
+  }
 };
 </script>
 
