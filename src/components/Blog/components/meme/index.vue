@@ -12,7 +12,7 @@
         <MemeInfo :data="tmpMemeData"/>
       </div>
       <div class="waterfall">
-        <MyWaterfall :data="cardList" @handleClick="handleClick"/>
+        <MyWaterfall :initdata="cardList" @handleClick="handleClick"/>
       </div>
    </div>
 </template>

@@ -1,10 +1,10 @@
 <template>
   <div class="out">
-    <waterfall :col="col" :data="data" :gutterWidth="0">
+    <waterfall :col="col" :data="visibleData" :gutterWidth="0">
       <template>
         <div
           class="cell-item"
-          v-for="item in data"
+          v-for="item in visibleData"
           :key="item.id"
           @click="handleItemClick(item)"
         >
@@ -27,23 +27,53 @@
 // import MemeInfo from "./MemeInfo.vue"
 export default {
   props: {
-    data: {
+    initdata: {
       type: Array,
       default: () => [],
     },
   },
-//   components:{MemeInfo},
+  //   components:{MemeInfo},
+  computed: {
+    visibleData() {
+      return this.initdata.slice(0, this.start + this.increment);
+    },
+  },
   data() {
     return {
       col: 3,
+      start: 10, // 已加载的数据条数
+      increment: 3, // 每次加载的数据条数
+      loadData: true, // 防抖开关
     };
   },
   methods: {
     handleItemClick(item) {
-        this.$emit('handleClick',item)
-        scrollTo(0,0)
-        console.log(item)
+      this.$emit("handleClick", item);
+      scrollTo(0, 0);
     },
+    // 滚动到底部到距离底部5px之间的距离就触发
+    handleScroll() {
+      const scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      const clientHeight = document.documentElement.clientHeight;
+      const scrollHeight = document.documentElement.scrollHeight;
+      if (scrollTop + clientHeight >= scrollHeight - 1) {
+        if (this.loadData){
+          this.loadMore()
+        }
+        this.loadData = !this.loadData
+      }
+    },
+    // 加载更多
+    loadMore() {
+      this.start += this.increment;
+    }
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.handleScroll);
   },
 };
 </script>
