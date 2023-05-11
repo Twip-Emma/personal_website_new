@@ -24,7 +24,6 @@
   </div>
 </template>
 <script>
-// import MemeInfo from "./MemeInfo.vue"
 export default {
   props: {
     initdata: {

@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2022-03-07 22:38:49
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-11 13:32:40
+ * @LastEditTime: 2023-05-11 15:20:12
  * @FilePath: \personal_website\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -32,7 +32,7 @@
 - 【已解决】#BOKE-19# 主界面-进入博客-发表评论后并不能马上刷新
 - 【已解决】#BOKE-20# 主界面-素材浏览-新增瀑布流素材语录浏览界面
 - 【已解决】#BOKE-21# 主界面-素材浏览-新增总数展示
-- #BOKE-22# 主界面-素材浏览-点赞功能
+- 【已解决】#BOKE-22# 主界面-素材浏览-点赞功能
 - #BOKE-23# 主界面-素材浏览-评论功能
 - 【已解决】#BOKE-24# 主界面-素材浏览-随机获取素材
 - 【已解决】#BOKE-25# 主界面-素材浏览-查看素材详情时添加滚动条
