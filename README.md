@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2022-03-07 22:38:49
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-11 16:51:38
+ * @LastEditTime: 2023-05-12 15:52:58
  * @FilePath: \personal_website\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -38,4 +38,5 @@
 - 【已解决】#BOKE-25# 主界面-素材浏览-查看素材详情时添加滚动条
 - 【已解决】#BOKE-26# 主界面-素材浏览-数据动态展示
 ===========================================================打包节点20230510A
-- 【已解决】#BOKE-24# 主界面-素材浏览-数据懒加载
+- 【已解决】#BOKE-27# 主界面-素材浏览-数据懒加载
+- 【否决】#BOKE-28# 主界面-博客-改用Marked库

@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-03-07 22:38:43
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-19 13:37:55
+ * @LastEditTime: 2023-05-12 15:49:59
  * @Description: file content
 -->
 <template>
@@ -54,7 +54,10 @@ export default {
   /* 背景 */
   background-image: url("http://cdngoapl.twip.top/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90/%E5%8D%9A%E5%AE%A2%E8%83%8C%E6%99%AF%E5%9B%BE.png");
   /* background-color: rgba(255, 255, 0, 0.5); */
+  background-repeat: no-repeat;
   background-attachment: fixed;
+  background-size: cover;
+
 }
 
 .app2{
