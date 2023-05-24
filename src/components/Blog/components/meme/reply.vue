@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 12:14:06
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-11 16:47:29
+ * @LastEditTime: 2023-05-24 19:34:16
  * @Description: file content
 -->
 <template>
@@ -25,7 +25,7 @@
         </div>
       </div>
       <!-- form表单，用于发布留言 -->
-      <el-form :model="replyForm" :rules="replyFormRules" ref="replyForm">
+      <el-form :model="replyForm" :rules="replyFormRules" :modal-append-to-body="false" ref="replyForm">
         <el-form-item prop="content">
           <el-input
             :rows="5"
@@ -145,6 +145,7 @@ export default {
 <style scoped>
 .el-container {
   display: block;
+  z-index: 5;
 }
 
 .publish {

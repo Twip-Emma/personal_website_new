@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2023-05-09 16:59:45
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-11 16:49:34
+ * @LastEditTime: 2023-05-24 19:43:16
  * @FilePath: \personal_website\src\components\Blog\components\meme\memeInfo.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -12,7 +12,7 @@
     <div class="image-container">
       <img :src="data.imgUrl" alt="图片" />
     </div>
-    <el-dialog title="评论" :visible.sync="outerVisible">
+    <el-dialog title="评论" :visible.sync="outerVisible" :modal-append-to-body="false">
       <Reply :memeId="data.id"/>
     </el-dialog>
     <div slot="footer" class="dialog-footer">
