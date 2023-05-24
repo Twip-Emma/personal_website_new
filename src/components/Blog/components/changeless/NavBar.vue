@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 12:11:04
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-11 11:05:24
+ * @LastEditTime: 2023-05-24 21:54:25
  * @Description: file content
 -->
 <template>
@@ -37,8 +37,8 @@
       <el-menu-item
         class="el-menu-item_p"
         index="4"
-        @click="pageSwitch('Project')"
-        >项目</el-menu-item
+        @click="pageSwitch('Management')"
+        >管理</el-menu-item
       >
       <el-menu-item
         class="el-menu-item_p"
