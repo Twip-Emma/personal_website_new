@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2023-05-09 16:59:45
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-24 19:43:16
+ * @LastEditTime: 2023-05-25 15:51:52
  * @FilePath: \personal_website\src\components\Blog\components\meme\memeInfo.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -10,16 +10,23 @@
   <div class="image-viewer" v-if="data.id">
     <h3 class="image-title">{{ data.title }}</h3>
     <div class="image-container">
-      <img :src="data.imgUrl" alt="图片" />
+      <img :src="data.imgUrl" alt="图片" @click="openImage(data.imgUrl)"/>
     </div>
-    <el-dialog title="评论" :visible.sync="outerVisible" :modal-append-to-body="false">
-      <Reply :memeId="data.id"/>
+    <el-dialog
+      title="评论"
+      :visible.sync="outerVisible"
+      :modal-append-to-body="false"
+    >
+      <Reply :memeId="data.id" />
     </el-dialog>
     <div slot="footer" class="dialog-footer">
       <el-button @click="userSetLike()" :disabled="!canSeeLike">{{
         like
       }}</el-button>
-      <el-button type="primary" @click="outerVisible = true" :disabled="!canSeeLike"
+      <el-button
+        type="primary"
+        @click="outerVisible = true"
+        :disabled="!canSeeLike"
         >{{ replyButtom }}</el-button
       >
     </div>
@@ -37,9 +44,9 @@ export default {
     },
   },
   watch: {
-    data: function() {
+    data: function () {
       this.setLike();
-    }
+    },
   },
   computed: {
     like() {
@@ -51,7 +58,7 @@ export default {
     },
     replyButtom() {
       return this.canSeeLike ? "评论" : "评论（请先登录）";
-    }
+    },
   },
   data() {
     return {
@@ -85,10 +92,14 @@ export default {
         this.isLike = await MemeApis.queryLike(this.data.id);
       }
     },
+    // 点击图片新开窗口展示
+    openImage(imgUrl){
+      window.open(imgUrl, '_blank');
+    }
   },
   mounted() {
     this.setLike();
-  }
+  },
 };
 </script>
 

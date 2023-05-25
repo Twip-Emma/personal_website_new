@@ -56,18 +56,25 @@ export default {
       const clientHeight = document.documentElement.clientHeight;
       const scrollHeight = document.documentElement.scrollHeight;
       if (scrollTop + clientHeight >= scrollHeight - 1) {
-        if (this.loadData){
-          this.loadMore()
+        if (this.loadData) {
+          this.loadMore();
         }
-        this.loadData = !this.loadData
+        this.loadData = !this.loadData;
       }
     },
     // 加载更多
     loadMore() {
       this.start += this.increment;
+    },
+    // 如果客户端是手机则只展示一列
+    setCol() {
+      if(/Mobi/i.test(navigator.userAgent) || window.innerWidth < 768) {
+        this.col = 1
+      }
     }
   },
   mounted() {
+    this.setCol()
     window.addEventListener("scroll", this.handleScroll);
   },
   beforeDestroy() {

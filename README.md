@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2022-03-07 22:38:49
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-25 15:31:39
+ * @LastEditTime: 2023-05-25 15:57:44
  * @FilePath: \personal_website\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -48,3 +48,4 @@
 - #BOKE-34# 管理界面-博客-逻辑管理
 - #BOKE-35# 管理界面-评论-逻辑管理
 - 【已解决】#BOKE-36# 主界面-我的博客-管理（基本面板展示、编辑博客）
+- 【已解决】#BOKE-37# 主界面-素材浏览-详细内容过窄问题
