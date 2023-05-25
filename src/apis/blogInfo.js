@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-09 10:26:35
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-13 11:05:14
+ * @LastEditTime: 2023-05-25 15:21:08
  * @Description: file content
  */
 import axios from 'axios'
@@ -68,5 +68,28 @@ export default {
     // 发布博客
     async publishBlog(blogInfo) {
         await axios.post("/higanbana/blog/blog/add", blogInfo)
-    }
+    },
+    // 获取博客数量数据（饼图用）
+    async getBlogCountData() {
+        var _data = undefined
+        await axios.get("/higanbana/blog/blog/getBlogCountData").then(
+            response => {
+                _data = response.data
+            }
+        )
+        return _data
+    },
+    async queryBlogListByUser() {
+        var _data = undefined
+        await axios.get("/higanbana/blog/blog/queryBlogListByUser").then(
+            response => {
+                _data = response.data
+            }
+        )
+        return _data
+    },
+    // 修改博客
+    async updateBlogByUser(blogInfo) {
+        await axios.post("/higanbana/blog/blog/updateBlogByUser", blogInfo)
+    },
 }

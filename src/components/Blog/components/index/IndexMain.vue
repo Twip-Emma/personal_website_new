@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-18 20:59:53
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-06 15:49:34
+ * @LastEditTime: 2023-05-25 14:54:22
  * @Description: file content
 -->
 <template>
@@ -68,7 +68,7 @@
                       <span>{{ blog.views }}</span>
                     </div>
                     <div class="blog-type">
-                      <el-tag effect="plain">{{ blog.typeName }}</el-tag>
+                      <el-tag effect="plain">{{ blog.flag }}</el-tag>
                     </div>
                   </div>
                 </div>
