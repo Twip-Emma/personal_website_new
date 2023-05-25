@@ -26,10 +26,10 @@
 <script>
 export default {
   props: {
-    initdata: {
-      type: Array,
-      default: () => [],
-    },
+    // initdata: {
+    //   type: Array,
+    //   default: () => [],
+    // },
   },
   //   components:{MemeInfo},
   computed: {
@@ -39,7 +39,8 @@ export default {
   },
   data() {
     return {
-      col: 3,
+      initdata: [], // 数据
+      col: 3, // 瀑布列数（PC默认3）
       start: 10, // 已加载的数据条数
       increment: 3, // 每次加载的数据条数
       loadData: true, // 防抖开关
@@ -65,6 +66,10 @@ export default {
     // 加载更多
     loadMore() {
       this.start += this.increment;
+    },
+    // 加载新数据
+    setCardList(data) {
+      this.initdata = data
     },
     // 如果客户端是手机则只展示一列
     setCol() {
