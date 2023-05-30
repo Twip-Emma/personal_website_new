@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 16:42:13
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-24 21:16:26
+ * @LastEditTime: 2023-05-30 19:12:19
  * @Description: file content
 -->
 <template>
@@ -21,7 +21,7 @@
           <el-submenu index="0">
             <template slot="title">
               <i class="el-icon-s-tools"></i>
-              <span>总控室</span>
+              <span>总控面板</span>
             </template>
             <el-menu-item-group>
               <template slot="title">管理网站和服务器状态</template>
@@ -56,11 +56,11 @@
           <el-submenu index="2">
             <template slot="title">
               <i class="el-icon-tickets"></i>
-              <span>管理博客</span>
+              <span>博客面板</span>
             </template>
             <el-menu-item-group>
               <template slot="title">管理博客信息与评论</template>
-              <el-menu-item index="2-1" @click="adminJumpTo('AdminUserFrom')"
+              <el-menu-item index="2-1" @click="adminJumpTo('admin-blog-info')"
                 >博客管理</el-menu-item
               >
             </el-menu-item-group>
@@ -69,7 +69,7 @@
           <el-submenu index="3">
             <template slot="title">
               <i class="el-icon-edit"></i>
-              <span>评论管理</span>
+              <span>评论面板</span>
             </template>
             <el-menu-item-group>
               <template slot="title">管理博客评论或者网站留言</template>
@@ -129,5 +129,9 @@ export default {
 .out{
   position:fixed;
   width: 25%;
+}
+
+.out1{
+  height: 90vh;
 }
 </style>

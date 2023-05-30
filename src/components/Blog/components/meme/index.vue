@@ -12,8 +12,8 @@
       <MemeDescription :initdata="cardList" />
     </div>
     <div class="button">
-      <el-button @click="randomDisplay()">乱序展示（默认）</el-button>
-      <el-button @click="orderDisplay()">顺序展示（暂时有问题：需要刷新页面才会回到默认展示，不能重复点击）</el-button>
+      <el-button @click="randomDisplay()">乱序</el-button>
+      <el-button @click="orderDisplay()">顺序</el-button>
     </div>
     <el-dialog
       title="语录详情"

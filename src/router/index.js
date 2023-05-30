@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:42:56
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-24 21:55:43
+ * @LastEditTime: 2023-05-30 16:34:43
  * @Description: file content
  */
 import Vue from 'vue'
@@ -36,6 +36,7 @@ import Management from '@/components/Blog/components/management/index.vue'
 import Admin from '@/components/Blog/views/Admin'
 import UserFrom from '@/components/Blog/components/admin/user-info/index.vue'
 import ApiManagement from '@/components/Blog/components/admin/setu-key/index.vue'
+import AdminBlogInfo from '@/components/Blog/components/admin/blog-info/index.vue'
 
 const routes = [
     {
@@ -147,6 +148,11 @@ const routes = [
                 name:'AdminUserFrom',
                 path:"userForm",
                 component:UserFrom
+            },
+            {
+                name:'admin-blog-info',
+                path:"blog-info",
+                component:AdminBlogInfo
             },
             {
                 name:'AdminApiManagement',
