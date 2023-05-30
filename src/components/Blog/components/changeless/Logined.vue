@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-06 16:23:21
+ * @LastEditTime: 2023-05-30 20:42:40
  * @Description: file content
 -->
 <template>
@@ -120,7 +120,7 @@ export default {
   computed: {
     // 加载是否是管理员
     administrator() {
-      return this.$store.state.globalData.administrator === 1 ? true : false;
+      return this.$store.state.globalData.administrator >= 1 ? true : false;
     },
     // 加载登录状态
     logined() {

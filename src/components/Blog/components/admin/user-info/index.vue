@@ -1,53 +1,67 @@
-<!--
- * @Author: 七画一只妖
- * @Date: 2021-11-20 17:04:10
- * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-24 20:58:51
- * @Description: file content
--->
 <template>
-  <div>
-    <el-table :data="tableData" style="width: 100%" border>
-      <el-table-column
-        align="center"
-        fixed
-        prop="nickname"
-        label="昵称"
-        width="200"
-      ></el-table-column>
-      <el-table-column
-        align="center"
-        prop="card"
-        label="账号"
-        width="200"
-      ></el-table-column>
-      <el-table-column align="center" prop="ctime" label="创建时间" width="200">
-      </el-table-column>
-      <el-table-column align="center" label="操作">
+  <div class="item-view">
+    <div class="item-title"><p>用户-用户管理</p></div>
+    <el-row>
+      <el-col :span="12">
+        <el-form label-width="100px">
+          <el-form-item label="用户昵称：">
+            <el-input
+              v-model="searchText"
+              placeholder="请输入用户昵称"
+              @keyup.enter.native="queryuserList"
+            ></el-input>
+          </el-form-item>
+        </el-form>
+      </el-col>
+      <el-col :span="6" :offset="6" align="center">
+        <el-button type="primary" @click="setData()">查询</el-button>
+      </el-col>
+    </el-row>
+
+    <el-table :data="userList" style="width: 100%">
+      <el-table-column prop="avatar" label="头像" width="80px">
         <template slot-scope="scope">
-          <el-button
-            type="text"
-            icon="el-icon-edit"
-            @click="updateButton(scope.row.id)"
+          <div class="avatar-wrapper">
+            <img :src="scope.row.avatar" class="avatar-img" />
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column prop="nickname" label="昵称"></el-table-column>
+      <el-table-column prop="isadmin" label="权限"></el-table-column>
+      <el-table-column prop="ctime" label="创建日期"></el-table-column>
+      <el-table-column label="操作">
+        <template slot-scope="scope" >
+          <el-button type="primary" size="small" @click="editInfo(scope.row)"
             >编辑</el-button
+          >
+          <el-button
+            type="danger"
+            size="small"
+            @click="manageComments(scope.row)"
+            v-if="scope.row.isadmin !== '超级管理员'"
+            >删除</el-button
           >
         </template>
       </el-table-column>
     </el-table>
-    <div class="block">
-      <!-- 分页 -->
-      <el-pagination
-        background
-        @current-change="handleCurrentChange"
-        :page-size="10"
-        :current-page="1"
-        :total="totalCount"
-      >
-      </el-pagination>
-    </div>
-    <!-- 弹窗修改信息 -->
-    <el-dialog title="修改用户信息" :visible.sync="dialogVisible" width="50%">
-      <Edit :userData="userInfo" @call-index="setUserData" />
+
+    <!-- 分页 -->
+    <el-pagination
+      background
+      @current-change="handlePageChange"
+      :page-size="10"
+      :current-page="1"
+      :total="total"
+    >
+    </el-pagination>
+
+    <el-dialog
+      title="编辑信息"
+      :visible.sync="dialogVisible"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+    >
+      <Edit :userForm="userInfo" @call-index="setData" />
     </el-dialog>
   </div>
 </template>
@@ -56,13 +70,11 @@
 import Edit from "./edit.vue";
 import userApis from "@/apis/userInfo";
 import globalFunction from "@/apis/globalFunction";
+
 export default {
-  components: { Edit },
   data() {
     return {
-      tableData: [],
-      // 跨组件控制弹窗
-      dialogVisible: false,
+      userList: [],
       // 传输给编辑界面的用户信息
       userInfo: {
         id: "",
@@ -70,84 +82,100 @@ export default {
         card: "",
         avatar: "",
       },
-      // 页数量
-      currentPage3: 1,
-      // 当前页面
-      page: 1,
-      // 总条数
-      totalCount: 0,
+      dialogVisible: false,
+      searchText: "", // 添加的搜索框输入内容
+      currentPage: 1, // 当前页码
+      pageSize: 10, // 每页显示数量
+      total: 0, // 总数据量
     };
   },
+  components: { Edit },
   methods: {
-    // 设置总页数
-    async setTotalCount() {
-      this.totalCount = await userApis.getUserCount();
+    // 编辑博客的逻辑
+    editInfo(item) {
+      console.log(item);
+      this.dialogVisible = true;
+      this.userInfo.id = item.id;
+      this.userInfo.nickname = item.nickname;
+      this.userInfo.card = item.card;
+      this.userInfo.avatar = item.avatar;
     },
-    // 翻页时修改变量page
-    handleCurrentChange(val) {
-      this.page = val;
-      this.setUserData();
+    manageComments(blog) {
+      // 处理评论管理的逻辑
+      console.log(blog);
     },
-    // 初始化用户列表
-    async setUserData() {
-      // 初始化弹窗状态
+    async setData() {
       this.dialogVisible = false;
-      // 先更新总条数
-      this.setTotalCount();
-      this.tableData = [];
-      var data = await userApis.getAllUserApi(this.page);
-      data.forEach((item) => {
-        item.ctime = globalFunction.formatTimeApi(item.ctime);
-        this.tableData.push(item);
-      });
-    },
-    // 按下修改信息的按钮了
-    updateButton(id) {
-      this.tableData.forEach((item) => {
-        if (item.id === id) {
-          this.userInfo.id = item.id;
-          this.userInfo.nickname = item.nickname;
-          this.userInfo.card = item.card;
-          this.userInfo.avatar = item.avatar;
-          this.dialogVisible = true;
+      const data = await userApis.getAllUserApi(
+        this.currentPage,
+        this.searchText
+      );
+      console.log(data, "data");
+      this.total = data[data.length - 1];
+      data.pop();
+      this.userList = data;
+      console.log(this.userList, "userList");
+
+      this.userList.forEach((item) => {
+        item.ctime = this.formatTime(item.ctime);
+        if (item.isadmin === 1) {
+          item.isadmin = "管理员";
+        } else if (item.isadmin === 2) {
+          item.isadmin = "超级管理员";
+        } else {
+          item.isadmin = "普通用户";
         }
       });
-      console.log(this.userInfo, "点击的用户信息");
     },
-    // 删除一个用户
-    async deleteButton(id) {
-      var data = await userApis.deleteUser(id);
-      if (data.code === 200) {
-        this.$message({
-          title: "管理员",
-          message: "删除成功，已刷新本页面",
-          type: "success",
-        });
-        // 刷新本页面
-        this.setUserData();
-      } else if (data.code === 1204) {
-        this.$message({
-          title: "管理员",
-          message: "删除失败，可能该数据已经被删除了",
-          type: "warning",
-        });
-      } else {
-        this.$message({
-          title: "异常",
-          message: "删除失败，与服务器通信出现了异常",
-          type: "warning",
-        });
-      }
+    // 日期格式化
+    formatTime(basetime) {
+      return globalFunction.formatTimeShortApi(basetime);
+    },
+    // 搜索框查询
+    queryuserList() {
+      this.currentPage = 1;
+      this.setData();
+    },
+    // 分页变化
+    handlePageChange(currentPage) {
+      this.currentPage = currentPage;
+      this.setData();
     },
   },
   mounted() {
-    this.setUserData();
+    this.setData();
   },
 };
 </script>
 
 <style scoped>
-.block {
-  float: right;
+.avatar-wrapper {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+.item-view {
+  padding: 20px;
+}
+
+.item-title {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.item-title p {
+  font-weight: bold;
+  font-size: 30px;
 }
 </style>

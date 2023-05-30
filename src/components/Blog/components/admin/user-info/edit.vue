@@ -1,48 +1,68 @@
+<!--
+ * @Author: 七画一只妖 1157529280@qq.com
+ * @Date: 2023-05-30 20:04:44
+ * @LastEditors: 七画一只妖 1157529280@qq.com
+ * @LastEditTime: 2023-05-30 20:10:41
+ * @FilePath: \personal_website\src\components\Blog\components\admin\user-info\edit.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
   <div>
     <el-form label-width="80px">
       <el-form-item label="新的昵称">
-        <el-input v-model="userData.nickname"></el-input>
+        <el-input v-model="userForm.nickname"></el-input>
       </el-form-item>
       <el-form-item label="新的账号">
-        <el-input v-model="userData.card"></el-input>
+        <el-input v-model="userForm.card"></el-input>
       </el-form-item>
       <el-form-item label="新头像url">
-        <el-input v-model="userData.avatar"></el-input>
+        <el-input v-model="userForm.avatar"></el-input>
       </el-form-item>
     </el-form>
-    <span slot="footer" class="dialog-footer">
-      <el-button @click="updateUserInfo('no')">取 消</el-button>
-      <el-button type="primary" @click="updateUserInfo('yes')">确 定</el-button>
-    </span>
+
+    <div slot="footer" class="dialog-footer">
+      <el-button type="primary" @click="saveForm">确定</el-button>
+      <el-button @click="cancelForm">取消</el-button>
+    </div>
   </div>
 </template>
 
 <script>
 import userApis from "@/apis/userInfo";
 export default {
-  data() {
-    return {};
-  },
   props: {
-    userData: {
+    userForm: {
       type: Object,
       default: () => {},
     },
   },
+  data() {
+    return {
+      dialogVisible: false,
+    };
+  },
   methods: {
-    // 修改用户信息
-    async updateUserInfo(x) {
-      if (x === "yes") {
-        userApis.changeAllUserInfoApi(this.userData);
-        this.$message({
-          title: "管理员",
-          message: "修改成功，已刷新本页面",
-          type: "success",
-        });
-        // 刷新本页面
-        // this.setUserData();
-      }
+    showDialog() {
+      // 在此处可以初始化表单数据，如从后端获取博客信息并赋值给userForm
+      this.dialogVisible = true;
+    },
+    resetForm() {
+      this.$refs.userForm.resetFields();
+    },
+    async saveForm() {
+      // 在此处可以提交表单数据，如将博客信息发送给后端进行保存
+      this.dialogVisible = false;
+      await userApis.changeAllUserInfoApi(this.userForm);
+      this.$nextTick(() => {
+        this.$emit("call-index");
+      });
+      this.$message({
+        message: "修改成功",
+        type: "success",
+      });
+    },
+    cancelForm() {
+      this.dialogVisible = false;
       this.$nextTick(() => {
         this.$emit("call-index");
       });
@@ -50,6 +70,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>

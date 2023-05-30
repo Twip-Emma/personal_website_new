@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-05 17:45:02
+ * @LastEditTime: 2023-05-30 21:36:15
  * @Description: file content
  */
 import axios from 'axios'
@@ -59,9 +59,9 @@ export default {
         return _data
     },
     // 获取所有用户信息
-    async getAllUserApi(page) {
+    async getAllUserApi(page = 1, name = "") {
         var _data = undefined
-        await axios.get("/higanbana/blog/user/getalluser?page=" + page).then(
+        await axios.get("/higanbana/blog/user/getalluser?page=" + page + (name ? "&name=" + name : "")).then(
             response => {
                 _data = response.data
             }
@@ -84,6 +84,16 @@ export default {
     async changeAllUserInfoApi(userData) {
         var _data = undefined
         await axios.post("/higanbana/blog/user/updatealluser", userData).then(
+                response => {
+                    _data = response.data
+                }
+            )
+        return _data
+    },
+    // 修改用户信息（超级管理员操作的、用户权限）
+    async updateUserPermission(targetId, targetPermission) {
+        var _data = undefined
+        await axios.get("/higanbana/blog/user/updateUserPermission?targetId=" + targetId + "&targetPermission=" + targetPermission).then(
                 response => {
                     _data = response.data
                 }
