@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2022-03-07 22:38:49
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-31 14:25:55
+ * @LastEditTime: 2023-05-31 14:50:37
  * @FilePath: \personal_website\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -53,4 +53,4 @@
 - 【已解决】#BOKE-39# 主界面-博客详情-移除顶部图片
 - 【已解决】#BOKE-40# 主界面-管理界面-网站留言管理
 - #BOKE-41# 主界面-留言界面-需要增加分页查询
-- #BOKE-42# 主界面-管理界面-部分操作面板的删除按钮无法使用
+- 【已解决】#BOKE-42# 主界面-管理界面-部分操作面板的删除按钮无法使用

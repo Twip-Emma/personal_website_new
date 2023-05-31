@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-09 10:26:35
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-30 16:46:47
+ * @LastEditTime: 2023-05-31 14:48:30
  * @Description: file content
  */
 import axios from 'axios'
@@ -78,6 +78,10 @@ export default {
     // 发布博客
     async publishBlog(blogInfo) {
         await axios.post("/higanbana/blog/blog/add", blogInfo)
+    },
+    // 删除博客
+    async deleteBlog(id) {
+        await axios.get("/higanbana/blog/blog/deleteBlog?id=" + id)
     },
     // 获取博客数量数据（饼图用）
     async getBlogCountData() {
