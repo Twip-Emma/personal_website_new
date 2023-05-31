@@ -25,7 +25,7 @@
       :close-on-click-modal="false"
       :close-on-press-escape="false"
     >
-      <BlogEdit :blogForm="initBlogData" @call-index ="setData" />
+      <BlogEdit :blogForm="initBlogData" @call-index="setData" />
     </el-dialog>
   </div>
 </template>
@@ -45,7 +45,7 @@ export default {
         flag: "",
         description: "",
       },
-      dialogVisible: false
+      dialogVisible: false,
     };
   },
   components: { BlogEdit },
@@ -53,18 +53,38 @@ export default {
     // 编辑博客的逻辑
     editBlog(blog) {
       console.log(blog);
-      this.dialogVisible = true
-      this.initBlogData.id = blog.id
-      this.initBlogData.title = blog.title
-      this.initBlogData.flag = blog.flag
-      this.initBlogData.description = blog.description
+      this.dialogVisible = true;
+      this.initBlogData.id = blog.id;
+      this.initBlogData.title = blog.title;
+      this.initBlogData.flag = blog.flag;
+      this.initBlogData.description = blog.description;
     },
     manageComments(blog) {
-      // 处理评论管理的逻辑
-      console.log(blog);
+      this.$confirm(`此操作将删除这条内容, 是否继续?`, "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(async () => {
+          await blogApis.deleteBlogByUser(blog.id);
+          this.$message({
+            type: "success",
+            message: `删除成功!`,
+          });
+          this.$nextTick(() => {
+            this.setData();
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消",
+          });
+          return;
+        });
     },
     async setData() {
-      this.dialogVisible = false  
+      this.dialogVisible = false;
       this.blogList = await blogApis.queryBlogListByUser();
       this.blogList.forEach((item) => {
         item.ctime = this.formatTime(item.ctime);
