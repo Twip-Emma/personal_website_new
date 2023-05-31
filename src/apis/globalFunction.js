@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-19 11:27:15
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-25 14:49:43
+ * @LastEditTime: 2023-05-31 14:00:34
  * @Description: file content
  */
 import axios from 'axios'
@@ -33,10 +33,10 @@ export default {
         })
     },
     // 查询所有留言
-    async getAllMessageApi() {
+    async getAllMessageApi(page = 1, text = "") {
         console.log("请求了留言")
         var _data = undefined
-        await axios.get("/higanbana/blog/global/getallmessage").then(
+        await axios.get("/higanbana/blog/global/getallmessage?page=" + page + (text ? "&text=" + text : "")).then(
             response => {
                 _data = response.data
             }
@@ -58,5 +58,19 @@ export default {
         } else {
             return number;
         }
+    },
+    // 修改留言
+    async updateMessage(content) {
+        console.log("发表了评论")
+        var _data = 200
+        await axios.post("/higanbana/blog/global/updateMessage", content)
+        return _data
+    },
+    // 删除留言
+    async deleteMessage(id) {
+        console.log("发表了评论")
+        var _data = 200
+        await axios.get("/higanbana/blog/global/deleteMessage?id=" + id)
+        return _data
     },
 }

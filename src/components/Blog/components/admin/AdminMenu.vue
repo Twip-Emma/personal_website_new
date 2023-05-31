@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 16:42:13
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-30 20:45:47
+ * @LastEditTime: 2023-05-31 12:46:31
  * @Description: file content
 -->
 <template>
@@ -73,11 +73,11 @@
             </template>
             <el-menu-item-group>
               <template slot="title">管理博客评论或者网站留言</template>
-              <el-menu-item index="3-1" @click="adminJumpTo('AdminUserFrom')"
-                >博客留言</el-menu-item
+              <el-menu-item index="3-1" @click="adminJumpTo('admin-reply-blog')"
+                >博客留言管理</el-menu-item
               >
-              <el-menu-item index="3-2" @click="adminJumpTo('AdminUserFrom')"
-                >网站留言</el-menu-item
+              <el-menu-item index="3-2" @click="adminJumpTo('admin-reply-web')"
+                >网站留言管理</el-menu-item
               >
             </el-menu-item-group>
           </el-submenu>

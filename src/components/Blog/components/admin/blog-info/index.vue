@@ -20,6 +20,8 @@
 
     <el-table :data="blogList" style="width: 100%">
       <el-table-column prop="title" label="标题"></el-table-column>
+      <el-table-column prop="user.nickname" label="作者"></el-table-column>
+      <el-table-column prop="views" label="浏览" width="50px"></el-table-column>
       <el-table-column prop="ctime" label="创建日期"></el-table-column>
       <el-table-column prop="mtime" label="编辑日期"></el-table-column>
       <el-table-column label="操作">

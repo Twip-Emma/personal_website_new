@@ -29,9 +29,14 @@
       <el-table-column prop="nickname" label="昵称"></el-table-column>
       <el-table-column prop="isadmin" label="权限"></el-table-column>
       <el-table-column prop="ctime" label="创建日期"></el-table-column>
+      <el-table-column prop="mtime" label="修改日期"></el-table-column>
       <el-table-column label="操作">
-        <template slot-scope="scope" >
-          <el-button type="primary" size="small" @click="editInfo(scope.row)"
+        <template slot-scope="scope">
+          <el-button
+            type="primary"
+            size="small"
+            @click="editInfo(scope.row)"
+            v-if="scope.row.isadmin !== '超级管理员'"
             >编辑</el-button
           >
           <el-button
@@ -40,6 +45,13 @@
             @click="manageComments(scope.row)"
             v-if="scope.row.isadmin !== '超级管理员'"
             >删除</el-button
+          >
+          <el-button
+            type="success"
+            size="small"
+            :disabled="true"
+            v-if="scope.row.isadmin === '超级管理员'"
+            >超级管理员</el-button
           >
         </template>
       </el-table-column>
@@ -163,7 +175,6 @@ export default {
   border-radius: 50%;
   object-fit: cover;
 }
-
 
 .item-view {
   padding: 20px;

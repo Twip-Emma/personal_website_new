@@ -7,7 +7,7 @@
           <el-form-item label="用户昵称：">
             <el-input
               v-model="searchText"
-              placeholder="请输用户昵称"
+              placeholder="请输入用户昵称"
               @keyup.enter.native="queryuserList"
             ></el-input>
           </el-form-item>

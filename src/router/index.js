@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:42:56
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-30 20:31:49
+ * @LastEditTime: 2023-05-31 12:46:09
  * @Description: file content
  */
 import Vue from 'vue'
@@ -38,6 +38,8 @@ import UserFrom from '@/components/Blog/components/admin/user-info/index.vue'
 import ApiManagement from '@/components/Blog/components/admin/setu-key/index.vue'
 import AdminBlogInfo from '@/components/Blog/components/admin/blog-info/index.vue'
 import AdminUserPermission from '@/components/Blog/components/admin/user-permission/index.vue'
+import AdminReplyBlog from '@/components/Blog/components/admin/reply-blog/index.vue'
+import AdminReplyWeb from '@/components/Blog/components/admin/reply-web/index.vue'
 
 const routes = [
     {
@@ -164,6 +166,16 @@ const routes = [
                 name:'admin-user-permission',
                 path:"user-permission",
                 component:AdminUserPermission
+            },
+            {
+                name:'admin-reply-blog',
+                path:"reply-blog",
+                component:AdminReplyBlog
+            },
+            {
+                name:'admin-reply-web',
+                path:"reply-web",
+                component:AdminReplyWeb
             },
         ]
     },
