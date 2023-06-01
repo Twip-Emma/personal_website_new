@@ -59,30 +59,39 @@
         </li>
       </ul>
     </el-card>
+    <!-- 分页 -->
+    <el-pagination
+      background
+      @current-change="handlePageChange"
+      :page-size="10"
+      :current-page="1"
+      :total="total"
+    >
+    </el-pagination>
   </el-container>
 </template>
 
 <script>
-import globalFunction from '@/apis/globalFunction'
+import globalFunction from "@/apis/globalFunction";
 export default {
   data() {
     return {
       picList: [],
       editing: false,
       userInfo: {},
-      messageList:[
-          {
-            "id":"123123123123",
-            "avatar":"",
-            "nickname":"帅气的七画",
-            "ctime":12398192389123,
-            "content":"如果宁看到了这个消息就说明服务器寄了"
-          }
+      messageList: [
+        {
+          id: "123123123123",
+          avatar: "",
+          nickname: "帅气的七画",
+          ctime: 12398192389123,
+          content: "如果宁看到了这个消息就说明服务器寄了",
+        },
       ],
-      // message: {
-      //   userId: -1,
-      //   content: "",
-      // },
+      // 页码
+      currentPage: 1,
+      // 总数
+      total: 0,
       messageForm: {
         content: "",
       },
@@ -94,41 +103,51 @@ export default {
       },
     };
   },
-  computed:{},
+  computed: {},
   methods: {
     // 时间戳转可视化时间
-    formatTime(basetime){
-      return globalFunction.formatTimeApi(basetime)
+    formatTime(basetime) {
+      return globalFunction.formatTimeApi(basetime);
     },
     // 初始化留言列表
-    async setMessageList(){
-      this.messageList = await globalFunction.getAllMessageApi()
+    async setData() {
+      const data = await globalFunction.getAllMessageApi(this.currentPage);
+      this.total = data[data.length - 1];
+      data.pop();
+      this.messageList = data;
     },
     // 留言行为
-    async addMessage(){
-      var code = await globalFunction.publishMessageApi(this.messageForm.content)
-      if(code === 200){
+    async addMessage() {
+      var code = await globalFunction.publishMessageApi(
+        this.messageForm.content
+      );
+      if (code === 200) {
         this.$message({
-          title: '评论',
-          message: '评论成功',
-          type: 'success'
+          title: "评论",
+          message: "评论成功",
+          type: "success",
         });
-        this.messageForm.content = ""
-        this.messageList = await globalFunction.getAllMessageApi()
-      }else{
+        this.messageForm.content = "";
+        this.setData()
+      } else {
         this.$message({
-          title: '评论',
-          message: '评论失败，与服务器交互出现异常',
-          type: 'warning'
+          title: "评论",
+          message: "评论失败，与服务器交互出现异常",
+          type: "warning",
         });
       }
-    }
+    },
+    // 分页变化
+    handlePageChange(currentPage) {
+      this.currentPage = currentPage;
+      this.setData();
+    },
   },
-  created() {}, 
-  mounted(){
-    this.userInfo = JSON.parse(localStorage.getItem("userInfo"))
-    this.setMessageList()
-  }
+  created() {},
+  mounted() {
+    this.userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    this.setData();
+  },
 };
 </script>
 
