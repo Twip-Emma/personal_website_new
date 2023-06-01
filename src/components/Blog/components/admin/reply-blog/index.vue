@@ -44,7 +44,7 @@
     </el-pagination>
 
     <el-dialog
-      title="编辑博客"
+      title="评论-博客评论管理"
       :visible.sync="dialogVisible"
       :close-on-press-escape="false"
     >

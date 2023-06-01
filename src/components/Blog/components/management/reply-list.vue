@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2023-05-24 21:48:13
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-06-01 14:21:54
+ * @LastEditTime: 2023-06-01 19:43:39
  * @FilePath: \personal_website\src\components\Blog\components\admin\reply-web\index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -42,7 +42,7 @@
       </el-table-column>
       <el-table-column prop="ctime" label="创建日期"></el-table-column>
       <el-table-column prop="mtime" label="编辑日期"></el-table-column>
-      <el-table-column label="操作">
+      <el-table-column label="操作" width="150px">
         <template slot-scope="scope">
           <el-button
             type="primary"

@@ -151,6 +151,7 @@ export default {
 
       this.userList.forEach((item) => {
         item.ctime = this.formatTime(item.ctime);
+        item.mtime = this.formatTime(item.mtime);
         if (item.isadmin === 1) {
           item.isadmin = "管理员";
         } else if (item.isadmin === 2) {

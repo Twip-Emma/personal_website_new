@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-19 11:27:15
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-31 14:00:34
+ * @LastEditTime: 2023-06-01 19:45:33
  * @Description: file content
  */
 import axios from 'axios'
@@ -17,7 +17,7 @@ export default {
     // 将时间戳转换成可视化时间（短的）
     formatTimeShortApi(baseTime) {
         let d = new Date(baseTime);
-        let batchTime = d.getFullYear() + '年' + this._zeroTimeFormat(d.getMonth() + 1) + '月' + this._zeroTimeFormat(d.getDate()) + '日 '
+        let batchTime = d.getFullYear() + '-' + this._zeroTimeFormat(d.getMonth() + 1) + '-' + this._zeroTimeFormat(d.getDate())
         return batchTime
     },
     formatTagsApi(tag) {

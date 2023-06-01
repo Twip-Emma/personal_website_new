@@ -68,7 +68,7 @@
     </el-pagination>
 
     <el-dialog
-      title="编辑博客"
+      title="编辑内容"
       :visible.sync="dialogVisible"
       :close-on-click-modal="false"
       :close-on-press-escape="false"

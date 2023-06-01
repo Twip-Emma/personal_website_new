@@ -8,7 +8,7 @@
 -->
 <template>
   <div class="item-view">
-    <div class="item-title"><p>评论-网站评论管理</p></div>
+    <!-- <div class="item-title"><p>评论-博客评论管理</p></div> -->
     <el-row>
       <el-col :span="12">
         <el-form label-width="100px">

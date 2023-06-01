@@ -3,9 +3,10 @@
     <h2>我的博客</h2>
     <el-table :data="blogList" style="width: 100%">
       <el-table-column prop="title" label="标题"></el-table-column>
+      <el-table-column prop="views" label="浏览量"></el-table-column>
       <el-table-column prop="ctime" label="创建日期"></el-table-column>
       <el-table-column prop="mtime" label="编辑日期"></el-table-column>
-      <el-table-column label="操作">
+      <el-table-column label="操作" width="230px">
         <template slot-scope="scope">
           <el-button type="primary" size="small" @click="editBlog(scope.row)"
             >编辑</el-button
