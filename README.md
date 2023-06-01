@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2022-03-07 22:38:49
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-06-01 20:04:07
+ * @LastEditTime: 2023-06-01 20:12:54
  * @FilePath: \personal_website\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -59,4 +59,4 @@
 - 【已解决】#BOKE-45# 主界面-管理界面-管理个人的博客评论
 ===========================================================打包节点20230601A
 - 【已解决】#BOKE-46# 主界面-管理界面-博客列表边上的三个按钮不应该换行，进入评论管理的两个按钮也不应该换行
-- #BOKE-47# 主界面-个人信息-头像列表修改，提供QQ号输入直接引用QQ头像
+- 【已解决】#BOKE-47# 主界面-个人信息-头像列表修改，提供QQ号输入直接引用QQ头像

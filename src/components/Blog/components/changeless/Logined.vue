@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-30 20:42:40
+ * @LastEditTime: 2023-06-01 20:10:54
  * @Description: file content
 -->
 <template>
@@ -60,14 +60,24 @@
       </div>
     </div>
 
-    <el-dialog title="修改个人信息" :visible.sync="dialogVisible" :modal-append-to-body=false width="30%" class="changeUserInfo">
+    <el-dialog
+      title="修改个人信息"
+      :visible.sync="dialogVisible"
+      :modal-append-to-body="false"
+      width="30%"
+      class="changeUserInfo"
+    >
       <el-form ref="form" :model="form" label-width="80px">
         <el-form-item label="新的昵称">
           <el-input v-model="newNickname"></el-input>
         </el-form-item>
+        <el-form-item label="QQ号">
+          <el-input v-model="qqNumber"></el-input>
+        </el-form-item>
+        <div>通过输入QQ号来获取这个QQ对应的头像</div>
       </el-form>
 
-      <div>选择新的头像：{{ avatar.name }}</div>
+      <!-- <div>选择新的头像：{{ avatar.name }}</div>
       <div class="a">
         <el-image
           v-for="avatar in avatarList"
@@ -78,7 +88,7 @@
           @click="choiceAvatar(avatar)"
         >
         </el-image>
-      </div>
+      </div> -->
 
       <span slot="footer" class="dialog-footer">
         <el-button @click="updateUserInfo('no')">取 消</el-button>
@@ -96,6 +106,7 @@ export default {
   data() {
     return {
       newNickname: "",
+      qqNumber:"",
       avatar: {
         name: "",
         url: "",
@@ -113,9 +124,9 @@ export default {
     };
   },
   watch: {
-    '$store.state.userData.logined'() {
+    "$store.state.userData.logined"() {
       this.$forceUpdate();
-    }
+    },
   },
   computed: {
     // 加载是否是管理员
@@ -124,18 +135,18 @@ export default {
     },
     // 加载登录状态
     logined() {
-      if (this.$store.state.userData.logined){
+      if (this.$store.state.userData.logined) {
         return true;
-      }else {
+      } else {
         return Number(localStorage.getItem("logined")) === 1 ? true : false;
       }
     },
     // 加载用户信息
     userInfo() {
       if (localStorage.getItem("userInfo")) {
-        return JSON.parse(localStorage.getItem("userInfo"))
+        return JSON.parse(localStorage.getItem("userInfo"));
       } else {
-        this.$store.state.userData.logined === false
+        this.$store.state.userData.logined === false;
         return this.userInfoEmt;
       }
     },
@@ -152,10 +163,10 @@ export default {
     },
     // 用户登出
     logout() {
-      this.logined2 = false
+      this.logined2 = false;
       this.componentKey = Math.random();
-      localStorage.clear(); 
-      this.$store.state.userData.logined = false
+      localStorage.clear();
+      this.$store.state.userData.logined = false;
       this.$forceUpdate();
       this.$message({
         title: "退出",
@@ -180,10 +191,8 @@ export default {
       if (i === "no") {
         this.dialogVisible = false;
       } else {
-        await userApi.changeUserInfoApi(
-          this.newNickname,
-          this.avatar.url
-        );
+        let avaterUrl = "http://q1.qlogo.cn/g?b=qq&nk=" + this.qqNumber + "&s=640"
+        await userApi.changeUserInfoApi(this.newNickname, avaterUrl);
         this.$message({
           title: "修改",
           message: "修改个人信息成功",
@@ -192,16 +201,16 @@ export default {
         this.dialogVisible = false;
       }
     },
-    async setAdmin(){
-      var userData = await userApi.getUserByToken()
-      this.$store.state.globalData.administrator = userData.isadmin
-    }
+    async setAdmin() {
+      var userData = await userApi.getUserByToken();
+      this.$store.state.globalData.administrator = userData.isadmin;
+    },
   },
   mounted() {
-    if (localStorage.getItem("token")){
-      this.setAdmin()
+    if (localStorage.getItem("token")) {
+      this.setAdmin();
     }
-  }
+  },
 };
 </script>
 
