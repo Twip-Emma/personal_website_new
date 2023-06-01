@@ -10,6 +10,9 @@
           <el-button type="primary" size="small" @click="editBlog(scope.row)"
             >编辑</el-button
           >
+          <el-button type="primary" size="small" @click="editReply(scope.row)"
+            >评论</el-button
+          >
           <el-button
             type="danger"
             size="small"
@@ -27,12 +30,19 @@
     >
       <BlogEdit :blogForm="initBlogData" @call-index="setData" />
     </el-dialog>
+    <el-dialog
+      title="评论管理"
+      :visible.sync="dialogVisible2"
+      :close-on-press-escape="false"
+    >
+      <ReplyList :blogId="initBlogData.id" @call-index="setData" />
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import BlogEdit from "./blog-edit.vue";
-
+import ReplyList from "./reply-list.vue";
 import blogApis from "@/apis/blogInfo";
 import globalFunction from "@/apis/globalFunction";
 export default {
@@ -46,18 +56,23 @@ export default {
         description: "",
       },
       dialogVisible: false,
+      dialogVisible2: false,
     };
   },
-  components: { BlogEdit },
+  components: { BlogEdit, ReplyList },
   methods: {
     // 编辑博客的逻辑
     editBlog(blog) {
-      console.log(blog);
       this.dialogVisible = true;
       this.initBlogData.id = blog.id;
       this.initBlogData.title = blog.title;
       this.initBlogData.flag = blog.flag;
       this.initBlogData.description = blog.description;
+    },
+    // 管理博客评论列表
+    editReply(blog){
+      this.dialogVisible2 = true;
+      this.initBlogData.id = blog.id;
     },
     manageComments(blog) {
       this.$confirm(`此操作将删除这条内容, 是否继续?`, "提示", {
@@ -85,6 +100,7 @@ export default {
     },
     async setData() {
       this.dialogVisible = false;
+      this.dialogVisible2 = false;
       this.blogList = await blogApis.queryBlogListByUser();
       this.blogList.forEach((item) => {
         item.ctime = this.formatTime(item.ctime);

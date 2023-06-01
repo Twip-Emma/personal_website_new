@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-31 14:43:36
+ * @LastEditTime: 2023-06-01 14:15:56
  * @Description: file content
  */
 import axios from 'axios'
@@ -119,6 +119,7 @@ function _setUserData(value) {
     localStorage.setItem("loginStatus", "ok")
     localStorage.setItem("logined", 1)
     localStorage.setItem("loginedFlag", 1)
+    localStorage.setItem("userId", value.id)
     localStorage.setItem("userInfo", JSON.stringify({
         nickname: value.nickname,
         avatar: value.avatar,
