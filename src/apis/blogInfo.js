@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-09 10:26:35
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-31 14:59:13
+ * @LastEditTime: 2023-06-01 13:26:44
  * @Description: file content
  */
 import axios from 'axios'
@@ -46,11 +46,11 @@ export default {
         return _data
     },
     // 获取博客评论
-    async getBlogReplyById(blogId) {
+    async getBlogReplyById(blogId, page = 1, text = "") {
         console.log("请求了评论列表")
         var _data = undefined
         var id = blogId || sessionStorage.getItem("blogId")
-        await axios.get("/higanbana/blog/blog/selectblogreplybyid?blogid=" + id).then(
+        await axios.get("/higanbana/blog/blog/selectblogreplybyid?blogid=" + id + "&page="  + page + (text ? "&text=" + text : "")).then(
             response => {
                 _data = response.data
             }
@@ -86,6 +86,21 @@ export default {
     // 删除博客（用户）
     async deleteBlogByUser(id) {
         await axios.get("/higanbana/blog/blog/deleteBlogByUser?id=" + id)
+    },
+    // 删除博客（管理员）
+    async deleteBlogReplyByAdmin(id) {
+        await axios.get("/higanbana/blog/blog/deleteBlogReplyByAdmin?id=" + id)
+    },
+    // 删除博客（用户）
+    async deleteBlogReplyByUser(id) {
+        await axios.get("/higanbana/blog/blog/deleteBlogReplyByUser?id=" + id)
+    },    
+    // 修改博客评论（管理员、用户通用接口）
+    async updateBlogReply(blog) {
+        console.log("发表了评论")
+        var _data = 200
+        await axios.post("/higanbana/blog/blog/updateBlogReply", blog)
+        return _data
     },
     // 获取博客数量数据（饼图用）
     async getBlogCountData() {

@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 09:40:09
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-30 16:28:04
+ * @LastEditTime: 2023-06-01 13:58:06
  * @Description: file content
 -->
 <template>
@@ -37,7 +37,7 @@
           {{ blog.flag }}
         </el-tag>
       </h2>
-      <mavon-editor v-html="blog.content" boxShadowStyle="" class="content"></mavon-editor>
+      <mavon-editor v-html="blog.content" :codeStyle="codeStyle" class="content"></mavon-editor>
       <br>
       <div class="tags">
         <div class="tag-item" v-for="tag in blog.tags" :key="tag.id">
@@ -84,6 +84,7 @@ export default {
   computed:{},
   data() {
     return {
+      codeStyle:"monokai-sublime",
       codeData:"",
       administrator: false,
       userInfo: [],

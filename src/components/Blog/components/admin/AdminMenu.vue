@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 16:42:13
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-31 12:46:31
+ * @LastEditTime: 2023-06-01 10:22:50
  * @Description: file content
 -->
 <template>
@@ -45,7 +45,7 @@
             <el-menu-item-group>
               <template slot="title">普通用户管理</template>
               <el-menu-item index="1-1" @click="adminJumpTo('AdminUserFrom')"
-                >信息管理</el-menu-item
+                >用户管理</el-menu-item
               >
               <el-menu-item v-if="isSuper" index="1-2" @click="adminJumpTo('admin-user-permission')"
                 >权限管理</el-menu-item

@@ -46,16 +46,15 @@
     <el-dialog
       title="编辑博客"
       :visible.sync="dialogVisible"
-      :close-on-click-modal="false"
       :close-on-press-escape="false"
     >
-      <BlogEdit :blogForm="initBlogData" @call-index="setData" />
+      <ReplyList :blogId="initBlogData.id" @call-index="setData" />
     </el-dialog>
   </div>
 </template>
 
 <script>
-import BlogEdit from "./blog-edit.vue";
+import ReplyList from "./reply-list.vue";
 import blogApis from "@/apis/blogInfo";
 import globalFunction from "@/apis/globalFunction";
 
@@ -65,9 +64,6 @@ export default {
       blogList: [],
       initBlogData: {
         id: "",
-        title: "",
-        flag: "",
-        description: "",
       },
       dialogVisible: false,
       searchText: "", // 添加的搜索框输入内容
@@ -76,20 +72,12 @@ export default {
       total: 0, // 总数据量
     };
   },
-  components: { BlogEdit },
+  components: { ReplyList },
   methods: {
     // 编辑博客的逻辑
     editBlog(blog) {
-      console.log(blog);
       this.dialogVisible = true;
       this.initBlogData.id = blog.id;
-      this.initBlogData.title = blog.title;
-      this.initBlogData.flag = blog.flag;
-      this.initBlogData.description = blog.description;
-    },
-    manageComments(blog) {
-      // 处理评论管理的逻辑
-      console.log(blog);
     },
     async setData() {
       this.dialogVisible = false;
@@ -97,12 +85,9 @@ export default {
         this.currentPage,
         this.searchText
       );
-      console.log(data, "data");
       this.total = data[data.length - 1];
       data.pop();
       this.blogList = data;
-      console.log(this.blogList, "blogList");
-
       this.blogList.forEach((item) => {
         item.ctime = this.formatTime(item.ctime);
         item.mtime = this.formatTime(item.mtime);

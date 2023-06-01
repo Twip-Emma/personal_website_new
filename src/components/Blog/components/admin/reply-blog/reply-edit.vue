@@ -1,24 +1,11 @@
 <template>
   <div>
-    <el-form ref="blogForm" :model="blogForm" label-width="80px">
-      <el-form-item label="标题">
-        <el-input v-model="blogForm.title" placeholder="请输入标题"></el-input>
-      </el-form-item>
-
-      <el-form-item label="博客类型">
-        <el-select v-model="blogForm.flag" placeholder="请选择博客类型">
-          <el-option label="项目开发" value="项目开发"></el-option>
-          <el-option label="知识分享" value="知识分享"></el-option>
-          <el-option label="日常生活" value="日常生活"></el-option>
-          <el-option label="学习笔记" value="学习笔记"></el-option>
-        </el-select>
-      </el-form-item>
-
-      <el-form-item label="博客描述">
+    <el-form ref="replyForm" :model="replyForm" label-width="80px">
+      <el-form-item label="回复内容">
         <el-input
           type="textarea"
-          v-model="blogForm.description"
-          placeholder="请输入博客描述"
+          v-model="replyForm.content"
+          placeholder="请输入回复内容"
         ></el-input>
       </el-form-item>
     </el-form>
@@ -34,7 +21,7 @@
 import blogApis from "@/apis/blogInfo";
 export default {
   props: {
-    blogForm: {
+    replyForm: {
       type: Object,
       default: () => {},
     },
@@ -46,16 +33,16 @@ export default {
   },
   methods: {
     showDialog() {
-      // 在此处可以初始化表单数据，如从后端获取博客信息并赋值给blogForm
+      // 在此处可以初始化表单数据，如从后端获取博客信息并赋值给replyForm
       this.dialogVisible = true;
     },
     resetForm() {
-      this.$refs.blogForm.resetFields();
+      this.$refs.replyForm.resetFields();
     },
     async saveForm() {
       // 在此处可以提交表单数据，如将博客信息发送给后端进行保存
       this.dialogVisible = false;
-      await blogApis.updateBlogByUser(this.blogForm);
+      await blogApis.updateBlogReply(this.replyForm);
       this.$nextTick(() => {
         this.$emit("call-index");
       });
