@@ -153,19 +153,19 @@ body {
 }
 
 .bg01 {
-  background: url("http://cdngoapl.twip.top/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90/%E4%B8%83%E7%94%BB%E4%B8%80%E5%8F%AA%E5%A6%96-1920X1080.png");
+    background-image: url("https://cdngoapl.twip.top/image/lize.png");
 }
 
 .bg02 {
-  background: url("http://cdngoapl.twip.top/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90/Emma%E7%AB%8B%E7%BB%98-1920X1080.png");
+    background-image: url("https://cdngoapl.twip.top/image/san.png");
 }
 
 .bg03 {
-  background: url("http://cdngoapl.twip.top/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90/%E6%B3%89-%E8%BF%AD%E4%BB%A370.png");
+    background-image: url("https://cdngoapl.twip.top/image/shu.png");
 }
 
 .bg04 {
-  background: url("http://cdngoapl.twip.top/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90/Twip%E7%AB%8B%E7%BB%98-1920X1080.png");
+    background-image: url("https://cdngoapl.twip.top/image/yaguo.png");
 }
 
 .warpBox_tochMoveing {
