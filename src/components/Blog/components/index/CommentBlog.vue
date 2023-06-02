@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 12:14:06
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-06-01 14:59:51
+ * @LastEditTime: 2023-06-01 20:31:08
  * @Description: file content
 -->
 <template>
@@ -130,9 +130,9 @@ export default {
     },
     // 发表博客
     async publishContent() {
-      this.$refs.messageForm.validate((valid) => {
+      this.$refs.messageForm.validate(async (valid) => {
         if (valid) {
-          blogApis.publishContentApi(
+          await blogApis.publishContentApi(
             this.messageForm.content,
             this.$store.state.globalData.blogId
           );
