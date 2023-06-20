@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-06-01 20:10:54
+ * @LastEditTime: 2023-06-20 11:27:01
  * @Description: file content
 -->
 <template>
@@ -24,9 +24,9 @@
       >
     </div>
     <div v-if="logined" class="loginInfo">
-      <el-avatar :src="userInfo.avatar"></el-avatar>
+      <el-avatar :src="userAvatar"></el-avatar>
       <div class="user-option">
-        <h3 class="web-font nickname">{{ userInfo.nickname }}</h3>
+        <h3 class="web-font nickname">{{ userNickname }}</h3>
         <p
           v-if="administrator"
           class="logout"
@@ -75,6 +75,19 @@
           <el-input v-model="qqNumber"></el-input>
         </el-form-item>
         <div>通过输入QQ号来获取这个QQ对应的头像</div>
+        <el-form-item label="头像">
+          <el-upload
+            class="avatar-uploader"
+            :action="uploadUrl"
+            :show-file-list="false"
+            :before-upload="handleBeforeUpload"
+          >
+            <!-- 预览图片区域 -->
+            <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+            <!-- 选择图片按钮 -->
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
+        </el-form-item>
       </el-form>
 
       <!-- <div>选择新的头像：{{ avatar.name }}</div>
@@ -102,11 +115,17 @@
 
 <script>
 import userApi from "@/apis/userInfo";
+import fileApi from "@/apis/file";
+// import gApi from "@/apis/globalFunction"
+
 export default {
   data() {
     return {
+      imageUrl: "", // 图片预览地址
+      // uploadUrl: "/higanbana/file/upload/image", // 图片上传地址
+      uploadUrl: "#", // 图片上传地址
       newNickname: "",
-      qqNumber:"",
+      qqNumber: "",
       avatar: {
         name: "",
         url: "",
@@ -141,17 +160,78 @@ export default {
         return Number(localStorage.getItem("logined")) === 1 ? true : false;
       }
     },
-    // 加载用户信息
-    userInfo() {
-      if (localStorage.getItem("userInfo")) {
-        return JSON.parse(localStorage.getItem("userInfo"));
-      } else {
-        this.$store.state.userData.logined === false;
-        return this.userInfoEmt;
+    // 实时变化的用户信息（new）
+    userAvatar() {
+      if (this.$store.state.globalData.userAvatar === "") {
+        if (localStorage.getItem("userInfo")) {
+          let data = JSON.parse(localStorage.getItem("userInfo"));
+          return data.avatar;
+        } else {
+          this.$store.state.userData.logined === false;
+          return this.userInfoEmt.avatar;
+        }
       }
+      return this.$store.state.globalData.userAvatar;
+    },
+    userNickname() {
+      if (this.$store.state.globalData.userNickname === "") {
+        if (localStorage.getItem("userInfo")) {
+          let data = JSON.parse(localStorage.getItem("userInfo"));
+          return data.nickname;
+        } else {
+          this.$store.state.userData.logined === false;
+          return this.userInfoEmt.nickname;
+        }
+      }
+      return this.$store.state.globalData.userNickname;
     },
   },
   methods: {
+    handleBeforeUpload(file) {
+      // 使用FileReader预览图片
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.imageUrl = e.target.result;
+      };
+      reader.readAsDataURL(file);
+
+      // 取消上传
+      return false;
+    },
+    async submitForm() {
+      // 在此处编写表单提交逻辑，包括上传图片的相关处理
+      // this.form 包含表单数据，this.imageUrl 包含选择的图片的预览地址
+      // 您可以在此处根据需要进行图片上传的处理
+      // 示例代码：
+      if (this.imageUrl) {
+        // 将图片上传到服务器
+        // 使用axios或其他HTTP库发送POST请求到uploadUrl，并将文件作为表单数据发送
+        // 例如：
+        const formData = new FormData();
+        formData.append(
+          "file",
+          this.dataURLtoFile(this.imageUrl, "avatar.png")
+        );
+
+        console.log("上传成功后的处理逻辑", formData);
+        const res = await fileApi.uploadAvatar(formData);
+        console.log(res, "await fileApi.uploadAvatar(formData);");
+        this.$store.state.globalData.userAvatar = res.downloadUrl
+      }
+
+      // 其他表单数据提交逻辑...
+    },
+    dataURLtoFile(dataURL, filename) {
+      const arr = dataURL.split(",");
+      const mime = arr[0].match(/:(.*?);/)[1];
+      const bstr = atob(arr[1]);
+      let n = bstr.length;
+      const u8arr = new Uint8Array(n);
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      return new File([u8arr], filename, { type: mime });
+    },
     pageSwitch(target) {
       this.$router.push({
         name: target,
@@ -191,20 +271,29 @@ export default {
       if (i === "no") {
         this.dialogVisible = false;
       } else {
-        let avaterUrl = "http://q1.qlogo.cn/g?b=qq&nk=" + this.qqNumber + "&s=640"
-        await userApi.changeUserInfoApi(this.newNickname, avaterUrl);
+        await userApi.changeUserInfoApi(this.newNickname);
+        await userApi.setUserInfo();
+        this.submitForm(); // 上传头像
         this.$message({
           title: "修改",
           message: "修改个人信息成功",
           type: "success",
         });
         this.dialogVisible = false;
+        var userData = await userApi.getUserByToken();
+        // 立刻刷新就能读数据
+        console.log(userData, "立刻刷新就能读数据");
+        this.$store.state.globalData.userAvatar = userData.avatar;
+        this.$store.state.globalData.userNickname = userData.nickname;
       }
     },
     async setAdmin() {
       var userData = await userApi.getUserByToken();
       this.$store.state.globalData.administrator = userData.isadmin;
+      await userApi.setUserInfo();
     },
+    // 加载用户信息
+    userInfo() {},
   },
   mounted() {
     if (localStorage.getItem("token")) {
@@ -299,6 +388,31 @@ export default {
 .el-menu-hidden .el-menu-item {
   border-bottom: 1px solid #ccc;
 }
+
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
+
 @media screen and (max-width: 1000px) {
   .search_input {
     visibility: hidden;

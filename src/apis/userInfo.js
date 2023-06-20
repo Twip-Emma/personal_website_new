@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-06-01 14:15:56
+ * @LastEditTime: 2023-06-20 11:13:57
  * @Description: file content
  */
 import axios from 'axios'
@@ -11,6 +11,15 @@ import axios from 'axios'
 export default {
     testShow() {
         console.log("进入了自定义的axios")
+    },
+    // 获取用户信息
+    async setUserInfo() {
+        await axios.get("/higanbana/blog/user/getUserInfo").then(
+            response => {
+                _setUserData(response.data)
+                console.log(response.data, "_setUserData")
+            }
+        )
     },
     // 用户登录
     async userLoginAction(value) {
@@ -45,17 +54,11 @@ export default {
         return _data
     },
     // 修改用户信息(名字与头像)
-    async changeUserInfoApi(name, url) {
+    async changeUserInfoApi(name) {
         var _data = undefined
         await axios.post("/higanbana/blog/user/updateuser", {
-            "nickname": name,
-            "avatar": url
-        }).then(
-            response => {
-                _data = response.data
-                _setUserData(response.data)
-            }
-        )
+            "nickname": name
+        })
         return _data
     },
     // 获取所有用户信息
@@ -105,7 +108,7 @@ export default {
     // 根据当前用户token获取用户实体
     async getUserByToken() {
         var _data = undefined
-        await axios.get("/higanbana/blog/user/getbytoken").then(
+        await axios.get("/higanbana/blog/user/getUserInfo").then(
             response => {
                 _data = response.data
             }
