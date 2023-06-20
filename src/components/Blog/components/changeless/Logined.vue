@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-06-20 11:27:01
+ * @LastEditTime: 2023-06-20 13:12:51
  * @Description: file content
 -->
 <template>
@@ -71,10 +71,10 @@
         <el-form-item label="新的昵称">
           <el-input v-model="newNickname"></el-input>
         </el-form-item>
-        <el-form-item label="QQ号">
+        <!-- <el-form-item label="QQ号">
           <el-input v-model="qqNumber"></el-input>
-        </el-form-item>
-        <div>通过输入QQ号来获取这个QQ对应的头像</div>
+        </el-form-item> -->
+        <!-- <div>通过输入QQ号来获取这个QQ对应的头像</div> -->
         <el-form-item label="头像">
           <el-upload
             class="avatar-uploader"
@@ -212,10 +212,7 @@ export default {
           "file",
           this.dataURLtoFile(this.imageUrl, "avatar.png")
         );
-
-        console.log("上传成功后的处理逻辑", formData);
         const res = await fileApi.uploadAvatar(formData);
-        console.log(res, "await fileApi.uploadAvatar(formData);");
         this.$store.state.globalData.userAvatar = res.downloadUrl
       }
 
@@ -282,7 +279,6 @@ export default {
         this.dialogVisible = false;
         var userData = await userApi.getUserByToken();
         // 立刻刷新就能读数据
-        console.log(userData, "立刻刷新就能读数据");
         this.$store.state.globalData.userAvatar = userData.avatar;
         this.$store.state.globalData.userNickname = userData.nickname;
       }

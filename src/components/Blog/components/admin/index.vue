@@ -17,7 +17,6 @@ import AdminMenu from './AdminMenu.vue'
 export default {
   components: { AdminMenu },
   mounted(){
-    console.log(document.querySelector('.b').offsetHeight,'1111s')
     this.$router.push({
       name: "AdminUserFrom",
       query: {},

@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-06-20 11:13:57
+ * @LastEditTime: 2023-06-20 13:14:37
  * @Description: file content
  */
 import axios from 'axios'
@@ -17,7 +17,6 @@ export default {
         await axios.get("/higanbana/blog/user/getUserInfo").then(
             response => {
                 _setUserData(response.data)
-                console.log(response.data, "_setUserData")
             }
         )
     },

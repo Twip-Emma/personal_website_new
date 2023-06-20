@@ -121,7 +121,6 @@ export default {
     },
     manageComments(blog) {
       // 处理评论管理的逻辑
-      console.log(blog);
     },
     async setData() {
       this.dialogVisible = false;
@@ -129,11 +128,9 @@ export default {
         this.currentPage,
         this.searchText
       );
-      console.log(data, "data");
       this.total = data[data.length - 1];
       data.pop();
       this.userList = data;
-      console.log(this.userList, "userList");
 
       this.userList.forEach((item) => {
         item.ctime = this.formatTime(item.ctime);

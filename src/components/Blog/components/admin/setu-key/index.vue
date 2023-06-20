@@ -48,7 +48,6 @@ export default {
     async onSubmit(x) {
       if (x === "yes") {
         var data = await KeyApis.getNewKeyApi(this.form.time);
-        console.log(data);
         this.$message({
           title: "管理员",
           message: "获取成功，已自动显示，查收前不要刷新本页面",

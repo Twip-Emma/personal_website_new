@@ -51,7 +51,6 @@ export default {
     },
     async setInitData() {
       this.cardList = await MemeApis.query();
-      console.log(this.cardList, "this.cardList")
       this.randomCardList = Array.from(this.cardList); // 深拷贝
       this.randomCardList.sort(() => {
         return 0.5 - Math.random();

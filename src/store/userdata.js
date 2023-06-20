@@ -8,23 +8,22 @@
 export default {
     // namespaced:true,
     actions: {
-        test(){
+        test() {
             console.log("在vuex里面，成功了")
         },
         // 修改登陆状态
-        changeLogined(context, value){
+        changeLogined(context, value) {
             context.commit("_setLogined", value)
         }
     },
     mutations: {
-        _setLogined(state, value){
+        _setLogined(state, value) {
             state.logined = value
-            console.log(value,"changeLogined")
         }
     },
     // 用户信息
     state: {
-        logined:false
+        logined: false
     },
     getters: {}
 }

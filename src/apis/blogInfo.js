@@ -50,7 +50,7 @@ export default {
         console.log("请求了评论列表")
         var _data = undefined
         var id = blogId || sessionStorage.getItem("blogId")
-        await axios.get("/higanbana/blog/blog/selectblogreplybyid?blogid=" + id + "&page="  + page + (text ? "&text=" + text : "")).then(
+        await axios.get("/higanbana/blog/blog/selectblogreplybyid?blogid=" + id + "&page=" + page + (text ? "&text=" + text : "")).then(
             response => {
                 _data = response.data
             }
@@ -70,7 +70,6 @@ export default {
     },
     // 根据ID获取博客
     async getBlogInfoByIdApi(id) {
-        console.log(id, "blogid")
         const _id = id || sessionStorage.getItem("blogId");
         const { data } = await axios.get(`/higanbana/blog/blog/getbloginfobyid?blogid=${_id}`);
         return data;
@@ -94,7 +93,7 @@ export default {
     // 删除博客（用户）
     async deleteBlogReplyByUser(id) {
         await axios.get("/higanbana/blog/blog/deleteBlogReplyByUser?id=" + id)
-    },    
+    },
     // 修改博客评论（管理员、用户通用接口）
     async updateBlogReply(blog) {
         console.log("发表了评论")

@@ -86,7 +86,6 @@ export default {
   methods: {
     // 编辑博客的逻辑
     editBlog(blog) {
-      console.log(blog);
       this.dialogVisible = true;
       this.initBlogData.id = blog.id;
       this.initBlogData.title = blog.title;
@@ -123,11 +122,9 @@ export default {
         this.currentPage,
         this.searchText
       );
-      console.log(data, "data");
       this.total = data[data.length - 1];
       data.pop();
       this.blogList = data;
-      console.log(this.blogList, "blogList");
 
       this.blogList.forEach((item) => {
         item.ctime = this.formatTime(item.ctime);

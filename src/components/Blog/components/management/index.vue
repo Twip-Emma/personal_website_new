@@ -50,7 +50,6 @@ export default {
       const pieData = await blogApis.getBlogCountData()
       this.blogCount = pieData.total_blogs
       this.totalViews = pieData.total_views
-      console.log(pieData)
 
       const data = [
         { name: "日常生活", value: pieData.daily_count },

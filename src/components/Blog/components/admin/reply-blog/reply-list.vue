@@ -113,14 +113,12 @@ export default {
   methods: {
     // 编辑博客的逻辑
     editBlog(blog) {
-      console.log(blog);
       this.dialogVisible = true;
       this.initReplyData.id = blog.id;
       this.initReplyData.content = blog.content;
     },
     // 处理评论删除的逻辑
     deleteMessage(reply) {
-        console.log(reply.id, "reply.id")
       this.$confirm(`此操作将删除这条内容, 是否继续?`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",

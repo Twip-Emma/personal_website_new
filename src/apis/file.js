@@ -12,7 +12,6 @@ export default {
     // 上传头像
     async uploadAvatar(data) {
         var _data = undefined
-        console.log("uploadAvatar")
         const token = localStorage.getItem('token');
         await axios.post("http://localhost:10010/higanbana/file/upload/image", data, {
             headers: {
