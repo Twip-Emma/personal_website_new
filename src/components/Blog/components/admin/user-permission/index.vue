@@ -119,9 +119,6 @@ export default {
           return;
         });
     },
-    manageComments(blog) {
-      // 处理评论管理的逻辑
-    },
     async setData() {
       this.dialogVisible = false;
       const data = await userApis.getAllUserApi(
