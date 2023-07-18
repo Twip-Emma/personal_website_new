@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-06-20 13:12:51
+ * @LastEditTime: 2023-07-18 15:02:40
  * @Description: file content
 -->
 <template>
@@ -213,7 +213,12 @@ export default {
           this.dataURLtoFile(this.imageUrl, "avatar.png")
         );
         const res = await fileApi.uploadAvatar(formData);
-        this.$store.state.globalData.userAvatar = res.downloadUrl
+        if (res.code === 200) {
+          this.$store.state.globalData.userAvatar = res.downloadUrl;
+          return true
+        } else {
+          return res.msg
+        }
       }
 
       // 其他表单数据提交逻辑...
@@ -270,7 +275,15 @@ export default {
       } else {
         await userApi.changeUserInfoApi(this.newNickname);
         await userApi.setUserInfo();
-        this.submitForm(); // 上传头像
+        let resp = await this.submitForm(); // 上传头像
+        if (resp !== true) {
+          this.$message({
+            title: "修改",
+            message: resp,
+            type: "error",
+          });
+          return 
+        }
         this.$message({
           title: "修改",
           message: "修改个人信息成功",

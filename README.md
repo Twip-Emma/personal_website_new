@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2022-03-07 22:38:49
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-06-20 13:56:19
+ * @LastEditTime: 2023-07-18 16:58:59
  * @FilePath: \personal_website\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -69,3 +69,6 @@
 - 【已解决】#BOKE-53# 主界面-个人信息-修改信息后不刷新页面也能更新视图
 - 【已解决】#BOKE-54# 主界面-个人信息-上传头像需要加入限制
 ===========================================================打包节点20230620A
+- 【已解决】#BOKE-55# 主界面-个人信息-头像上传优化
+- 【已解决】#BOKE-56# 主界面-编写博客-添加博客插图
+- #BOKE-57# 管理系统-定时任务-对象存储中定时清理没有引用的文件
