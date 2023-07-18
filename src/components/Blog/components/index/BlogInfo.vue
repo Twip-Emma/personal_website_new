@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 09:40:09
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-06-01 13:58:06
+ * @LastEditTime: 2023-07-18 17:03:47
  * @Description: file content
 -->
 <template>
@@ -25,7 +25,7 @@
           <span>{{ blog.views }}</span>
         </div>
       </div>
-      <!-- <el-image class="blog-pic" :src="blog.firstPicture"></el-image> -->
+      <el-image class="blog-pic" :src="blog.firstPicture"></el-image>
       <hr />
       <h2 class="blog-title header">
         {{ blog.title }}
