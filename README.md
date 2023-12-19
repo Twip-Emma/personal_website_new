@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2022-03-07 22:38:49
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-07-18 17:04:46
+ * @LastEditTime: 2023-12-19 15:29:53
  * @FilePath: \personal_website\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -74,3 +74,4 @@
 - 【已解决】#BOKE-57# 主界面-博客内容-插图展示
 ===========================================================打包节点20230718A
 - #BOKE-58# 管理系统-定时任务-对象存储中定时清理没有引用的文件
+- 【已解决】#BOKE-59# 主界面-个人信息-头像上传不选择头像时报错问题

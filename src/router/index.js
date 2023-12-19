@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:42:56
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-31 12:46:09
+ * @LastEditTime: 2023-12-19 15:05:27
  * @Description: file content
  */
 import Vue from 'vue'
@@ -31,6 +31,7 @@ import Register from '@/components/Blog/components/login/Register'
 import BlogEdit from '@/components/Blog/components/blogedit/index.vue'
 import Meme from '@/components/Blog/components/meme/index.vue'
 import Management from '@/components/Blog/components/management/index.vue'
+import Market from '@/components/Blog/components/market/index.vue'
 
 // 管理员相关组件
 import Admin from '@/components/Blog/views/Admin'
@@ -41,14 +42,13 @@ import AdminUserPermission from '@/components/Blog/components/admin/user-permiss
 import AdminReplyBlog from '@/components/Blog/components/admin/reply-blog/index.vue'
 import AdminReplyWeb from '@/components/Blog/components/admin/reply-web/index.vue'
 
-const routes = [
-    {
+const routes = [{
         name: "Start",
         path: '/',
         component: Main,
     },
     {
-        name:"HomePage",
+        name: "HomePage",
         path: '/home',
         components: {
             header: NavBar,
@@ -57,7 +57,7 @@ const routes = [
         }
     },
     {
-        name:"Essay",
+        name: "Essay",
         path: '/essay',
         components: {
             header: NavBar,
@@ -66,7 +66,7 @@ const routes = [
         }
     },
     {
-        name:"Message",
+        name: "Message",
         path: '/message',
         components: {
             header: NavBar,
@@ -75,7 +75,7 @@ const routes = [
         }
     },
     {
-        name:"Project",
+        name: "Project",
         path: '/project',
         components: {
             header: NavBar,
@@ -84,8 +84,8 @@ const routes = [
         }
     },
     {
-        name:"About",
-        path:"/about",
+        name: "About",
+        path: "/about",
         components: {
             header: NavBar,
             other: About,
@@ -93,8 +93,8 @@ const routes = [
         }
     },
     {
-        name:"Login",
-        path:"/login",
+        name: "Login",
+        path: "/login",
         components: {
             header: NavBar,
             other: Login,
@@ -102,8 +102,8 @@ const routes = [
         }
     },
     {
-        name:"Register",
-        path:"/register",
+        name: "Register",
+        path: "/register",
         components: {
             header: NavBar,
             other: Register,
@@ -111,8 +111,8 @@ const routes = [
         }
     },
     {
-        name:"BlogEdit",
-        path:"/blogEdit",
+        name: "BlogEdit",
+        path: "/blogEdit",
         components: {
             header: NavBar,
             other: BlogEdit,
@@ -120,8 +120,8 @@ const routes = [
         }
     },
     {
-        name:"Management",
-        path:"/management",
+        name: "Management",
+        path: "/management",
         components: {
             header: NavBar,
             other: Management,
@@ -129,7 +129,7 @@ const routes = [
         }
     },
     {
-        name:"Meme",
+        name: "Meme",
         path: '/meme',
         components: {
             header: NavBar,
@@ -137,45 +137,53 @@ const routes = [
             footer: Footer
         }
     },
+    {
+        name: "Market",
+        path: '/market',
+        components: {
+            header: NavBar,
+            other: Market,
+            footer: Footer
+        }
+    },
     //以下是管理员面板
     {
-        name:"Admin",
-        path:"/admin",
+        name: "Admin",
+        path: "/admin",
         components: {
             header: NavBar,
             other: Admin,
             footer: Footer
         },
-        children:[
-            {
-                name:'AdminUserFrom',
-                path:"userForm",
-                component:UserFrom
+        children: [{
+                name: 'AdminUserFrom',
+                path: "userForm",
+                component: UserFrom
             },
             {
-                name:'admin-blog-info',
-                path:"blog-info",
-                component:AdminBlogInfo
+                name: 'admin-blog-info',
+                path: "blog-info",
+                component: AdminBlogInfo
             },
             {
-                name:'AdminApiManagement',
-                path:"apiManagement",
-                component:ApiManagement
+                name: 'AdminApiManagement',
+                path: "apiManagement",
+                component: ApiManagement
             },
             {
-                name:'admin-user-permission',
-                path:"user-permission",
-                component:AdminUserPermission
+                name: 'admin-user-permission',
+                path: "user-permission",
+                component: AdminUserPermission
             },
             {
-                name:'admin-reply-blog',
-                path:"reply-blog",
-                component:AdminReplyBlog
+                name: 'admin-reply-blog',
+                path: "reply-blog",
+                component: AdminReplyBlog
             },
             {
-                name:'admin-reply-web',
-                path:"reply-web",
-                component:AdminReplyWeb
+                name: 'admin-reply-web',
+                path: "reply-web",
+                component: AdminReplyWeb
             },
         ]
     },
@@ -183,14 +191,14 @@ const routes = [
     // 单个文章的路由
     // 传递文章ID进去
     {
-        name:"BlogInfo",
-        path:"/bloginfo",
-        components:{
+        name: "BlogInfo",
+        path: "/bloginfo",
+        components: {
             header: NavBar,
             other: BlogInfo,
             footer: Footer
         },
-        props(route){
+        props(route) {
             return {
                 id: route.query.id
             }
@@ -201,7 +209,7 @@ const routes = [
 
 // 解决：重复点击路由报错
 const originalPush = VueRouter.prototype.push
-VueRouter.prototype.push = function push(location) {  
+VueRouter.prototype.push = function push(location) {
     return originalPush.call(this, location).catch(err => err)
 }
 
@@ -214,11 +222,11 @@ const router = new VueRouter({
 // 前置路由，用于拦截路由请求
 router.beforeEach((to, from, next) => {
     // 判断是在首页直接放行
-    if (to.path === "/" || to.path === "/meme"){
+    if (to.path === "/" || to.path === "/meme") {
         return next()
     }
     // 判断是否登录
-    if (localStorage.getItem("loginStatus") !== 'ok'){
+    if (localStorage.getItem("loginStatus") !== 'ok') {
         console.log("请先登录/注册");
         if (to.path !== '/login' && to.path !== '/register') {
             return next("/login");

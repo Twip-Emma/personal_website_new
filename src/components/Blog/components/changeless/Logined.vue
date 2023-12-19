@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-07-18 15:02:40
+ * @LastEditTime: 2023-12-19 15:24:29
  * @Description: file content
 -->
 <template>
@@ -219,9 +219,9 @@ export default {
         } else {
           return res.msg
         }
+      } else {
+        return true
       }
-
-      // 其他表单数据提交逻辑...
     },
     dataURLtoFile(dataURL, filename) {
       const arr = dataURL.split(",");
