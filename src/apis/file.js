@@ -13,7 +13,7 @@ export default {
     async uploadAvatar(data) {
         var _data = undefined
         const token = localStorage.getItem('token');
-        await axios.post("/higanbana/blog/user/update/avatar", data, {
+        await axios.post("/blog/blog/user/update/avatar", data, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Currency': token
@@ -30,7 +30,7 @@ export default {
     async uploadBlogImage(data) {
         var _data = undefined
         const token = localStorage.getItem('token');
-        await axios.post("/higanbana/file/upload/blogImage", data, {
+        await axios.post("/blog/file/upload/blogImage", data, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Currency': token

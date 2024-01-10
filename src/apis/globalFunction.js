@@ -36,7 +36,7 @@ export default {
     async getAllMessageApi(page = 1, text = "") {
         console.log("请求了留言")
         var _data = undefined
-        await axios.get("/higanbana/blog/global/getallmessage?page=" + page + (text ? "&text=" + text : "")).then(
+        await axios.get("/blog/blog/global/getallmessage?page=" + page + (text ? "&text=" + text : "")).then(
             response => {
                 _data = response.data
             }
@@ -47,7 +47,7 @@ export default {
     async publishMessageApi(content) {
         console.log("发表了评论")
         var _data = 200
-        await axios.post("/higanbana/blog/global/addmessage", {
+        await axios.post("/blog/blog/global/addmessage", {
             "content": content
         })
         return _data
@@ -63,14 +63,14 @@ export default {
     async updateMessage(content) {
         console.log("发表了评论")
         var _data = 200
-        await axios.post("/higanbana/blog/global/updateMessage", content)
+        await axios.post("/blog/blog/global/updateMessage", content)
         return _data
     },
     // 删除留言
     async deleteMessage(id) {
         console.log("发表了评论")
         var _data = 200
-        await axios.get("/higanbana/blog/global/deleteMessage?id=" + id)
+        await axios.get("/blog/blog/global/deleteMessage?id=" + id)
         return _data
     },
 }

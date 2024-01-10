@@ -14,7 +14,7 @@ export default {
     },
     // 获取用户信息
     async setUserInfo() {
-        await axios.get("/higanbana/blog/user/getUserInfo").then(
+        await axios.get("/blog/blog/user/getUserInfo").then(
             response => {
                 _setUserData(response.data)
             }
@@ -23,7 +23,7 @@ export default {
     // 用户登录
     async userLoginAction(value) {
         var flag = false
-        await axios.post("/higanbana/blog/user/login", value).then(
+        await axios.post("/blog/blog/user/login", value).then(
             response => {
                 flag = true
                 _setUserData(response.data)
@@ -34,7 +34,7 @@ export default {
     // 用户注册
     async userRegisterAction(value) {
         var flag = false
-        await axios.post("/higanbana/blog/user/register", value).then(
+        await axios.post("/blog/blog/user/register", value).then(
             response => {
                 flag = true
                 _setUserData(response.data)
@@ -45,7 +45,7 @@ export default {
     // 获取头像列表
     async getAllAvatarApi() {
         var _data = undefined
-        await axios.get("/higanbana/blog/user/getallavatar").then(
+        await axios.get("/blog/blog/user/getallavatar").then(
             response => {
                 _data = response.data
             }
@@ -55,7 +55,7 @@ export default {
     // 修改用户信息(名字与头像)
     async changeUserInfoApi(name) {
         var _data = undefined
-        await axios.post("/higanbana/blog/user/updateuser", {
+        await axios.post("/blog/blog/user/updateuser", {
             "nickname": name
         })
         return _data
@@ -63,7 +63,7 @@ export default {
     // 获取所有用户信息
     async getAllUserApi(page = 1, name = "") {
         var _data = undefined
-        await axios.get("/higanbana/blog/user/getalluser?page=" + page + (name ? "&name=" + name : "")).then(
+        await axios.get("/blog/blog/user/getalluser?page=" + page + (name ? "&name=" + name : "")).then(
             response => {
                 _data = response.data
             }
@@ -73,7 +73,7 @@ export default {
     // 修改用户信息（管理员操作的、用户全部信息）
     async changeAllUserInfoApi(userData) {
         var _data = undefined
-        await axios.post("/higanbana/blog/user/updatealluser", userData).then(
+        await axios.post("/blog/blog/user/updatealluser", userData).then(
             response => {
                 _data = response.data
             }
@@ -83,7 +83,7 @@ export default {
     // 修改用户信息（超级管理员操作的、用户权限）
     async updateUserPermission(targetId, targetPermission) {
         var _data = undefined
-        await axios.get("/higanbana/blog/user/updateUserPermission?targetId=" + targetId + "&targetPermission=" + targetPermission).then(
+        await axios.get("/blog/blog/user/updateUserPermission?targetId=" + targetId + "&targetPermission=" + targetPermission).then(
             response => {
                 _data = response.data
             }
@@ -92,12 +92,12 @@ export default {
     },
     // 删除用户
     async deleteUser(id) {
-        await axios.get("/higanbana/blog/user/deleteUser?id=" + id)
+        await axios.get("/blog/blog/user/deleteUser?id=" + id)
     },
     // 获取所有用户数量（管理员界面的用户界面）
     async getUserCount() {
         var _data = undefined
-        await axios.get("/higanbana/blog/user/getUserCount").then(
+        await axios.get("/blog/blog/user/getUserCount").then(
             response => {
                 _data = response.data
             }
@@ -107,7 +107,7 @@ export default {
     // 根据当前用户token获取用户实体
     async getUserByToken() {
         var _data = undefined
-        await axios.get("/higanbana/blog/user/getUserInfo").then(
+        await axios.get("/blog/blog/user/getUserInfo").then(
             response => {
                 _data = response.data
             }

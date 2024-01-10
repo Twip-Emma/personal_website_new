@@ -12,7 +12,7 @@ export default {
     // 查询所有meme
     async query() {
         var _data = undefined
-        await axios.get("/higanbana/meme/query").then(
+        await axios.get("/blog/meme/query").then(
             response => {
                 _data = response.data
             }
@@ -22,7 +22,7 @@ export default {
     // 查询某个meme的点赞情况
     async queryLike(memeId) {
         var _data = undefined
-        await axios.get("/higanbana/meme/queryLike?memeId=" + memeId).then(
+        await axios.get("/blog/meme/queryLike?memeId=" + memeId).then(
             response => {
                 _data = response.data
             }
@@ -32,7 +32,7 @@ export default {
     // 点赞/取消赞
     async updateLike(memeId, type) {
         var _data = undefined
-        await axios.get("/higanbana/meme/updateLike?memeId=" + memeId + "&type=" + type).then(
+        await axios.get("/blog/meme/updateLike?memeId=" + memeId + "&type=" + type).then(
             response => {
                 _data = response.data
             }
@@ -42,7 +42,7 @@ export default {
     // 查询meme评论
     async queryReply(memeId) {
         var _data = undefined
-        await axios.get("/higanbana/meme/queryReply?memeId=" + memeId).then(
+        await axios.get("/blog/meme/queryReply?memeId=" + memeId).then(
             response => {
                 _data = response.data
             }
@@ -52,7 +52,7 @@ export default {
     // 新增meme评论
     async insertReply(data) {
         var _data = undefined
-        await axios.post("/higanbana/meme/insertReply", data).then(
+        await axios.post("/blog/meme/insertReply", data).then(
             response => {
                 _data = response.data
             }

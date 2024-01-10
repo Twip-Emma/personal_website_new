@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-28 22:03:26
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-04 09:30:59
+ * @LastEditTime: 2024-01-10 13:11:49
  * @Description: file content
 -->
 <template>
@@ -56,7 +56,7 @@ export default {
         // 刷新本页面
         this.form.resp = data;
         this.form.total =
-          "http://twip.top/api/higanbana/api/setu?key=" + data;
+          "http://twip.top/api/blog/api/setu?key=" + data;
       } else {
         this.form.resp = "";
         this.form.total = "";

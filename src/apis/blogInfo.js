@@ -14,7 +14,7 @@ export default {
             return undefined
         }
         var _data = undefined
-        await axios.get("/higanbana/blog/blog/selectbloglist" + (name ? "byname" : "bypage") + "?page=" + page + (name ? "&name=" + name : "")).then(
+        await axios.get("/blog/blog/blog/selectbloglist" + (name ? "byname" : "bypage") + "?page=" + page + (name ? "&name=" + name : "")).then(
             response => {
                 _data = response.data
             }
@@ -24,7 +24,7 @@ export default {
     // 获取博客列表（只加一个参数时则不模糊）（管理员界面）
     async queryAllBlog(page = 1, name = "") {
         var _data = undefined
-        await axios.get("/higanbana/blog/blog/queryAllBlog?page=" + page + (name ? "&name=" + name : "")).then(
+        await axios.get("/blog/blog/blog/queryAllBlog?page=" + page + (name ? "&name=" + name : "")).then(
             response => {
                 _data = response.data
             }
@@ -36,7 +36,7 @@ export default {
         if (!localStorage.getItem("userInfo")) {
             return undefined
         }
-        var url = name ? `/higanbana/blog/blog/selectbloglisttotalcountbyname?name=${name}` : '/higanbana/blog/blog/selectbloglisttotalcount'
+        var url = name ? `/blog/blog/blog/selectbloglisttotalcountbyname?name=${name}` : '/blog/blog/blog/selectbloglisttotalcount'
         var _data = undefined
         await axios.get(url).then(
             response => {
@@ -50,7 +50,7 @@ export default {
         console.log("请求了评论列表")
         var _data = undefined
         var id = blogId || sessionStorage.getItem("blogId")
-        await axios.get("/higanbana/blog/blog/selectblogreplybyid?blogid=" + id + "&page=" + page + (text ? "&text=" + text : "")).then(
+        await axios.get("/blog/blog/blog/selectblogreplybyid?blogid=" + id + "&page=" + page + (text ? "&text=" + text : "")).then(
             response => {
                 _data = response.data
             }
@@ -62,7 +62,7 @@ export default {
         console.log("发表了评论")
         var _data = 200
         const articleId = blogId || sessionStorage.getItem("blogId")
-        await axios.post("/higanbana/blog/blog/addblogreply", {
+        await axios.post("/blog/blog/blog/addblogreply", {
             "articleId": articleId,
             "content": content
         })
@@ -71,14 +71,14 @@ export default {
     // 根据ID获取博客
     async getBlogInfoByIdApi(id) {
         const _id = id || sessionStorage.getItem("blogId");
-        const { data } = await axios.get(`/higanbana/blog/blog/getbloginfobyid?blogid=${_id}`);
+        const { data } = await axios.get(`/blog/blog/blog/getbloginfobyid?blogid=${_id}`);
         return data;
     },
     // 发布博客
     async publishBlog(data) {
         var _data = undefined
         const token = localStorage.getItem('token');
-        await axios.post("/higanbana/blog/blog/add", data, {
+        await axios.post("/blog/blog/blog/add", data, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Currency': token
@@ -93,31 +93,31 @@ export default {
     },
     // 删除博客（管理员）
     async deleteBlog(id) {
-        await axios.get("/higanbana/blog/blog/deleteBlog?id=" + id)
+        await axios.get("/blog/blog/blog/deleteBlog?id=" + id)
     },
     // 删除博客（用户）
     async deleteBlogByUser(id) {
-        await axios.get("/higanbana/blog/blog/deleteBlogByUser?id=" + id)
+        await axios.get("/blog/blog/blog/deleteBlogByUser?id=" + id)
     },
     // 删除博客（管理员）
     async deleteBlogReplyByAdmin(id) {
-        await axios.get("/higanbana/blog/blog/deleteBlogReplyByAdmin?id=" + id)
+        await axios.get("/blog/blog/blog/deleteBlogReplyByAdmin?id=" + id)
     },
     // 删除博客（用户）
     async deleteBlogReplyByUser(id) {
-        await axios.get("/higanbana/blog/blog/deleteBlogReplyByUser?id=" + id)
+        await axios.get("/blog/blog/blog/deleteBlogReplyByUser?id=" + id)
     },
     // 修改博客评论（管理员、用户通用接口）
     async updateBlogReply(blog) {
         console.log("发表了评论")
         var _data = 200
-        await axios.post("/higanbana/blog/blog/updateBlogReply", blog)
+        await axios.post("/blog/blog/blog/updateBlogReply", blog)
         return _data
     },
     // 获取博客数量数据（饼图用）
     async getBlogCountData() {
         var _data = undefined
-        await axios.get("/higanbana/blog/blog/getBlogCountData").then(
+        await axios.get("/blog/blog/blog/getBlogCountData").then(
             response => {
                 _data = response.data
             }
@@ -126,7 +126,7 @@ export default {
     },
     async queryBlogListByUser() {
         var _data = undefined
-        await axios.get("/higanbana/blog/blog/queryBlogListByUser").then(
+        await axios.get("/blog/blog/blog/queryBlogListByUser").then(
             response => {
                 _data = response.data
             }
@@ -135,6 +135,6 @@ export default {
     },
     // 修改博客
     async updateBlogByUser(blogInfo) {
-        await axios.post("/higanbana/blog/blog/updateBlogByUser", blogInfo)
+        await axios.post("/blog/blog/blog/updateBlogByUser", blogInfo)
     },
 }
