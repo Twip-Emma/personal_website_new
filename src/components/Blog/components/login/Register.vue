@@ -2,13 +2,13 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-06 16:40:31
+ * @LastEditTime: 2024-01-15 15:39:44
  * @Description: file content
 -->
 <template>
   <el-container class="out">
     <div class="a">
-      <div class="b"></div>
+      <div class="b" :style="{ backgroundImage: 'url(' + coverImage + ')' }"></div>
       <div class="c">
         <div class="d">
           <h1>注册</h1>
@@ -25,6 +25,7 @@
 
 <script>
 import userApis from "@/apis/userInfo"
+import imageApis from "@/apis/image";
 export default {
   data() {
     return {
@@ -33,7 +34,8 @@ export default {
         card:"",
         pass:""
       },
-      loading: false
+      loading: false,
+      coverImage: "",
     };
   },
   methods:{
@@ -79,6 +81,14 @@ export default {
         query: {},
       });
     },
+    // 获取封面
+    async getCoverImage() {
+      let a = await imageApis.getRandomImageByType("login");
+      this.coverImage = a;
+    },
+  },
+  mounted() {
+    this.getCoverImage()
   }
 };
 </script>
@@ -99,8 +109,6 @@ export default {
 .b {
   width: 800px;
   height: 550px;
-  /* background-image: url("http://cdngoapl.twip.top/%E4%BA%9A%E6%9E%9C12-1080-1920.png"); */
-  background: url("http://cdngoapl.twip.top/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90/blogpicB.png");
   /* 图片自适应 */
   background-size: cover;
 }

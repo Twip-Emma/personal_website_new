@@ -9,7 +9,7 @@ import axios from "axios"
 
 export default {
     // 获取一个新密钥
-    async getNewKeyApi(time){
+    async getNewKeyApi(time) {
         var _data = undefined
         await axios.get("/blog/api/addsetukey?time=" + time).then(
             response => {

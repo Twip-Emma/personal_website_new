@@ -2,14 +2,14 @@
  * @Author: 七画一只妖
  * @Date: 2022-03-08 16:11:44
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-04-10 09:14:52
+ * @LastEditTime: 2024-01-12 12:48:18
  * @Description: file content
 -->
 <template>
   <div id="out">
     <header class="head">
       <div class="head_logo_div">
-        <img class="logo_img" src="http://cdngoapl.twip.top/%E7%94%A8%E6%88%B7%E5%A4%87%E9%80%89%E5%A4%B4%E5%83%8F/%E4%B8%83%E7%94%BB%E4%B8%80%E5%8F%AA%E5%A6%963.jpg" />
+        <img class="logo_img" src="http://q1.qlogo.cn/g?b=qq&nk=1157529280&s=640" />
       </div>
       <div class="head_nav_div">
         <nav class="head_nav">
@@ -148,15 +148,15 @@
               id="head"
               @click="headclick()"
               class="head_img"
-              src="http://cdngoapl.twip.top/%E7%94%A8%E6%88%B7%E5%A4%87%E9%80%89%E5%A4%B4%E5%83%8F/%E4%B8%83%E7%94%BB%E4%B8%80%E5%8F%AA%E5%A6%963.jpg"
+              src="http://q1.qlogo.cn/g?b=qq&nk=1157529280&s=640"
             />
           </div>
-          <h1 class="title">七画一只妖</h1>
-          <h2 class="title_h2">七个笔画，即为“妖”</h2>
+          <h1 class="title">个人博客网站</h1>
+          <h2 class="title_h2">书山有路勤为径 学海无涯苦作舟</h2>
           <div id="box01_text">
-            <p></p>
+            <!-- <p></p>
             <p>花开一季的惊艳</p>
-            <p>写尽人生</p>
+            <p>写尽人生</p> -->
           </div>
         </div>
       </div>
@@ -521,7 +521,7 @@
             </li>
             <li>
               <a href="#">
-                <h2>画境</h2>
+                <h2>学习群</h2>
                 <h4>我的编程学习群，当时一上头创建的，高手云集，现在对我来说帮助不小</h4>
               </a>
             </li>

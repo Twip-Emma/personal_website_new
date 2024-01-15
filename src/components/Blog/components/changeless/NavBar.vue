@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 12:11:04
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-12-19 15:05:51
+ * @LastEditTime: 2024-01-13 15:18:06
  * @Description: file content
 -->
 <template>
@@ -50,7 +50,7 @@
         class="el-menu-item_p"
         index="6"
         @click="pageSwitch('Market')"
-        >天河集市</el-menu-item
+        >动态</el-menu-item
       >
       <el-menu-item class="el-menu-item_p-input">
         <el-input

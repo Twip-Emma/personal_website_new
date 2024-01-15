@@ -2,20 +2,37 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 17:53:11
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-06 16:37:20
+ * @LastEditTime: 2024-01-15 15:36:26
  * @Description: file content
 -->
 <template>
   <el-container class="out">
     <div class="a">
-      <div class="b"></div>
+      <div class="b" :style="{ backgroundImage: 'url(' + coverImage + ')' }"></div>
       <div class="c">
         <div class="d">
           <h1>登录</h1>
-          <input type="text" class="e" placeholder="账号" v-model.trim="userLoginData.card" />
-          <input type="password" class="e" placeholder="密码" v-model.trim="userLoginData.pass" />
+          <input
+            type="text"
+            class="e"
+            placeholder="账号"
+            v-model.trim="userLoginData.card"
+          />
+          <input
+            type="password"
+            class="e"
+            placeholder="密码"
+            v-model.trim="userLoginData.pass"
+          />
           <a href="#" class="f">忘记密码？</a>
-          <el-button class="login" type="primary" :disabled="!disabled" @click="userLogin()" :loading="loading">登录</el-button>
+          <el-button
+            class="login"
+            type="primary"
+            :disabled="!disabled"
+            @click="userLogin()"
+            :loading="loading"
+            >登录</el-button
+          >
         </div>
       </div>
     </div>
@@ -24,6 +41,7 @@
 
 <script>
 import userApis from "@/apis/userInfo";
+import imageApis from "@/apis/image";
 export default {
   data() {
     return {
@@ -32,11 +50,12 @@ export default {
         pass: "",
       },
       loading: false,
+      coverImage: "",
     };
   },
   computed: {
-    disabled(){
-      return this.userLoginData.card && this.userLoginData.pass
+    disabled() {
+      return this.userLoginData.card && this.userLoginData.pass;
     },
   },
   methods: {
@@ -62,12 +81,12 @@ export default {
           message: "登录成功，您当前正在博客列表页面",
           type: "success",
         });
-        this.setAdmin()
+        this.setAdmin();
       }
     },
-    async setAdmin(){
-      var userData = await userApis.getUserByToken()
-      this.$store.state.globalData.administrator = userData.isadmin
+    async setAdmin() {
+      var userData = await userApis.getUserByToken();
+      this.$store.state.globalData.administrator = userData.isadmin;
     },
     // 页面跳转
     pageSwitch(target) {
@@ -76,7 +95,15 @@ export default {
         query: {},
       });
     },
+    // 获取封面
+    async getCoverImage() {
+      let a = await imageApis.getRandomImageByType("login");
+      this.coverImage = a;
+    },
   },
+  mounted() {
+    this.getCoverImage()
+  }
 };
 </script>
 
@@ -96,8 +123,6 @@ export default {
 .b {
   width: 800px;
   height: 550px;
-  /* background-image: url("http://cdngoapl.twip.top/%E4%BA%9A%E6%9E%9C12-1080-1920.png"); */
-  background: url("http://cdngoapl.twip.top/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90/blogpicA.png");
   /* 图片自适应 */
   background-size: cover;
 }

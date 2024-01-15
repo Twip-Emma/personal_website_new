@@ -1,5 +1,5 @@
 <template>
-  <div>天河集市</div>
+  <div>动态</div>
 </template>
 
 <script>
