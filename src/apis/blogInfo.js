@@ -86,7 +86,6 @@ export default {
         }).then(
             response => {
                 _data = response
-                console.log(response, 66666666666)
             }
         )
         return _data

@@ -2,11 +2,18 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2022-03-07 22:38:49
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2024-01-15 15:52:24
+ * @LastEditTime: 2024-01-19 16:44:47
  * @FilePath: \personal_website\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 # personal_website（个人网站-博客）
+
+## 后端启动
+~~~sh
+bash`nohup java -jar -Xms64m -Xmx64m web-gateway-1.0-SNAPSHOT.jar > log-gateway.log 2>&1 &` 
+
+bash`nohup java -jar -Xms64m -Xmx64m web-blog-1.0-SNAPSHOT.jar > log-blog.log 2>&1 &` 
+~~~
 
 ### 问题整改日志
 
@@ -76,3 +83,4 @@
 - #BOKE-58# 管理系统-定时任务-对象存储中定时清理没有引用的文件
 - 【已解决】#BOKE-59# 主界面-个人信息-头像上传不选择头像时报错问题
 - 【已解决】#BOKE-60# 主界面-登录注册页面-随机封面
+- 【已解决】#BOKE-61# 管理界面-图片api-新增素材图片上传功能

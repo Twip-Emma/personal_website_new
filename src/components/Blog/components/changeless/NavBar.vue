@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 12:11:04
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2024-01-13 15:18:06
+ * @LastEditTime: 2024-01-15 16:03:18
  * @Description: file content
 -->
 <template>
@@ -40,12 +40,12 @@
         @click="pageSwitch('Management')"
         >管理</el-menu-item
       >
-      <el-menu-item
+      <!-- <el-menu-item
         class="el-menu-item_p"
         index="5"
         @click="pageSwitch('Meme')"
         >素材</el-menu-item
-      >
+      > -->
       <el-menu-item
         class="el-menu-item_p"
         index="6"
