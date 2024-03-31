@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-28 22:03:26
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2024-01-19 16:24:36
+ * @LastEditTime: 2024-03-31 10:57:55
  * @Description: file content
 -->
 <template>
@@ -49,17 +49,19 @@ export default {
     };
   },
   methods: {
-    handleBeforeUpload(file) {
-      // 使用FileReader预览图片
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.imageUrl = e.target.result;
-      };
-      reader.readAsDataURL(file);
+    // handleBeforeUpload(file) {
+    //   // 校验文件是否是图片
+    //   this.checkFileType(file)
+    //   // 使用FileReader预览图片
+    //   const reader = new FileReader();
+    //   reader.onload = (e) => {
+    //     this.imageUrl = e.target.result;
+    //   };
+    //   reader.readAsDataURL(file);
 
-      // 取消上传
-      return false;
-    },
+    //   // 取消上传
+    //   return false;
+    // },
     dataURLtoFile(dataURL, filename) {
       const arr = dataURL.split(",");
       const mime = arr[0].match(/:(.*?);/)[1];
@@ -80,7 +82,7 @@ export default {
       }
       formData.append("title", this.meme.title);
       const res = await FileApis.uploadMeme(formData);
-      console.log(res)
+      console.log(res);
       if (res.success === true) {
         this.$message({
           title: "素材",
@@ -97,6 +99,44 @@ export default {
         });
         return;
       }
+    },
+    // 校验文件是否是图片
+    handleBeforeUpload(file) {
+      const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/gif",
+        "image/webp",
+      ]; // 允许的图片MIME类型
+      if (!allowedTypes.includes(file.type)) {
+        this.$message.error("只能上传 JPG、PNG、GIF 或 WEBP 格式的图片！");
+        return false;
+      }
+
+      // 更进一步的安全性检查，尝试读取文件头部数据并创建图片
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onerror = () => {
+          this.$message.error("上传的文件不是一个有效的图片格式！");
+          return false;
+        };
+        img.onload = () => {
+          // 图片加载成功，可认为是有效图片,使用FileReader预览图片
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            this.imageUrl = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        };
+        img.src = event.target.result; // 设置图片源为读取到的文件数据
+      };
+
+      // 读取文件前几个字节作为验证依据（不同格式图片的前几个字节代表不同的标识符）
+      reader.readAsDataURL(file.slice(0, 1024 * 4)); // 只读取前4KB的数据作为校验，减少内存消耗
+
+      // 返回false暂停默认的上传行为，直到校验完成
+      return false;
     },
   },
 };
