@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2023-05-09 09:34:42
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-05-25 16:35:47
+ * @LastEditTime: 2024-03-31 13:10:57
  * @FilePath: \personal_website\src\components\Blog\components\meme\index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -11,10 +11,10 @@
     <div>
       <MemeDescription :initdata="cardList" />
     </div>
-    <div class="button">
+    <!-- <div class="button">
       <el-button @click="randomDisplay()">乱序</el-button>
       <el-button @click="orderDisplay()">顺序</el-button>
-    </div>
+    </div> -->
     <el-dialog
       title="语录详情"
       :visible.sync="dialogVisible"
@@ -52,9 +52,9 @@ export default {
     async setInitData() {
       this.cardList = await MemeApis.query();
       this.randomCardList = Array.from(this.cardList); // 深拷贝
-      this.randomCardList.sort(() => {
-        return 0.5 - Math.random();
-      });
+      // this.randomCardList.sort(() => {
+      //   return 0.5 - Math.random();
+      // });
       if (this.flag === 0) {
         this.$nextTick(() => {
           this.$refs.MyWaterfall.setCardList(this.randomCardList);

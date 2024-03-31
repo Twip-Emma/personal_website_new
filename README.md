@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2022-03-07 22:38:49
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2024-03-31 12:47:03
+ * @LastEditTime: 2024-03-31 13:13:22
  * @FilePath: \personal_website\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -56,7 +56,7 @@ bash`nohup java -jar -Xms64m -Xmx64m web-blog-1.0-SNAPSHOT.jar > log-blog.log 2>
 - 【已解决】#BOKE-35# 管理界面-评论-逻辑管理
 - 【已解决】#BOKE-36# 主界面-我的博客-管理（基本面板展示、编辑博客）
 - 【已解决】#BOKE-37# 主界面-素材浏览-详细内容过窄问题
-- #BOKE-38# 主界面-素材浏览-重写查询以及查询条件
+- 【已解决】#BOKE-38# 主界面-素材浏览-重写查询以及查询条件
 - 【已解决】#BOKE-39# 主界面-博客详情-移除顶部图片
 - 【已解决】#BOKE-40# 主界面-管理界面-网站留言管理
 - 【已解决】#BOKE-41# 主界面-留言界面-需要增加分页查询
