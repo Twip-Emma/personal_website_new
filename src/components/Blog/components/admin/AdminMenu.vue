@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-20 16:42:13
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-06-01 10:22:50
+ * @LastEditTime: 2024-03-31 13:33:00
  * @Description: file content
 -->
 <template>
@@ -25,7 +25,7 @@
             </template>
             <el-menu-item-group>
               <template slot="title">管理网站和服务器状态</template>
-              <el-menu-item index="0-1" @click="adminJumpTo('AdminApiManagement')"
+              <el-menu-item index="0-1" @click="adminJumpTo('admin-web-overview')"
                 >状态总览</el-menu-item
               >
               <el-menu-item index="0-2" @click="adminJumpTo('AdminApiManagement')"

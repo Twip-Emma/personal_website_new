@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-17 11:42:56
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-12-19 15:05:27
+ * @LastEditTime: 2024-03-31 13:28:55
  * @Description: file content
  */
 import Vue from 'vue'
@@ -41,6 +41,7 @@ import AdminBlogInfo from '@/components/Blog/components/admin/blog-info/index.vu
 import AdminUserPermission from '@/components/Blog/components/admin/user-permission/index.vue'
 import AdminReplyBlog from '@/components/Blog/components/admin/reply-blog/index.vue'
 import AdminReplyWeb from '@/components/Blog/components/admin/reply-web/index.vue'
+import WebOverview from '@/components/Blog/components/admin/web-overview/index.vue'
 
 const routes = [{
         name: "Start",
@@ -185,6 +186,11 @@ const routes = [{
                 path: "reply-web",
                 component: AdminReplyWeb
             },
+            {
+                name: 'admin-web-overview',
+                path: "web-overview",
+                component: WebOverview
+            }
         ]
     },
 
