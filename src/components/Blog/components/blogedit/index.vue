@@ -156,15 +156,42 @@ export default {
     };
   },
   methods: {
+    // 校验文件是否是图片
     handleBeforeUpload(file) {
-      // 使用FileReader预览图片
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.imageUrl = e.target.result;
-      };
-      reader.readAsDataURL(file);
+      const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/gif",
+        "image/webp",
+      ]; // 允许的图片MIME类型
+      if (!allowedTypes.includes(file.type)) {
+        this.$message.error("只能上传 JPG、PNG、GIF 或 WEBP 格式的图片！");
+        return false;
+      }
 
-      // 取消上传
+      // 更进一步的安全性检查，尝试读取文件头部数据并创建图片
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onerror = () => {
+          this.$message.error("上传的文件不是一个有效的图片格式！");
+          return false;
+        };
+        img.onload = () => {
+          // 图片加载成功，可认为是有效图片,使用FileReader预览图片
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            this.imageUrl = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        };
+        img.src = event.target.result; // 设置图片源为读取到的文件数据
+      };
+
+      // 读取文件前几个字节作为验证依据（不同格式图片的前几个字节代表不同的标识符）
+      reader.readAsDataURL(file.slice(0, 1024 * 4)); // 只读取前4KB的数据作为校验，减少内存消耗
+
+      // 返回false暂停默认的上传行为，直到校验完成
       return false;
     },
     change(value, render) {
@@ -196,17 +223,7 @@ export default {
           let arrTags = this.$store.state.globalData.blogTags;
           this.blogForm.tags = arrTags.join("|");
           this.blogForm.typeName = this.blogForm.flag;
-          // if (this.imageUrl) {
-          //   let arr = this.imageUrl.split(",");
-          //   let data = window.atob(arr[1]);
-          //   let mime = arr[0].match(/:(.*?);/)[1];
-          //   let ia = new Uint8Array(data.length);
-          //   for (var i = 0; i < data.length; i++) {
-          //     ia[i] = data.charCodeAt(i);
-          //   }
-          //   let blob = new Blob([ia], { type: mime });
-          //   formData.append("file", blob, {type: 'application/json'});
-          // }
+
           if (this.imageUrl) {
             formData.append(
               "file",

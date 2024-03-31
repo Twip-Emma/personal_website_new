@@ -49,19 +49,6 @@ export default {
     };
   },
   methods: {
-    // handleBeforeUpload(file) {
-    //   // 校验文件是否是图片
-    //   this.checkFileType(file)
-    //   // 使用FileReader预览图片
-    //   const reader = new FileReader();
-    //   reader.onload = (e) => {
-    //     this.imageUrl = e.target.result;
-    //   };
-    //   reader.readAsDataURL(file);
-
-    //   // 取消上传
-    //   return false;
-    // },
     dataURLtoFile(dataURL, filename) {
       const arr = dataURL.split(",");
       const mime = arr[0].match(/:(.*?);/)[1];

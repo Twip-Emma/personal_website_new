@@ -2,7 +2,7 @@
  * @Author: 七画一只妖 1157529280@qq.com
  * @Date: 2022-03-07 22:38:49
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2024-03-31 12:13:32
+ * @LastEditTime: 2024-03-31 12:47:03
  * @FilePath: \personal_website\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -85,3 +85,5 @@ bash`nohup java -jar -Xms64m -Xmx64m web-blog-1.0-SNAPSHOT.jar > log-blog.log 2>
 - 【已解决】#BOKE-60# 主界面-登录注册页面-随机封面
 - 【已解决】#BOKE-61# 管理界面-图片api-新增素材图片上传功能
 - 【已解决】#BOKE-62# 管理界面-图片api-meme图片上传校验
+- 【已解决】#BOKE-63# 主界面-编辑博客-图片上传校验
+- 【已解决】#BOKE-64# 主界面-个人信息-图片上传校验
