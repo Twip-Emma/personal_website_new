@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2021-11-19 18:05:54
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2024-03-31 12:43:22
+ * @LastEditTime: 2024-05-07 17:59:55
  * @Description: file content
 -->
 <template>
@@ -69,13 +69,25 @@
     >
       <el-form ref="form" :model="form" label-width="80px">
         <el-form-item label="新的昵称">
-          <el-input v-model="newNickname"></el-input>
+          <el-input
+            placeholder="不填默认不修改"
+            v-model="newNickname"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="新的密码">
+          <el-input placeholder="不填默认不修改" v-model="newPass"></el-input>
+        </el-form-item>
+        <el-form-item label="头像同步QQ">
+          <el-input
+            placeholder="填写QQ号，本项优先级大于上传头像"
+            v-model="qqAvatar"
+          ></el-input>
         </el-form-item>
         <!-- <el-form-item label="QQ号">
           <el-input v-model="qqNumber"></el-input>
         </el-form-item> -->
         <!-- <div>通过输入QQ号来获取这个QQ对应的头像</div> -->
-        <el-form-item label="头像">
+        <el-form-item label="上传头像">
           <el-upload
             class="avatar-uploader"
             :action="uploadUrl"
@@ -124,11 +136,54 @@ export default {
       imageUrl: "", // 图片预览地址
       // uploadUrl: "/higanbana/file/upload/image", // 图片上传地址
       uploadUrl: "#", // 图片上传地址
-      newNickname: "",
+      newNickname: "", // 新昵称
+      qqAvatar: "",
+      newPass: "",
       qqNumber: "",
       avatar: {
         name: "",
         url: "",
+      },
+      formRules: {
+        newNickname: [
+          { required: false, message: "请输入新的昵称", trigger: "blur" },
+          {
+            max: 20,
+            message: "昵称长度不超过20个字符",
+            trigger: "blur",
+          },
+          { pattern: /^[\S]*$/, message: "昵称不能包含空格", trigger: "blur" },
+        ],
+        newPass: [
+          { required: false, message: "请输入新的密码", trigger: "blur" },
+          {
+            max: 20,
+            message: "密码长度不超过20个字符",
+            trigger: "blur",
+          },
+          {
+            pattern: /^[^\u4e00-\u9fa5\s]*$/,
+            message: "密码不能包含中文和空格",
+            trigger: "blur",
+          },
+        ],
+        qqAvatar: [
+          {
+            required: false,
+            message: "请输入QQ号进行头像同步",
+            trigger: "blur",
+          },
+          {
+            max: 20,
+            message: "QQ号长度不超过20个字符",
+            trigger: "blur",
+          },
+          {
+            pattern: /^[^\u4e00-\u9fa5\s]*$/,
+            message: "不能包含中文和空格",
+            trigger: "blur",
+          },
+        ],
       },
       avatarList: [],
       dialogVisible: false,
@@ -287,7 +342,7 @@ export default {
     async changeInfo() {
       this.avatarList = await userApi.getAllAvatarApi();
       var user = JSON.parse(localStorage.getItem("userInfo"));
-      this.newNickname = user.nickname;
+      // this.newNickname = user.nickname;
       this.avatar.url = user.avatar;
       this.dialogVisible = true;
     },
@@ -300,7 +355,11 @@ export default {
       if (i === "no") {
         this.dialogVisible = false;
       } else {
-        await userApi.changeUserInfoApi(this.newNickname);
+        await userApi.changeUserInfoApi(
+          this.newNickname,
+          this.newPass,
+          this.qqAvatar
+        );
         await userApi.setUserInfo();
         let resp = await this.submitForm(); // 上传头像
         if (resp !== true) {
