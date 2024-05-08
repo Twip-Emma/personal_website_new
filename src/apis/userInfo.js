@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-07-05 19:12:59
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-06-20 13:14:37
+ * @LastEditTime: 2024-05-07 16:56:44
  * @Description: file content
  */
 import axios from 'axios'
@@ -53,11 +53,20 @@ export default {
         return _data
     },
     // 修改用户信息(名字与头像)
-    async changeUserInfoApi(name) {
+    async changeUserInfoApi(name, pass, avatar) {
         var _data = undefined
-        await axios.post("/blog/blog/user/updateuser", {
-            "nickname": name
-        })
+        if (pass == null || pass == '') {
+            await axios.post("/blog/blog/user/updateuser", {
+                "nickname": name,
+                "avatar": avatar
+            })
+        } else {
+            await axios.post("/blog/blog/user/updateuser", {
+                "nickname": name,
+                "pass": pass,
+                "avatar": avatar
+            })
+        }
         return _data
     },
     // 获取所有用户信息
